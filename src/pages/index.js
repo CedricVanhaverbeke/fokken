@@ -1,4 +1,4 @@
-import { Content, PageHeader, PageTitle } from "@ftrprf/tailwind-components";
+import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 
 const Home = () => {
   return (
