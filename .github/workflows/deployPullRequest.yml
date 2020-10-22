@@ -1,0 +1,48 @@
+name: Upload to vercel pull request
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - development
+
+jobs:
+  deploy_to_vercel:
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: add package token
+        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_REPO_TOKEN }}" >> .npmrc
+      - name: cache node modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: add vercel config
+        run: mkdir .vercel && echo '{"orgId":"${{secrets.VERCEL_ORG_ID}}","projectId":"${{secrets.VERCEL_PROJECT_ID_DEV}}"}' > .vercel/project.json
+      - name: install
+        run: yarn
+      - name: run vercel
+        run: vercel --token ${{secrets.VERCEL_TOKEN}}
+      - name: Add commit comment
+        run: |
+          xclip -o | \
+          jq -nc '{"body": "Vercel url: "}' | \
+          curl -sL  -X POST -d @- \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments"
+
+  close_pull_request:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
