@@ -1147,10 +1147,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@ftrprf/tailwind-components@^1.0.3":
-  version "1.0.3"
-  resolved "https://npm.pkg.github.com/download/@ftrprf/tailwind-components/1.0.3/d7af0320fb6471792c04d8a45317330e7084bdc6e335d2de6669a6d5a6cb3e4b#9a200f2532786fc068a4dd100d89b4a5df91d335"
-  integrity sha512-8IIJ2wiIjWjA4hMmySgLjsgMNBft7FIGVkNuPXP3xTXsTdZycjqNLbkXwBlWSpcUn4M0blhOgHL76V0MT/P/bg==
+"@ftrprf/tailwind-components@^1.0.5":
+  version "1.0.5"
+  resolved "https://npm.pkg.github.com/download/@ftrprf/tailwind-components/1.0.5/043a7c62ec2fa56cfdaf226d9ae094a25267398e9b87268073d7f0d97c53453b#4dc99fbbf5f52ff70c4cfc8edf2a6a0e4e3bd9cb"
+  integrity sha512-SIl7ZLZMYbn1/oypjjglGSGB2D6E8cNv66KObrWrOqZRhQl4AKNsq0mCqqHKlyOYdxunnS+FUqrulF4as4GUNw==
   dependencies:
     tailwindcss "^1.9.4"
 

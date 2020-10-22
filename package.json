@@ -15,7 +15,7 @@
     "prettier:fix": "yarn prettier --write"
   },
   "dependencies": {
-    "@ftrprf/tailwind-components": "^1.0.3",
+    "@ftrprf/tailwind-components": "^1.0.5",
     "@reach/tooltip": "^0.11.2",
     "next": "9.5.5",
     "react": "16.14.0",
