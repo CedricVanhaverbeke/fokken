@@ -18,24 +18,14 @@ const TeacherHeader = () => {
         </div>
       )}
     >
-      <Header.Item>
-        <FTRPRFLink to="/schoolteacherprofile/students">Leerlingen</FTRPRFLink>
-      </Header.Item>
-      <Header.Item>
-        <FTRPRFLink to="/schoolteacherprofile/lessons">Leer</FTRPRFLink>
-      </Header.Item>
-      <Header.Item>
-        <FTRPRFLink to="/schoolteacherprofile/exams">Test</FTRPRFLink>
-      </Header.Item>
-      <Header.Item>
-        <FTRPRFLink to="/schoolteacherprofile/exercises">Codeer</FTRPRFLink>
-      </Header.Item>
-      <Header.Item>
-        <FTRPRFLink to="/schoolteacherprofile/hackroom">Hack Room</FTRPRFLink>
-      </Header.Item>
-      <Header.Item>
-        <FTRPRFLink to="https://studio.ftrprf.be">Studio</FTRPRFLink>
-      </Header.Item>
+      <FTRPRFLink to="/schoolteacherprofile/students" active>
+        Leerlingen
+      </FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/lessons">Leer</FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/exams">Test</FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/exercises">Codeer</FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/hackroom">Hack Room</FTRPRFLink>
+      <FTRPRFLink to="https://studio.ftrprf.be">Studio</FTRPRFLink>
     </Header>
   );
 };
