@@ -8,8 +8,8 @@ const Lesson = () => {
   const router = useRouter();
   const { id, lessonId } = router.query;
 
-  const { data: classgroup } = useClassgroup(id);
-  const { data: lesson } = useLesson(id, lessonId);
+  const { classgroup } = useClassgroup(id);
+  const { lesson } = useLesson(id, lessonId);
 
   if (!id || !lessonId) {
     return null;
