@@ -1,4 +1,4 @@
-name: Vercel upload
+name: Vercel upload to dev
 
 on:
   push:
