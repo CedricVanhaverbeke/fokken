@@ -34,14 +34,14 @@ jobs:
         run: yarn
       - name: run vercel
         run: vercel --token ${{secrets.VERCEL_TOKEN}}
-      - name: Add commit comment
-        run: |
-          xclip -o | \
-          jq -nc '{"body": "Vercel url: "}' | \
-          curl -sL  -X POST -d @- \
-            -H "Content-Type: application/json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments"
+      # - name: Add commit comment
+      #   run: |
+      #     xclip -o | \
+      #     jq -nc '{"body": "Vercel url: "}' | \
+      #     curl -sL  -X POST -d @- \
+      #       -H "Content-Type: application/json" \
+      #       -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+      #       "https://api.github.com/repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments"
 
   close_pull_request:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
