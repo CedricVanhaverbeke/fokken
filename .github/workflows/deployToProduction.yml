@@ -3,7 +3,7 @@ name: Vercel upload
 on:
   push:
     branches:
-      - feature/TC-277
+      - master
 
 jobs:
   build:
@@ -31,4 +31,4 @@ jobs:
       - name: install
         run: yarn
       - name: run vercel
-        run: vercel --token ${{secrets.VERCEL_TOKEN}}
+        run: vercel --token ${{secrets.VERCEL_TOKEN}} --prod
