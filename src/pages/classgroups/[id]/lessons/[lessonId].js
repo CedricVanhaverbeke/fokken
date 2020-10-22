@@ -1,19 +1,31 @@
 import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
-import { useRouter } from 'next/router';
+
+import Table from '../../../../components/Table';
 
 import useClassgroup from '../../../../hooks/useClassgroup';
 import useLesson from '../../../../hooks/useLesson';
 
-const Lesson = () => {
-  const router = useRouter();
-  const { id, lessonId } = router.query;
+const columns = [
+  {
+    Header: 'First Name',
+    accessor: 'firstName',
+  },
+  {
+    Header: 'Last Name',
+    accessor: 'lastName',
+  },
+  {
+    Header: 'Submitted',
+    accessor: 'submitted',
+    Cell: (cellProps) => {
+      return <p {...cellProps}>Test</p>;
+    },
+  },
+];
 
+const Lesson = ({ id, lessonId }) => {
   const { classgroup } = useClassgroup(id);
   const { lesson } = useLesson(id, lessonId);
-
-  if (!id || !lessonId) {
-    return null;
-  }
 
   return (
     <>
@@ -24,17 +36,20 @@ const Lesson = () => {
         </div>
       </PageHeader>
       <Content>
-        <div className="flex flex-col">
-          <div className="text-xl mb-3">Studenten</div>
-          <ul>
-            {classgroup?.students?.map(({ firstName }, index) => (
-              <li key={index}>- {firstName}</li>
-            ))}
-          </ul>
-        </div>
+        <Table
+          cellClassName="p-2"
+          columnClassName="p-2"
+          headerClassName="uppercase text-xs leading-4 tracking-wide rounded-t text-gray-600 bg-gray-200"
+          columns={columns}
+          data={classgroup?.students || []}
+        />
       </Content>
     </>
   );
+};
+
+Lesson.getInitialProps = ({ query: { id, lessonId } }) => {
+  return { id, lessonId };
 };
 
 export default Lesson;
