@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
+    "deploy": "vercel ",
     "lint": "yarn eslint && yarn prettier",
     "lint:fix": "yarn eslint:fix && yarn prettier:fix",
     "eslint": "eslint --ignore-path .gitignore \"./src/**/*.+(js|jsx|json)\"",
@@ -35,7 +36,8 @@
     "postcss-flexbugs-fixes": "^4.2.1",
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
-    "tailwindcss": "^1.9.5"
+    "tailwindcss": "^1.9.5",
+    "vercel": "^20.1.2"
   },
   "prettier": {
     "arrowParens": "always",
