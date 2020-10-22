@@ -27,7 +27,7 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: add vercel config
-        run: echo `{"orgId":"ag3RFq2oDccVGXnn3EvGb9bt","projectId":"Qme3jeYMxmpNRX6SQaCsokDtr7nXEVuiTFmUaAsXLEuJiD"}` > .vercel/project.json
+        run: echo '{"orgId":"ag3RFq2oDccVGXnn3EvGb9bt","projectId":"Qme3jeYMxmpNRX6SQaCsokDtr7nXEVuiTFmUaAsXLEuJiD"}' > .vercel/project.json
       - name: install
         run: yarn
       - name: run vercel
