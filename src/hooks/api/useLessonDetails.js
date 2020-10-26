@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 
-import initialFetcher from '../../utils/initialFetcher';
+import initialFetcher from '~/utils/initialFetcher';
 
 const URL = (id) => `${process.env.NEXT_PUBLIC_BASE_URL}/api/lessons/${id}`;
 

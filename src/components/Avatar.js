@@ -1,6 +1,6 @@
 import React from 'react';
 
-import c from '../utils/c';
+import c from '~/utils/c';
 
 const Avatar = ({ className, firstName, lastName }) => {
   return (
