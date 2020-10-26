@@ -4,6 +4,7 @@ import { useTable } from 'react-table';
 const Table = ({
   columns,
   data,
+  className,
   columnClassName,
   cellClassName,
   headerClassName,
@@ -23,8 +24,8 @@ const Table = ({
   });
 
   return (
-    <table {...getTableProps()}>
-      <thead>
+    <table className={className} {...getTableProps()}>
+      <thead className="rounded-t-md">
         {headerGroups.map((headerGroup) => (
           <tr
             {...headerGroup.getHeaderGroupProps([
@@ -52,7 +53,6 @@ const Table = ({
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map((cell) => {
-                console.log(cell);
                 return (
                   <td {...cell.getCellProps([{ className: cellClassName }])}>
                     {cell.render('Cell')}

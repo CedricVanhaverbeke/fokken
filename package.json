@@ -15,9 +15,11 @@
     "prettier:fix": "yarn prettier --write"
   },
   "dependencies": {
-    "@ftrprf/tailwind-components": "^1.0.5",
+    "@ftrprf/tailwind-components": "^1.0.6",
     "@reach/tooltip": "^0.11.2",
+    "dayjs": "^1.9.4",
     "cookie": "^0.4.1",
+    "faker": "^5.1.0",
     "next": "9.5.5",
     "react": "16.14.0",
     "react-dom": "16.14.0",
