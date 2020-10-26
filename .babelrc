@@ -1,4 +1,13 @@
 {
-    "presets": ["next/babel"],
-    "plugins": ["inline-react-svg"]
+  "presets": ["next/babel"],
+  "plugins": [
+    "inline-react-svg",
+    [
+      "babel-plugin-root-import",
+      {
+        "rootPathSuffix": "./src",
+        "rootPathPrefix": "~/"
+      }
+    ]
+  ]
 }

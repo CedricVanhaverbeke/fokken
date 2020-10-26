@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-export default Array.from(Array(100), (_, i) => ({
+export default Array.from(Array(20), (_, i) => ({
   id: i,
   username: faker.internet.userName(),
   firstName: faker.name.firstName(),

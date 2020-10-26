@@ -1,12 +1,10 @@
 import React from 'react';
 
 const StudentAnswers = () => {
-  return (
-    <div>Hello world</div>
-  );
+  return <div>Hello world</div>;
 };
 
-export async function getServerSideProps({
+export function getServerSideProps({
   query: { classgroupId, lessonId, studentId },
 }) {
   return {

@@ -6,6 +6,7 @@ const Table = ({
   data,
   className,
   columnClassName,
+  rowClassName,
   cellClassName,
   headerClassName,
 }) => {
@@ -28,12 +29,14 @@ const Table = ({
       <thead className="rounded-t-md">
         {headerGroups.map((headerGroup) => (
           <tr
+            key={headerGroup}
             {...headerGroup.getHeaderGroupProps([
               { className: headerClassName },
             ])}
           >
             {headerGroup.headers.map((column) => (
               <th
+                key={column}
                 {...column.getHeaderProps([
                   {
                     className: columnClassName,
@@ -48,17 +51,18 @@ const Table = ({
       </thead>
 
       <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
+        {rows.map((row) => {
           prepareRow(row);
           return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => {
-                return (
-                  <td {...cell.getCellProps([{ className: cellClassName }])}>
-                    {cell.render('Cell')}
-                  </td>
-                );
-              })}
+            <tr key={row} className={rowClassName} {...row.getRowProps()}>
+              {row.cells.map((cell) => (
+                <td
+                  key={cell}
+                  {...cell.getCellProps([{ className: cellClassName }])}
+                >
+                  {cell.render('Cell')}
+                </td>
+              ))}
             </tr>
           );
         })}
