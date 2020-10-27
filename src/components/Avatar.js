@@ -7,11 +7,13 @@ const Avatar = ({ className, firstName, lastName }) => {
     <div
       className={c(
         className,
-        'bg-gray-400 font-bold p-4 rounded-full leading-none flex items-center justify-center',
+        'bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none',
       )}
     >
-      <span>{firstName.charAt(0)}</span>
-      <span>{lastName.charAt(0)}</span>
+      <span>
+        {firstName.charAt(0)}
+        {lastName.charAt(0)}
+      </span>
     </div>
   );
 };

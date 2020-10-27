@@ -2,9 +2,10 @@
 import { useMemo } from 'react';
 import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
-import Link from 'next/link';
 
 import Avatar from '@/components/Avatar';
+import Badge from '@/components/Badge';
+import Link from '@/components/Link';
 import Table from '@/components/Table';
 import useClassGroup, { fetchClassGroup } from '@/hooks/api/useClassGroup';
 import useClassGroupLessonStudent, {
@@ -34,20 +35,16 @@ const createColumns = (classGroupId, lessonId) => [
     },
   },
   {
-    Header: 'Submitted',
+    Header: 'Submitted At',
     Cell: ({ row }) => {
       const { submittedAt } = row.original;
       return (
-        <div
-          className={c('flex', submittedAt ? 'items-start' : 'items-center')}
-        >
-          {submittedAt ? (
-            <div className="bg-green-200 text-green-800 rounded-sm px-3 flex gap-x-2">
-              <span>{dayjs(submittedAt).format('DD/MM/YYYY')}</span>
-              <span>{dayjs(submittedAt).format('HH:mm')}</span>
-            </div>
-          ) : (
-            <span className="ml-20">-</span>
+        <div className={c('flex items-start')}>
+          {submittedAt && (
+            <Badge>
+              {dayjs(submittedAt).format('DD/MM/YYYY')}{' '}
+              {dayjs(submittedAt).format('HH:mm')}
+            </Badge>
           )}
         </div>
       );
@@ -64,33 +61,21 @@ const createColumns = (classGroupId, lessonId) => [
               pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
               query: { viewMode: 'HOME' },
             }}
+            disabled={!submittedAt}
           >
-            <span
-              className={c(
-                submittedAt
-                  ? 'cursor-pointer text-blue-400'
-                  : 'cursor-none text-blue-200',
-              )}
-            >
-              home
-            </span>
+            home
           </Link>
-          <div className="w-px h-4 ml-1 mr-1 bg-gray-500" />
+
+          <div className="w-px h-4 ml-3 mr-3 bg-gray-300" />
+
           <Link
             href={{
               pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
               query: { viewMode: 'CLASS' },
             }}
+            disabled={!submittedAt}
           >
-            <span
-              className={c(
-                submittedAt
-                  ? 'cursor-pointer text-blue-400'
-                  : 'cursor-none text-blue-200',
-              )}
-            >
-              class
-            </span>
+            class
           </Link>
         </div>
       );
@@ -134,11 +119,11 @@ const StudentResultsList = ({
       </PageHeader>
       <Content>
         <Table
-          className="overflow-y-auto w-full"
-          rowClassName="hover:bg-blue-100"
-          cellClassName="p-2"
+          className="overflow-x-auto w-full border border-gray-200 rounded-md"
+          rowClassName="border-b border-gray-200"
+          cellClassName="p-2 whitespace-no-wrap"
           columnClassName="p-2 font-normal"
-          headerClassName="uppercase text-left text-sm leading-4 tracking-wide rounded-t text-gray-500 bg-gray-200"
+          headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200"
           columns={columns}
           data={
             classGroupStudents?.map((s1) => ({
