@@ -1,10 +1,18 @@
 import { serialize } from 'cookie';
 
+import { EMPTY_PROPS } from '../utils/constants';
+
 const Callback = () => {
   return null;
 };
 
-export async function getServerSideProps({ query, res }) {
+export function getServerSideProps({ query, res }) {
+  if (!query.redirect || !query.token) {
+    res.writeHead(302, { Location: 404 }).end();
+
+    return EMPTY_PROPS;
+  }
+
   res.setHeader(
     'Set-Cookie',
     serialize('authorization', query.token, {
@@ -15,9 +23,7 @@ export async function getServerSideProps({ query, res }) {
 
   res.writeHead(302, { Location: query.redirect }).end();
 
-  return {
-    props: {},
-  };
+  return EMPTY_PROPS;
 }
 
 export default Callback;
