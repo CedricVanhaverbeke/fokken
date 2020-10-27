@@ -5,8 +5,8 @@ import {
   classGroupLesson,
   classGroupStudents,
 } from './mockData/classGroup';
-import lessonDetails from './mockData/lessonDetails';
 import classGroupLessonStudent from './mockData/classGroupLessonStudent';
+import lessonDetails from './mockData/lessonDetails';
 
 export const handlers = [
   rest.get(

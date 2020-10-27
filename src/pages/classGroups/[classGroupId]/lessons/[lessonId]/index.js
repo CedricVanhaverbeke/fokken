@@ -4,19 +4,17 @@ import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
+import Avatar from '@/components/Avatar';
+import Table from '@/components/Table';
 import useClassGroup, { fetchClassGroup } from '@/hooks/api/useClassGroup';
+import useClassGroupLessonStudent, {
+  fetchClassGroupLessonStudent,
+} from '@/hooks/api/useClassGroupLessonStudent';
 import useClassGroupStudents, {
   fetchClassGroupStudents,
 } from '@/hooks/api/useClassGroupStudents';
 import useLesson, { fetchLessonDetails } from '@/hooks/api/useLesson';
-import useClassGroupLessonStudent, {
-  fetchClassGroupLessonStudent,
-} from '@/hooks/api/useClassGroupLessonStudent';
-
 import c from '@/utils/c';
-
-import Avatar from '@/components/Avatar';
-import Table from '@/components/Table';
 
 const createColumns = (classGroupId, lessonId) => [
   {
