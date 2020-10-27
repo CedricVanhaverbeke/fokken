@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5000",
     "build": "next build",
     "start": "next start",
     "test": "jest",
@@ -17,6 +17,7 @@
   "dependencies": {
     "@ftrprf/tailwind-components": "^1.0.5",
     "@reach/tooltip": "^0.11.2",
+    "cookie": "^0.4.1",
     "next": "9.5.5",
     "react": "16.14.0",
     "react-dom": "16.14.0",
