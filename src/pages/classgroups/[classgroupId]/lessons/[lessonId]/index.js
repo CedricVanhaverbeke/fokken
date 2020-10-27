@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { useMemo } from 'react';
 import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
