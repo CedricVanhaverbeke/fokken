@@ -31,10 +31,7 @@ export const handlers = [
       return res(ctx.json(classGroupLesson()));
     },
   ),
-  rest.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`,
-    (_, res, ctx) => {
-      return res(ctx.json(userDetails));
-    },
-  ),
+  rest.get(`${process.env.NEXT_PUBLIC_API_URL}/api/users/me`, (_, res, ctx) => {
+    return res(ctx.json(userDetails));
+  }),
 ];
