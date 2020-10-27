@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import initialFetcher from '@/utils/initialFetcher';
 
 const URL = (id) =>
-  `${process.env.NEXT_PUBLIC_BASE_URL}/api/classGroups/${id}/students`;
+  `${process.env.NEXT_PUBLIC_API_URL}/api/classGroups/${id}/students`;
 
 export const fetchClassGroupStudents = (id) => initialFetcher(URL(id));
 

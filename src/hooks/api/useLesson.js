@@ -2,7 +2,7 @@ import useSWR from 'swr';
 
 import initialFetcher from '@/utils/initialFetcher';
 
-const URL = (id) => `${process.env.NEXT_PUBLIC_BASE_URL}/api/lessons/${id}`;
+const URL = (id) => `${process.env.NEXT_PUBLIC_API_URL}/api/lessons/${id}`;
 
 export const fetchLesson = (id) => initialFetcher(URL(id));
 
