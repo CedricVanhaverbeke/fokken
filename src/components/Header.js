@@ -19,7 +19,10 @@ const TeacherHeader = ({}) => {
   return (
     <Header
       logo={<Logo className="h-full" />}
-      languages={['Nederlands', 'English']}
+      languages={[
+        { key: 'en', label: 'English' },
+        { key: 'nl', label: 'Nederlands' },
+      ]}
       onLanguageChange={() => {}}
       profileChildren={() => (
         <div>
