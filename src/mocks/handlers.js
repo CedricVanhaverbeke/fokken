@@ -7,6 +7,7 @@ import {
   generateClassGroupStudents,
 } from './mockData/classGroup';
 import lessonDetails from './mockData/lessonDetails';
+import userDetails from './mockData/userDetails';
 
 export const handlers = [
   rest.get(`*/api/classGroups/:id`, (_, res, ctx) => {
@@ -30,10 +31,10 @@ export const handlers = [
       return res(ctx.json(classGroupLesson()));
     },
   ),
-  // rest.get(
-  //   `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`,
-  //   (_, res, ctx) => {
-  //     return res(ctx.json(classgroupLesson));
-  //   },
-  // ),
+  rest.get(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users/me`,
+    (_, res, ctx) => {
+      return res(ctx.json(userDetails));
+    },
+  ),
 ];
