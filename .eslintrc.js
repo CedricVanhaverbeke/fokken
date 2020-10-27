@@ -16,7 +16,6 @@ module.exports = {
     'no-shadow': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/react-in-jsx-scope': 'off',
-    'require-await': 'off',
   },
   overrides: [
     {
