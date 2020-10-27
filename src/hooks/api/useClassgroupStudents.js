@@ -10,7 +10,7 @@ export const fetchClassgroupStudents = (id) => initialFetcher(URL(id));
 const useClassgroupStudents = (id, initialData) => {
   const response = useSWR(URL(id), null, { initialData });
 
-  return { classgroup: response.data, ...response };
+  return { classgroupStudents: response.data, ...response };
 };
 
 export default useClassgroupStudents;

@@ -3,10 +3,9 @@ import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-/*import useClassgroupLesson, {
-  fetchClassgroupLesson,
-} from '~/hooks/api/useClassgroupLesson';
-*/
+import useClassgroupDetails, {
+  fetchClassgroupDetails,
+} from '~/hooks/api/useClassgroupDetails';
 import useClassgroupStudents, {
   fetchClassgroupStudents,
 } from '~/hooks/api/useClassgroupStudents';
@@ -26,9 +25,9 @@ const createColumns = (classgroupId, lessonId) => [
     Cell: ({ row }) => {
       const { firstName, lastName } = row.original;
       return (
-        <div className="flex gap-x-2 items-center">
+        <div className="flex gap-x-4 items-center">
           <Avatar
-            className="w-8 h-8 flex-shrink-0 text-white"
+            className="w-10 h-10 flex-shrink-0 text-white"
             firstName={firstName}
             lastName={lastName}
           />
@@ -48,9 +47,7 @@ const createColumns = (classgroupId, lessonId) => [
           {submittedAt ? (
             <div className="bg-green-200 text-green-800 rounded-sm px-3 flex gap-x-2">
               <span>{dayjs(submittedAt).format('DD/MM/YYYY')}</span>
-              <span className="font-semibold">
-                {dayjs(submittedAt).format('HH:mm')}
-              </span>
+              <span>{dayjs(submittedAt).format('HH:mm')}</span>
             </div>
           ) : (
             <span className="ml-20">-</span>
@@ -102,20 +99,18 @@ const Lesson = ({
   classgroupId,
   lessonId,
   initialClassgroupStudents,
+  initialClassgroupDetails,
   initialStudentInfo,
   initialLessonDetails,
-  //initialClassgroupLesson,
 }) => {
-  const { classgroup } = useClassgroupStudents(
+  const { classgroupDetails } = useClassgroupDetails(
+    classgroupId,
+    initialClassgroupDetails,
+  );
+  const { classgroupStudents } = useClassgroupStudents(
     classgroupId,
     initialClassgroupStudents,
   );
-
-  /*const { classgroupLesson } = useClassgroupLesson(
-    classgroupId,
-    lessonId,
-    initialClassgroupLesson,
-  );*/
 
   const { lessonDetails } = useLessonDetails(lessonId, initialLessonDetails);
   const { studentInfo } = useStudentInfo(
@@ -134,7 +129,7 @@ const Lesson = ({
       <PageHeader>
         <div className="flex flex-col">
           <PageTitle>Resultaten</PageTitle>
-          <span>{`Klas TODO (backend) - ${lessonDetails?.title}`}</span>
+          <span className="text-xl font-medium text-gray-600">{`Class ${classgroupDetails?.name} - ${lessonDetails?.title}`}</span>
         </div>
       </PageHeader>
       <Content>
@@ -146,7 +141,7 @@ const Lesson = ({
           headerClassName="uppercase text-left text-sm leading-4 tracking-wide rounded-t text-gray-500 bg-gray-200"
           columns={columns}
           data={
-            classgroup?.map((s1) => ({
+            classgroupStudents?.map((s1) => ({
               ...s1,
               ...studentInfo.find((s2) => s2.id === s1.id),
             })) || []
@@ -160,12 +155,8 @@ const Lesson = ({
 export async function getServerSideProps({
   query: { classgroupId, lessonId },
 }) {
+  const initialClassgroupDetails = await fetchClassgroupDetails(classgroupId);
   const initialClassgroupStudents = await fetchClassgroupStudents(classgroupId);
-  /*const initialClassgroupLesson = await fetchClassgroupLesson(
-    classgroupId,
-    lessonId,
-  );
-  */
   const initialStudentInfo = await fetchStudentInfo(classgroupId, lessonId);
   const initialLessonDetails = await fetchLessonDetails(lessonId);
 
@@ -174,7 +165,7 @@ export async function getServerSideProps({
       classgroupId,
       lessonId,
       initialClassgroupStudents,
-      //initialClassgroupLesson,
+      initialClassgroupDetails,
       initialStudentInfo,
       initialLessonDetails,
     },
