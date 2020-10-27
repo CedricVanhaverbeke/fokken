@@ -1,30 +1,30 @@
 import { rest } from 'msw';
 
 import {
-  classgroupDetails,
-  classgroupLesson,
-  classgroupStudents,
-} from './mockData/classgroup';
+  classGroupDetails,
+  classGroupLesson,
+  classGroupStudents,
+} from './mockData/classGroup';
 import lessonDetails from './mockData/lessonDetails';
-import studentInfo from './mockData/studentInfo';
+import classGroupLessonStudent from './mockData/classGroupLessonStudent';
 
 export const handlers = [
   rest.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classgroups/:id`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classGroups/:id`,
     (_, res, ctx) => {
-      return res(ctx.json(classgroupDetails));
+      return res(ctx.json(classGroupDetails));
     },
   ),
   rest.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classgroups/:classgroupId/lessons/:lessonId/students`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classGroups/:classGroupId/lessons/:lessonId/students`,
     (_, res, ctx) => {
-      return res(ctx.json(studentInfo));
+      return res(ctx.json(classGroupLessonStudent));
     },
   ),
   rest.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classgroups/:classgroupId/students`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classGroups/:classGroupId/students`,
     (_, res, ctx) => {
-      return res(ctx.json(classgroupStudents));
+      return res(ctx.json(classGroupStudents));
     },
   ),
   rest.get(
@@ -34,9 +34,9 @@ export const handlers = [
     },
   ),
   rest.get(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classgroups/:classgroupId/lessons/:lessonId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classGroups/:classGroupId/lessons/:lessonId}`,
     (_, res, ctx) => {
-      return res(ctx.json(classgroupLesson));
+      return res(ctx.json(classGroupLesson));
     },
   ),
 ];

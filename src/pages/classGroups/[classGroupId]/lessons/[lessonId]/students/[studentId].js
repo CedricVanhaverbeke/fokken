@@ -5,13 +5,14 @@ const StudentAnswers = () => {
 };
 
 export function getServerSideProps({
-  query: { classgroupId, lessonId, studentId },
+  query: { classGroupId, lessonId, studentId, viewMode },
 }) {
   return {
     props: {
-      classgroupId,
+      classGroupId,
       lessonId,
       studentId,
+      viewMode,
     },
   };
 }

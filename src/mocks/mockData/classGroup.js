@@ -1,10 +1,10 @@
 import faker from 'faker';
 
-export const classgroupDetails = {
+export const classGroupDetails = {
   name: '1A',
 };
 
-export const classgroupLesson = {
+export const classGroupLesson = {
   id: 'd49515ed-972c-11e9-b935-0a0034000161',
   publishStatus: 'OPEN_FOR_HOME',
   updatedAt: '2019-01-01T00:00:00.000+0100',
@@ -13,7 +13,7 @@ export const classgroupLesson = {
   givenBy: null,
 };
 
-export const classgroupStudents = Array.from(Array(20), (_, i) => ({
+export const classGroupStudents = Array.from(Array(20), (_, i) => ({
   id: i,
   username: faker.internet.userName(),
   firstName: faker.name.firstName(),

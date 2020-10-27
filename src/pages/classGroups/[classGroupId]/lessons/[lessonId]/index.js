@@ -4,23 +4,21 @@ import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 
-import useClassgroupDetails, {
-  fetchClassgroupDetails,
-} from '~/hooks/api/useClassgroupDetails';
-import useClassgroupStudents, {
-  fetchClassgroupStudents,
-} from '~/hooks/api/useClassgroupStudents';
-import useLessonDetails, {
-  fetchLessonDetails,
-} from '~/hooks/api/useLessonDetails';
-import useStudentInfo, { fetchStudentInfo } from '~/hooks/api/useStudentInfo';
+import useClassGroup, { fetchClassGroup } from '@/hooks/api/useClassGroup';
+import useClassGroupStudents, {
+  fetchClassGroupStudents,
+} from '@/hooks/api/useClassGroupStudents';
+import useLesson, { fetchLessonDetails } from '@/hooks/api/useLesson';
+import useClassGroupLessonStudent, {
+  fetchClassGroupLessonStudent,
+} from '@/hooks/api/useClassGroupLessonStudent';
 
-import c from '~/utils/c';
+import c from '@/utils/c';
 
-import Avatar from '~/components/Avatar';
-import Table from '~/components/Table';
+import Avatar from '@/components/Avatar';
+import Table from '@/components/Table';
 
-const createColumns = (classgroupId, lessonId) => [
+const createColumns = (classGroupId, lessonId) => [
   {
     Header: 'Name',
     Cell: ({ row }) => {
@@ -64,7 +62,10 @@ const createColumns = (classgroupId, lessonId) => [
       return (
         <div className="flex items-center">
           <Link
-            href={`/classgroups/${classgroupId}/lessons/${lessonId}/students/${id}/home`}
+            href={{
+              pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
+              query: { viewMode: 'HOME' },
+            }}
           >
             <span
               className={c(
@@ -78,7 +79,10 @@ const createColumns = (classgroupId, lessonId) => [
           </Link>
           <div className="w-px h-4 ml-1 mr-1 bg-gray-500" />
           <Link
-            href={`/classgroups/${classgroupId}/lessons/${lessonId}/students/${id}/class`}
+            href={{
+              pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
+              query: { viewMode: 'CLASS' },
+            }}
           >
             <span
               className={c(
@@ -96,32 +100,29 @@ const createColumns = (classgroupId, lessonId) => [
   },
 ];
 
-const Lesson = ({
-  classgroupId,
+const StudentResultsList = ({
+  classGroupId,
   lessonId,
-  initialClassgroupStudents,
-  initialClassgroupDetails,
-  initialStudentInfo,
+  initialClassGroupStudents,
+  initialClassGroup,
+  initialClassGroupLessonStudent,
   initialLessonDetails,
 }) => {
-  const { classgroupDetails } = useClassgroupDetails(
-    classgroupId,
-    initialClassgroupDetails,
-  );
-  const { classgroupStudents } = useClassgroupStudents(
-    classgroupId,
-    initialClassgroupStudents,
+  const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
+  const { classGroupStudents } = useClassGroupStudents(
+    classGroupId,
+    initialClassGroupStudents,
   );
 
-  const { lessonDetails } = useLessonDetails(lessonId, initialLessonDetails);
-  const { studentInfo } = useStudentInfo(
-    classgroupId,
+  const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
+  const { classGroupLessonStudent } = useClassGroupLessonStudent(
+    classGroupId,
     lessonId,
-    initialStudentInfo,
+    initialClassGroupLessonStudent,
   );
 
-  const columns = useMemo(() => createColumns(classgroupId, lessonId), [
-    classgroupId,
+  const columns = useMemo(() => createColumns(classGroupId, lessonId), [
+    classGroupId,
     lessonId,
   ]);
 
@@ -130,7 +131,7 @@ const Lesson = ({
       <PageHeader>
         <div className="flex flex-col">
           <PageTitle>Resultaten</PageTitle>
-          <span className="text-xl font-medium text-gray-600">{`Class ${classgroupDetails?.name} - ${lessonDetails?.title}`}</span>
+          <span className="text-xl font-medium text-gray-600">{`Class ${classGroup?.name} - ${lessonDetails?.title}`}</span>
         </div>
       </PageHeader>
       <Content>
@@ -142,9 +143,9 @@ const Lesson = ({
           headerClassName="uppercase text-left text-sm leading-4 tracking-wide rounded-t text-gray-500 bg-gray-200"
           columns={columns}
           data={
-            classgroupStudents?.map((s1) => ({
+            classGroupStudents?.map((s1) => ({
               ...s1,
-              ...studentInfo.find((s2) => s2.id === s1.id),
+              ...classGroupLessonStudent.find((s2) => s2.id === s1.id),
             })) || []
           }
         />
@@ -154,23 +155,26 @@ const Lesson = ({
 };
 
 export async function getServerSideProps({
-  query: { classgroupId, lessonId },
+  query: { classGroupId, lessonId },
 }) {
-  const initialClassgroupDetails = await fetchClassgroupDetails(classgroupId);
-  const initialClassgroupStudents = await fetchClassgroupStudents(classgroupId);
-  const initialStudentInfo = await fetchStudentInfo(classgroupId, lessonId);
+  const initialClassGroup = await fetchClassGroup(classGroupId);
+  const initialClassGroupStudents = await fetchClassGroupStudents(classGroupId);
+  const initialClassGroupLessonStudent = await fetchClassGroupLessonStudent(
+    classGroupId,
+    lessonId,
+  );
   const initialLessonDetails = await fetchLessonDetails(lessonId);
 
   return {
     props: {
-      classgroupId,
+      classGroupId,
       lessonId,
-      initialClassgroupStudents,
-      initialClassgroupDetails,
-      initialStudentInfo,
+      initialClassGroupStudents,
+      initialClassGroup,
+      initialClassGroupLessonStudent,
       initialLessonDetails,
     },
   };
 }
 
-export default Lesson;
+export default StudentResultsList;

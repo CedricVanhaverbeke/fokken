@@ -6,11 +6,13 @@ import initialFetcher from '../utils/initialFetcher';
 
 import '../theme/index.css';
 
-if (process.env.NODE_ENV !== 'production') {
+if (
+  process.env.NODE_ENV !== 'production' &&
+  process.env.NEXT_PUBLIC_ENABLE_MOCK
+) {
   // eslint-disable-next-line global-require
   require('../mocks');
 }
-
 function MyApp({ Component, pageProps }) {
   return (
     <SWRConfig
