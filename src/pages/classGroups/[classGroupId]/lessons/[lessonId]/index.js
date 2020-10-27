@@ -13,7 +13,7 @@ import useClassGroupLessonStudent, {
 import useClassGroupStudents, {
   fetchClassGroupStudents,
 } from '@/hooks/api/useClassGroupStudents';
-import useLesson, { fetchLessonDetails } from '@/hooks/api/useLesson';
+import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
 import c from '@/utils/c';
 
 const createColumns = (classGroupId, lessonId) => [
@@ -161,7 +161,7 @@ export async function getServerSideProps({
     classGroupId,
     lessonId,
   );
-  const initialLessonDetails = await fetchLessonDetails(lessonId);
+  const initialLessonDetails = await fetchLesson(lessonId);
 
   return {
     props: {
