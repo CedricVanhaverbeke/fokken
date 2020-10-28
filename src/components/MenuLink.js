@@ -6,7 +6,9 @@ const MenuLink = ({ to, children }) => {
   const router = useRouter();
   return (
     <MenuButton
-      onClick={() => router.push(`${process.env.NEXT_PUBLIC_EDU_URL}${to}`)}
+      onClick={() =>
+        window.location.assign(`${process.env.NEXT_PUBLIC_EDU_URL}${to}`)
+      }
     >
       {children}
     </MenuButton>

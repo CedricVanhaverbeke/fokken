@@ -6,7 +6,9 @@ const FTRPRFLink = ({ to, children }) => {
   return (
     <button
       type="button"
-      onClick={() => router.push(`${process.env.NEXT_PUBLIC_EDU_URL}${to}`)}
+      onClick={() =>
+        window.location.assign(`${process.env.NEXT_PUBLIC_EDU_URL}${to}`)
+      }
     >
       {children}
     </button>
