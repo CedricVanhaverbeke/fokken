@@ -1,12 +1,13 @@
 import React from 'react';
-
-const redirect = (endpoint) => {
-  window.location = `${process.env.NEXT_PUBLIC_EDU_URL}${endpoint}`;
-};
+import { useRouter } from 'next/router';
 
 const FTRPRFLink = ({ to, children }) => {
+  const router = useRouter();
   return (
-    <button type="button" onClick={() => redirect(to)}>
+    <button
+      type="button"
+      onClick={() => router.push(`${process.env.NEXT_PUBLIC_EDU_URL}${to}`)}
+    >
       {children}
     </button>
   );

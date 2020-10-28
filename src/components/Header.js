@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Header } from '@ftrprf/tailwind-components';
 
 import Logo from '../assets/vectors/logo.svg';
@@ -7,16 +7,19 @@ import FTRPRFLink from './FTRPRFLink';
 import useUser from '../hooks/api/useUser';
 import MenuLink from './MenuLink';
 
+const languages = [
+  { key: 'en', label: 'English' },
+  { key: 'nl', label: 'Nederlands' },
+];
+
 const TeacherHeader = () => {
   const { user } = useUser();
+  const userNameOnly = useMemo(() => ({ first_name: user?.firstName }), [user]);
 
   return (
     <Header
       logo={<Logo className="h-full" />}
-      languages={[
-        { key: 'en', label: 'English' },
-        { key: 'nl', label: 'Nederlands' },
-      ]}
+      languages={languages}
       onLanguageChange={() => {}}
       profileChildren={() => (
         <div>
@@ -24,7 +27,7 @@ const TeacherHeader = () => {
         </div>
       )}
       label="Hello, "
-      user={{ first_name: user?.firstName }}
+      user={userNameOnly}
     >
       <FTRPRFLink to="/schoolteacherprofile/students" active>
         Leerlingen

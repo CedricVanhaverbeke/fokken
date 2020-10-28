@@ -1,12 +1,16 @@
 import React from 'react';
 import { MenuButton } from '@ftrprf/tailwind-components';
-
-const redirect = (endpoint) => {
-  window.location = `${process.env.NEXT_PUBLIC_EDU_URL}${endpoint}`;
-};
+import { useRouter } from 'next/router';
 
 const MenuLink = ({ to, children }) => {
-  return <MenuButton onClick={() => redirect(to)}>{children}</MenuButton>;
+  const router = useRouter();
+  return (
+    <MenuButton
+      onClick={() => router.push(`${process.env.NEXT_PUBLIC_EDU_URL}${to}`)}
+    >
+      {children}
+    </MenuButton>
+  );
 };
 
 export default MenuLink;
