@@ -1,20 +1,14 @@
 import React from 'react';
-import { Header, MenuButton } from '@ftrprf/tailwind-components';
+import { Header } from '@ftrprf/tailwind-components';
 
 import Logo from '../assets/vectors/logo.svg';
 
 import FTRPRFLink from './FTRPRFLink';
-import useUserDetails from '../hooks/api/useUserDetails';
+import useUser from '../hooks/api/useUser';
+import MenuLink from './MenuLink';
 
-const redirect = (endpoint) => {
-  window.location = `${process.env.NEXT_PUBLIC_EDU_URL}${endpoint}`;
-};
-
-const TeacherHeader = ({}) => {
-  const { userDetails } = useUserDetails();
-  if (userDetails) {
-    userDetails.first_name = userDetails.firstName;
-  }
+const TeacherHeader = () => {
+  const { user } = useUser();
 
   return (
     <Header
@@ -26,13 +20,11 @@ const TeacherHeader = ({}) => {
       onLanguageChange={() => {}}
       profileChildren={() => (
         <div>
-          <MenuButton onClick={() => redirect('/schoolteacherprofile/profile')}>
-            Profiel
-          </MenuButton>
+          <MenuLink to={'/schoolteacherprofile/profile'}>Profiel</MenuLink>
         </div>
       )}
       label="Hello, "
-      user={userDetails}
+      user={{ first_name: user?.firstName }}
     >
       <FTRPRFLink to="/schoolteacherprofile/students" active>
         Leerlingen
