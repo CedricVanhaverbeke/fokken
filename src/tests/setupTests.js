@@ -9,8 +9,11 @@ import { server } from '../mocks/server';
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'error' });
 });
+
 afterEach(() => {
   cache.clear();
   server.resetHandlers();
+  jest.clearAllMocks();
 });
+
 afterAll(() => server.close());

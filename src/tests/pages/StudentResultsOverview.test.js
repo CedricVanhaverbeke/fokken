@@ -2,30 +2,19 @@ import { generateClassGroupStudents } from '@/mocks/mockData/classGroup';
 
 import { renderPage } from '../utils';
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
-
 describe('StudentResultsOverview', () => {
-  it('Should open the page when given the route', async () => {
-    const { getByText } = await renderPage('/classGroups/23234/lessons/123');
-    expect(getByText('Resultaten')).toBeInTheDocument();
-  });
-
-  it('should render a table with three columns', async () => {
-    const { container } = await renderPage('/classGroups/23234/lessons/123');
+  const students = generateClassGroupStudents();
+  it('should render the results page when navigating to the URL', async () => {
+    const { container, getByText } = await renderPage(
+      '/classGroups/23234/lessons/123',
+    );
     expect(container).toMatchSnapshot();
-  });
-
-  it('Should show a list of students', async () => {
-    const students = generateClassGroupStudents();
-    const { getByText } = await renderPage('/classGroups/23234/lessons/123');
     students.forEach(({ firstName, lastName }) =>
       expect(getByText(`${firstName} ${lastName}`)).toBeInTheDocument(),
     );
   });
 
-  it('Should route to the individual home result page when clicking the button', async () => {
+  it('should route to the individual home result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
     const URL = '/classGroups/23234/lessons/123';
     const { getAllByText, userEvent, router } = await renderPage(URL);
@@ -44,7 +33,7 @@ describe('StudentResultsOverview', () => {
     );
   });
 
-  it('Should route to the individual class result page when clicking the button', async () => {
+  it('should route to the individual class result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
     const URL = '/classGroups/23234/lessons/123';
     const { getAllByText, userEvent, router } = await renderPage(URL);
@@ -63,7 +52,7 @@ describe('StudentResultsOverview', () => {
     );
   });
 
-  it('Should NOT route to the individual class result page when clicking the button', async () => {
+  it('should not route to the individual class result page when clicking the button', async () => {
     const listIndex = 0; // Index of first record with NO submitted answers
     const { getAllByText, userEvent, router } = await renderPage(
       '/classGroups/23234/lessons/123',
@@ -76,7 +65,7 @@ describe('StudentResultsOverview', () => {
     expect(pushSpy).toHaveBeenCalledTimes(0);
   });
 
-  it('Should NOT route to the individual home result page when clicking the button', async () => {
+  it('should not route to the individual home result page when clicking the button', async () => {
     const listIndex = 0; // Index of first record with NO submitted answers
     const { getAllByText, userEvent, router } = await renderPage(
       '/classGroups/23234/lessons/123',

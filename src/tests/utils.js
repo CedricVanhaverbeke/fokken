@@ -6,6 +6,7 @@ const mockPageRouter = () => {
   const push = jest.fn().mockImplementation(async () => {});
   const replace = jest.fn().mockImplementation(async () => {});
   const prefetch = jest.fn().mockImplementation(async () => {});
+
   return {
     push,
     replace,
@@ -24,5 +25,6 @@ export const renderPage = async (route) => {
     pagesDirectory: process.cwd() + '/src/pages',
     router: () => router,
   });
+
   return { ...render(Page), router };
 };
