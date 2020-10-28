@@ -93,80 +93,68 @@ exports[`Teacher header should render 1`] = `
             <div
               class="mr-2"
             >
-              <button
-                type="button"
+              <div
+                class="py-1 px-4 rounded transition-colors duration-100 bg-gray-200 font-bold"
               >
-                <div
-                  class="py-1 px-4 rounded transition-colors duration-100 bg-gray-200 font-bold"
-                >
+                <button>
                   Leerlingen
-                </div>
-              </button>
+                </button>
+              </div>
             </div>
             <div
               class="mr-2"
             >
-              <button
-                type="button"
+              <div
+                class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
-                <div
-                  class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
-                >
+                <button>
                   Leer
-                </div>
-              </button>
+                </button>
+              </div>
             </div>
             <div
               class="mr-2"
             >
-              <button
-                type="button"
+              <div
+                class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
-                <div
-                  class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
-                >
+                <button>
                   Test
-                </div>
-              </button>
+                </button>
+              </div>
             </div>
             <div
               class="mr-2"
             >
-              <button
-                type="button"
+              <div
+                class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
-                <div
-                  class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
-                >
+                <button>
                   Codeer
-                </div>
-              </button>
+                </button>
+              </div>
             </div>
             <div
               class="mr-2"
             >
-              <button
-                type="button"
+              <div
+                class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
-                <div
-                  class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
-                >
+                <button>
                   Hack Room
-                </div>
-              </button>
+                </button>
+              </div>
             </div>
             <div
               class="mr-2"
             >
-              <button
-                type="button"
+              <div
+                class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
-                <div
-                  class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
-                >
+                <button>
                   Studio
-                </div>
-              </button>
+                </button>
+              </div>
             </div>
           </div>
         </div>

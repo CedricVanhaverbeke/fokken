@@ -1,11 +1,10 @@
 import React, { useMemo } from 'react';
-import { Header } from '@ftrprf/tailwind-components';
+import { Header, MenuButton } from '@ftrprf/tailwind-components';
 
 import Logo from '../assets/vectors/logo.svg';
 
 import FTRPRFLink from './FTRPRFLink';
 import useUser from '../hooks/api/useUser';
-import MenuLink from './MenuLink';
 
 const languages = [
   { key: 'en', label: 'English' },
@@ -23,20 +22,32 @@ const TeacherHeader = () => {
       onLanguageChange={() => {}}
       profileChildren={() => (
         <div>
-          <MenuLink to={'/schoolteacherprofile/profile'}>Profiel</MenuLink>
+          <FTRPRFLink to="/schoolteacherprofile/profile">
+            <MenuButton>Profiel</MenuButton>
+          </FTRPRFLink>
         </div>
       )}
       label="Hello, "
       user={userNameOnly}
     >
       <FTRPRFLink to="/schoolteacherprofile/students" active>
-        Leerlingen
+        <button>Leerlingen</button>
       </FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/lessons">Leer</FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/exams">Test</FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/exercises">Codeer</FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/hackroom">Hack Room</FTRPRFLink>
-      <FTRPRFLink to="https://studio.ftrprf.be">Studio</FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/lessons">
+        <button>Leer</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/exams">
+        <button>Test</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/exercises">
+        <button>Codeer</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/hackroom">
+        <button>Hack Room</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="https://studio.ftrprf.be">
+        <button>Studio</button>
+      </FTRPRFLink>
     </Header>
   );
 };
