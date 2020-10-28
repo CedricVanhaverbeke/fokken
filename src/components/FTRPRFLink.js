@@ -1,15 +1,12 @@
 import React from 'react';
 
-const redirect = (endpoint) => {
-  window.location = `${process.env.NEXT_PUBLIC_EDU_URL}${endpoint}`;
-};
-
 const FTRPRFLink = ({ to, children }) => {
-  return (
-    <button type="button" onClick={() => redirect(to)}>
-      {children}
-    </button>
-  );
+  const child = React.Children.only(children);
+
+  return React.cloneElement(child, {
+    onClick: () =>
+      window.location.assign(`${process.env.NEXT_PUBLIC_EDU_URL}${to}`),
+  });
 };
 
 export default FTRPRFLink;

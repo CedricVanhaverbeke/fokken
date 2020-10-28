@@ -1,31 +1,54 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Header, MenuButton } from '@ftrprf/tailwind-components';
 
 import Logo from '../assets/vectors/logo.svg';
 
 import FTRPRFLink from './FTRPRFLink';
 
+import useUser from '../hooks/api/useUser';
+
+const languages = [
+  { key: 'en', label: 'English' },
+  { key: 'nl', label: 'Nederlands' },
+];
+
 const TeacherHeader = () => {
+  const { user } = useUser();
+  const userNameOnly = useMemo(() => ({ first_name: user?.firstName }), [user]);
+
   return (
     <Header
       logo={<Logo className="h-full" />}
-      languages={['Nederlands', 'English']}
+      languages={languages}
       onLanguageChange={() => {}}
       profileChildren={() => (
         <div>
-          <MenuButton>Profiel</MenuButton>
-          <MenuButton>Uitloggen</MenuButton>
+          <FTRPRFLink to="/schoolteacherprofile/profile">
+            <MenuButton>Profiel</MenuButton>
+          </FTRPRFLink>
         </div>
       )}
+      label="Hello, "
+      user={userNameOnly}
     >
       <FTRPRFLink to="/schoolteacherprofile/students" active>
-        Leerlingen
+        <button>Leerlingen</button>
       </FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/lessons">Leer</FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/exams">Test</FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/exercises">Codeer</FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/hackroom">Hack Room</FTRPRFLink>
-      <FTRPRFLink to="https://studio.ftrprf.be">Studio</FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/lessons">
+        <button>Leer</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/exams">
+        <button>Test</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/exercises">
+        <button>Codeer</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="/schoolteacherprofile/hackroom">
+        <button>Hack Room</button>
+      </FTRPRFLink>
+      <FTRPRFLink to="https://studio.ftrprf.be">
+        <button>Studio</button>
+      </FTRPRFLink>
     </Header>
   );
 };
