@@ -1,4 +1,4 @@
-name: Upload to vercel pull request
+name: Deploy to vercel pull request
 
 on:
   pull_request:
