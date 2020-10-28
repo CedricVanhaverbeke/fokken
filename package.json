@@ -71,6 +71,9 @@
     "vueIndentScriptAndStyle": false
   },
   "jest": {
+    "globals": {
+      "NODE_ENV": "test"
+    },
     "collectCoverageFrom": [
       "./src/**/*.js"
     ],
@@ -81,9 +84,6 @@
         "lines": 100
       }
     },
-    "setupFiles": [
-      "dotenv/config"
-    ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/tests/setupTests.js"
     ],
