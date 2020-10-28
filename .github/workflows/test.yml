@@ -1,14 +1,14 @@
-name: Upload to vercel pull request
+name: Test push
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
+  push:
     branches:
-      - development
+      - '**'
+      - '!master'
+      - '!development'
 
 jobs:
-  deploy_to_vercel:
-    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -17,38 +17,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
+      - name: set .env development
+        run: mv .env.development .env && rm .env.production
       - name: add package token
         run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_REPO_TOKEN }}" >> .npmrc
-
       - name: cache node modules
         uses: actions/cache@v2
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
       - name: install
         run: yarn
-
       - name: lint
         run: yarn lint
-
       - name: test
         run: yarn test
-
-      - name: add vercel config
-        run: mkdir .vercel && echo '{"orgId":"${{secrets.VERCEL_ORG_ID}}","projectId":"${{secrets.VERCEL_PROJECT_ID_DEV}}"}' > .vercel/project.json
-
-      - name: run vercel
-        run: vercel --token ${{secrets.VERCEL_TOKEN}}
-
-  close_pull_request:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
