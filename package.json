@@ -7,7 +7,9 @@
     "debug": "NODE_OPTIONS='--inspect' next dev -p 5000",
     "build": "next build",
     "start": "next start",
-    "test": "NEXT_PUBLIC_API_URL=http://ftrprd.be jest",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --collect-coverage",
     "lint": "yarn eslint && yarn prettier",
     "lint:fix": "yarn eslint:fix && yarn prettier:fix",
     "eslint": "eslint --ignore-path .gitignore \"./src/**/*.+(js|jsx|json)\"",
@@ -32,6 +34,7 @@
     "swr": "^0.3.6"
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.26.3",
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -73,15 +76,15 @@
     "globals": {
       "NODE_ENV": "test"
     },
-    "collectCoverage": false,
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**/*.js"
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 50,
-        "functions": 50,
-        "lines": 50
+        "branches": 45,
+        "functions": 79,
+        "lines": 75
       }
     },
     "setupFilesAfterEnv": [
