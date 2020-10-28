@@ -6,7 +6,8 @@
     "dev": "next dev -p 5000",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
+    "test": "jest --watch",
+    "test:coverage": "jest --collect-coverage",
     "lint": "yarn eslint && yarn prettier",
     "lint:fix": "yarn eslint:fix && yarn prettier:fix",
     "eslint": "eslint --ignore-path .gitignore \"./src/**/*.+(js|jsx|json)\"",
@@ -17,10 +18,12 @@
   "dependencies": {
     "@ftrprf/tailwind-components": "^1.0.6",
     "@reach/tooltip": "^0.11.2",
-    "dayjs": "^1.9.4",
     "cookie": "^0.4.1",
+    "dayjs": "^1.9.4",
+    "dotenv": "^8.2.0",
     "faker": "^5.1.0",
     "next": "9.5.5",
+    "next-page-tester": "^0.4.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-icons": "^3.11.0",
@@ -28,7 +31,10 @@
     "swr": "^0.3.6"
   },
   "devDependencies": {
+    "@testing-library/dom": "^7.26.3",
+    "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
     "babel-plugin-inline-react-svg": "^1.1.1",
     "eslint": "^7.7.0",
     "eslint-config-kentcdodds": "^14.16.0",
@@ -64,7 +70,6 @@
     "vueIndentScriptAndStyle": false
   },
   "jest": {
-    "collectCoverage": true,
     "collectCoverageFrom": [
       "./src/**/*.js"
     ],
@@ -74,6 +79,20 @@
         "functions": 100,
         "lines": 100
       }
+    },
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/tests/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      "^@/pages(.*)$": "<rootDir>/src/pages$1",
+      "^@/mocks(.*)$": "<rootDir>/src/mocks$1",
+      "^@/components(.*)$": "<rootDir>/src/components$1",
+      "^@/hooks(.*)$": "<rootDir>/src/hooks$1",
+      "^@/utils(.*)$": "<rootDir>/src/utils$1",
+      "^@/assets(.*)$": "<rootDir>/src/assets$1"
     }
   }
 }

@@ -83,7 +83,7 @@ const createColumns = (classGroupId, lessonId) => [
   },
 ];
 
-const StudentResultsList = ({
+const StudentResultsOverview = ({
   classGroupId,
   lessonId,
   initialClassGroupStudents,
@@ -138,7 +138,7 @@ const StudentResultsList = ({
 };
 
 export async function getServerSideProps({
-  query: { classGroupId, lessonId },
+  params: { classGroupId, lessonId },
 }) {
   const initialClassGroup = await fetchClassGroup(classGroupId);
   const initialClassGroupStudents = await fetchClassGroupStudents(classGroupId);
@@ -160,4 +160,4 @@ export async function getServerSideProps({
   };
 }
 
-export default StudentResultsList;
+export default StudentResultsOverview;

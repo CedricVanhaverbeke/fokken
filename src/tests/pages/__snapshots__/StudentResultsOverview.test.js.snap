@@ -1,0 +1,1258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StudentResultsOverview should render a table with three columns 1`] = `
+<div>
+  <div
+    class="bg-gray-100 w-full"
+  >
+    <div
+      class="w-full flex flex-col pt-8"
+    >
+      <div
+        class="mb-4 rounded w-full max-w-5/6 self-center"
+      >
+        <div
+          class="flex flex-col"
+        >
+          <h1
+            class="text-4xl font-bold leading-none"
+          >
+            Resultaten
+          </h1>
+          <span
+            class="text-xl font-medium text-gray-600"
+          >
+            Class 1A - (a)Sociale media
+          </span>
+        </div>
+      </div>
+      <hr
+        class="border-gray-300"
+      />
+    </div>
+  </div>
+  <div
+    class="w-full max-w-5/6 mt-8 mb-4 flex flex-1"
+  >
+    <table
+      class="overflow-x-auto w-full border border-gray-200 rounded-md"
+      role="table"
+    >
+      <thead
+        class="rounded-t-md"
+      >
+        <tr
+          class="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200"
+          role="row"
+        >
+          <th
+            class="p-2 font-normal"
+            colspan="1"
+            role="columnheader"
+          >
+            Name
+          </th>
+          <th
+            class="p-2 font-normal"
+            colspan="1"
+            role="columnheader"
+          >
+            Submitted At
+          </th>
+          <th
+            class="p-2 font-normal"
+            colspan="1"
+            role="columnheader"
+          >
+            Results
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        role="rowgroup"
+      >
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  C
+                  S
+                </span>
+              </div>
+              Carolyne Schamberger
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            />
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  J
+                  G
+                </span>
+              </div>
+              Jaron Gottlieb
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  A
+                  S
+                </span>
+              </div>
+              Adelle Schoen
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  J
+                  C
+                </span>
+              </div>
+              Jaden Cruickshank
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  M
+                  H
+                </span>
+              </div>
+              Mattie Hahn
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            />
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  R
+                  M
+                </span>
+              </div>
+              River Moen
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  Y
+                  W
+                </span>
+              </div>
+              Yadira Wisozk
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  D
+                  O
+                </span>
+              </div>
+              Darryl O'Connell
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  S
+                  S
+                </span>
+              </div>
+              Shakira Simonis
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            />
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  J
+                  W
+                </span>
+              </div>
+              Julius Will
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  L
+                  C
+                </span>
+              </div>
+              Laverna Cormier
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  M
+                  L
+                </span>
+              </div>
+              Mitchel Ledner
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  K
+                  D
+                </span>
+              </div>
+              Katheryn Dooley
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            />
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  E
+                  B
+                </span>
+              </div>
+              Edmund Bailey
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  D
+                  J
+                </span>
+              </div>
+              Dimitri Jenkins
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  R
+                  M
+                </span>
+              </div>
+              Rudy Metz
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  R
+                  B
+                </span>
+              </div>
+              Rowena Bahringer
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            />
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  A
+                  M
+                </span>
+              </div>
+              Alana Mohr
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  C
+                  K
+                </span>
+              </div>
+              Clint Klocko
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  G
+                  B
+                </span>
+              </div>
+              Gwendolyn Botsford
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                06:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                class
+              </span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
