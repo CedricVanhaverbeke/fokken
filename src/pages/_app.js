@@ -2,8 +2,9 @@ import { SWRConfig } from 'swr';
 
 import Header from '../components/Header';
 
-import '../theme/index.css';
 import browserFetcher from '../utils/browserFetcher';
+
+import '../theme/index.css';
 
 if (
   process.env.NODE_ENV !== 'production' &&

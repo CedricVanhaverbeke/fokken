@@ -4,6 +4,7 @@ import { Header, MenuButton } from '@ftrprf/tailwind-components';
 import Logo from '../assets/vectors/logo.svg';
 
 import FTRPRFLink from './FTRPRFLink';
+
 import useUser from '../hooks/api/useUser';
 
 const languages = [

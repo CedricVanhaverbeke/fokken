@@ -1,7 +1,8 @@
-import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import TeacherHeader from './Header';
+
 import { render } from '../tests/util';
+
+import TeacherHeader from './Header';
 
 const linkTexts = [
   'Leerlingen',
@@ -49,7 +50,7 @@ describe('Teacher header', () => {
   });
 
   it('should open header links', async () => {
-    const { getByRole, findAllByText, debug } = render(<TeacherHeader />);
+    const { getByRole, findAllByText } = render(<TeacherHeader />);
 
     const hamburgerButton = getByRole('button', {
       name: /main menu/i,
