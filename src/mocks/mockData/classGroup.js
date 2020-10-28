@@ -13,13 +13,23 @@ export const classGroupLesson = {
   givenBy: null,
 };
 
-export const classGroupStudents = Array.from(Array(20), (_, i) => ({
-  id: i,
-  username: faker.internet.userName(),
-  firstName: faker.name.firstName(),
-  lastName: faker.name.lastName(),
-  lastLogin: faker.date.past().toISOString(),
-  idp: 'FTRPRF',
-  role: 'SCHOOLSTUDENT',
-  schoolId: faker.random.uuid(),
-}));
+export const generateClassGroupStudents = () => {
+  faker.seed(69);
+  return Array.from(Array(20), (_, i) => ({
+    id: i,
+    username: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    lastLogin: faker.date.past().toISOString(),
+    idp: 'FTRPRF',
+    role: 'SCHOOLSTUDENT',
+    schoolId: faker.random.uuid(),
+  }));
+};
+
+export const generateClassGroupLessonStudents = () => {
+  return Array.from(Array(20), (_, i) => ({
+    id: i,
+    submittedAt: i % 4 === 0 ? null : '2020-07-09T04:57:09.441Z',
+  }));
+};
