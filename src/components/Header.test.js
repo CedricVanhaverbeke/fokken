@@ -59,6 +59,7 @@ describe('Teacher header', () => {
     userEvent.click(hamburgerButton);
 
     for (let link of linkTexts) {
+      // eslint-disable-next-line no-await-in-loop
       const button = await findAllByText(link);
       expect(button[0]).toBeVisible();
     }
