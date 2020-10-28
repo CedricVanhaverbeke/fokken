@@ -47,9 +47,7 @@ describe('StudentResultsOverview', () => {
   it('Should route to the individual class result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
     const URL = '/classGroups/23234/lessons/123';
-    const { getAllByText, userEvent, router } = await renderPage(
-      '/classGroups/23234/lessons/123',
-    );
+    const { getAllByText, userEvent, router } = await renderPage(URL);
 
     const pushSpy = jest.spyOn(router, 'push');
 
