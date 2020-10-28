@@ -20,7 +20,9 @@ describe('Teacher header', () => {
 
   it('should open profile option', async () => {
     const { findByText } = render(<TeacherHeader />);
+
     const button = await findByText('Joske');
+
     expect(button.parentElement).toMatchInlineSnapshot(`
       <div
         class="hidden md:block"
@@ -33,7 +35,9 @@ describe('Teacher header', () => {
       </div>
     `);
     userEvent.click(button.parentElement);
+
     const profile = await findByText('Profiel');
+
     expect(profile).toMatchInlineSnapshot(`
       <button
         class="w-full py-1 px-4 text-left rounded-lg hover:bg-gray-200 flex items-center cursor-pointer"
@@ -46,10 +50,13 @@ describe('Teacher header', () => {
 
   it('should open header links', async () => {
     const { getByRole, findAllByText, debug } = render(<TeacherHeader />);
+
     const hamburgerButton = getByRole('button', {
       name: /main menu/i,
     });
+
     userEvent.click(hamburgerButton);
+
     for (let link of linkTexts) {
       const button = await findAllByText(link);
       expect(button[0]).toBeVisible();
