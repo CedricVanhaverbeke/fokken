@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Teacher header should render without crashing 1`] = `
+exports[`Teacher header should render 1`] = `
 <div>
   <nav
     class="w-full text-sm relative"
