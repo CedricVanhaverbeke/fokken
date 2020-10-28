@@ -13,7 +13,7 @@ export const handlers = [
   rest.get(`*/api/classGroups/:id`, (_, res, ctx) => {
     return res(ctx.json(classGroupDetails));
   }),
-  
+
   rest.get(
     `*/api/classGroups/:classGroupId/lessons/:lessonId/students`,
     (_, res, ctx) => {
