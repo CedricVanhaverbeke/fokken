@@ -135,15 +135,15 @@ export async function getServerSideProps({
     fetchClassGroupLessonStudents,
   } = fetcher(req.cookies.authorization);
 
-  const initialLessonDetails = await fetchLesson(lessonId);
-  const initialClassGroup = await fetchClassGroup(classGroupId);
-  const initialClassGroupStudents = await fetchClassGroupStudents(classGroupId);
-  const initialClassGroupLessonStudent = await fetchClassGroupLessonStudent(
-    classGroupId,
-    lessonId,
-  );
-
-  console.log('test');
+  const [
+    initialLessonDetails,
+    initialClassGroup,
+    initialClassGroupLessonStudent,
+  ] = await Promise.all([
+    fetchLesson(lessonId),
+    fetchClassGroup(classGroupId),
+    fetchClassGroupLessonStudents(classGroupId, lessonId),
+  ]);
 
   return {
     props: {
