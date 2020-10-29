@@ -8,12 +8,12 @@ const questionResults = {
   OPEN: OpenResult,
 };
 
-const QuestionResult = ({ question, givenAnswer }) => {
+const QuestionResult = ({ question, givenAnswers }) => {
   const QuestionResult = questionResults[question.type];
   return (
     <QuestionResult
       possibleAnswers={question.questionAnswers}
-      givenAnswer={givenAnswer.answers}
+      givenAnswers={givenAnswers.answers}
     />
   );
 };

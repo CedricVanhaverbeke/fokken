@@ -69,7 +69,7 @@ const StudentAnswers = ({
                 <div>{content}</div>
                 <QuestionResult
                   question={question}
-                  givenAnswer={lessonAnswers[question.id]}
+                  givenAnswers={lessonAnswers[question.id]}
                 />
               </div>
             </div>
