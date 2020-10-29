@@ -14,7 +14,7 @@ const QuestionResult = ({ question, givenAnswer }) => {
     <div className="grid grid-cols-2 gap-2 w-full">
       <QuestionResult
         possibleAnswers={question.questionAnswers}
-        givenAnswers={givenAnswer.answers}
+        givenAnswer={givenAnswer.answers}
       />
     </div>
   );

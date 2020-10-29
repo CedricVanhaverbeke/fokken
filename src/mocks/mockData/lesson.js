@@ -46,8 +46,8 @@ const generateLessonAnswers = () => {
     questionId: 100 + i,
     userId: faker.random.uuid(),
     answers: Array.from(Array(2), (_, j) => ({
-      id: `${200 + j}`,
-      multipleChoiceAnswerId: 200 + (Math.ceil(Math.random() * 10) % 4),
+      id: `${300 + j}`,
+      multipleChoiceAnswerId: `${200 + (Math.ceil(Math.random() * 10) % 4)}`,
     })),
     submittedAt: faker.date.past().toISOString(),
   }));

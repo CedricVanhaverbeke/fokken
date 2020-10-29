@@ -2,10 +2,13 @@ import React from 'react';
 
 import c from '@/utils/c';
 
-const MultipleChoiceResult = ({ possibleAnswers, givenAnswers }) => {
+const MultipleChoiceResult = ({
+  possibleAnswers,
+  givenAnswer: givenAnswers,
+}) => {
   return possibleAnswers.map(({ id: answerId, value, correct }) => {
     const studentSelectedAnswer = !!givenAnswers.find(
-      (studentAnswer) => studentAnswer.id === answerId,
+      (studentAnswer) => studentAnswer.multipleChoiceAnswerId === answerId,
     );
     return (
       <div
