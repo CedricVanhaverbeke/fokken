@@ -1,6 +1,6 @@
-import { generateClassGroupStudents } from '@/mocks/mockData/classGroup';
-
 import { renderPage } from '../utils';
+
+import { generateClassGroupStudents } from '@/mocks/mockData/classGroup';
 
 describe('StudentResultsOverview', () => {
   const students = generateClassGroupStudents();
