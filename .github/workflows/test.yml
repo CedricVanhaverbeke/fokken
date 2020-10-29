@@ -1,4 +1,4 @@
-name: Deploy to vercel pull request
+name: Test and preview
 
 on:
   pull_request:
