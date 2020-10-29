@@ -69,5 +69,11 @@ export const renderPage = async (route) => {
     router: () => router,
   });
 
-  return { ...rtlRender(Page), router, userEvent };
+  return {
+    ...rtlRender(
+      <LanguageProvider onError={() => {}}>{Page}</LanguageProvider>,
+    ),
+    router,
+    userEvent,
+  };
 };
