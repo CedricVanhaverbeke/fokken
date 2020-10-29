@@ -1,5 +1,5 @@
 import { serialize } from 'cookie';
-import jwt_decode from 'jwt-decode';
+import decodeJwt from 'jwt-decode';
 
 import { EMPTY_PROPS } from '../utils/constants';
 
@@ -14,7 +14,7 @@ export function getServerSideProps({ query, res }) {
     return EMPTY_PROPS;
   }
 
-  const decoded = jwt_decode(query.token);
+  const decoded = decodeJwt(query.token);
 
   res.setHeader(
     'Set-Cookie',

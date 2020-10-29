@@ -12,9 +12,9 @@ export default {
   //Results overview
   'results-overview.title.results': 'Results',
   'results-overview.title.class': 'Class',
-  'results-overview.colum.name': 'NAME',
-  'results-overview.colum.submitted_at': 'SUBMITTED AT',
-  'results-overview.colum.results': 'RESULTS',
+  'results-overview.colum.name': 'Name',
+  'results-overview.colum.submitted_at': 'Submitted at',
+  'results-overview.colum.results': 'Results',
   'results-overview.home': 'home',
   'results-overview.class': 'class',
 };
