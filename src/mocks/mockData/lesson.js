@@ -25,7 +25,7 @@ const generateLessonQuestions = () => {
       question: {
         id: 100 + i,
         questionAnswers: Array.from(Array(4), (_, i) => ({
-          id: 200 + i,
+          id: `${200 + i}`,
           track: true,
           value: faker.lorem.sentence(),
           correct: faker.random.boolean(),
@@ -44,8 +44,8 @@ const generateLessonAnswers = () => {
     answerType: 'MULTIPLECHOICE',
     questionId: 100 + i,
     userId: faker.random.uuid(),
-    answers: Array.from(Array(2), () => ({
-      id: faker.random.uuid(),
+    answers: Array.from(Array(2), (_, j) => ({
+      id: `${200 + j}`,
       multipleChoiceAnswerId: 200 + (Math.ceil(Math.random() * 10) % 4),
     })),
     submittedAt: faker.date.past().toISOString(),

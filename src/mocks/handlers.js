@@ -7,9 +7,9 @@ import {
   classGroupStudents,
 } from './mockData/classGroup';
 import {
+  lessonAnswers,
   lessonDetails,
   lessonQuestions,
-  lessonAnswers,
 } from './mockData/lesson';
 import userDetails from './mockData/userDetails';
 
