@@ -1,8 +1,8 @@
 import userEvent from '@testing-library/user-event';
 
-import { render } from '../tests/util';
-
 import TeacherHeader from './Header';
+
+import { render } from '../tests/utils';
 
 const linkTexts = [
   'Leerlingen',

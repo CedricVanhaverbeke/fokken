@@ -15,6 +15,7 @@ import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
 import Table from '@/components/Table';
+import Title from '@/components/Title';
 
 const createColumns = (classGroupId, lessonId) => [
   {
@@ -106,6 +107,11 @@ const StudentResultsOverview = ({
   return (
     <>
       <PageHeader>
+        <Title
+          title={(join) =>
+            join(`Resultaten klas ${classGroup?.name}`, lessonDetails?.title)
+          }
+        />
         <div className="flex flex-col">
           <PageTitle>Resultaten</PageTitle>
           <span className="text-xl font-medium text-gray-600">{`Class ${classGroup?.name} - ${lessonDetails?.title}`}</span>

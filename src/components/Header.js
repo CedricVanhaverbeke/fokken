@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useRouter } from 'next/router';
 
 import { Header, MenuButton } from '@ftrprf/tailwind-components';
 
@@ -15,6 +16,8 @@ const languages = [
 
 const TeacherHeader = () => {
   const { user } = useUser();
+  const { pathname } = useRouter();
+
   const userNameOnly = useMemo(() => ({ first_name: user?.firstName }), [user]);
 
   return (
@@ -32,19 +35,34 @@ const TeacherHeader = () => {
       label="Hello, "
       user={userNameOnly}
     >
-      <FTRPRFLink to="/schoolteacherprofile/students" active>
+      <FTRPRFLink
+        to="/schoolteacherprofile/students"
+        active={pathname.startsWith('/classgroups/[classGroupId]/students')}
+      >
         <button>Leerlingen</button>
       </FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/lessons">
+      <FTRPRFLink
+        to="/schoolteacherprofile/lessons"
+        active={pathname.startsWith('/classgroups/[classGroupId]/lessons')}
+      >
         <button>Leer</button>
       </FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/exams">
+      <FTRPRFLink
+        to="/schoolteacherprofile/exams"
+        active={pathname.startsWith('/classgroups/[classGroupId]/exams')}
+      >
         <button>Test</button>
       </FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/exercises">
+      <FTRPRFLink
+        to="/schoolteacherprofile/exercises"
+        active={pathname.startsWith('/classgroups/[classGroupId]/exercises')}
+      >
         <button>Codeer</button>
       </FTRPRFLink>
-      <FTRPRFLink to="/schoolteacherprofile/hackroom">
+      <FTRPRFLink
+        to="/schoolteacherprofile/hackroom"
+        active={pathname.startsWith('/classgroups/[classGroupId]/hackroom')}
+      >
         <button>Hack Room</button>
       </FTRPRFLink>
       <FTRPRFLink to="https://studio.ftrprf.be">
