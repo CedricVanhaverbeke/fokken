@@ -97,7 +97,6 @@ export async function getServerSideProps({
       initialClassGroupStudents,
       initialClassGroupLessonStudent,
       initialLessonQuestions,
-      initialLessonAnswers,
     },
   };
 }

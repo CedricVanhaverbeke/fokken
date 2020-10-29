@@ -19,13 +19,13 @@ export const handlers = [
   }),
 
   rest.get(`*/api/lessons/:id/slides`, (_, res, ctx) => {
-    return res(ctx.json(lessonQuestions()));
+    return res(ctx.json(lessonQuestions));
   }),
 
   rest.get(
-    `/api/classgroups/:classGroupId/lessons/:lessonId/students/:studentId/answers`,
+    `*/api/classgroups/:classGroupId/lessons/:lessonId/students/:studentId/answers`,
     (_, res, ctx) => {
-      return res(ctx.json(lessonAnswers()));
+      return res(ctx.json(lessonAnswers));
     },
   ),
 

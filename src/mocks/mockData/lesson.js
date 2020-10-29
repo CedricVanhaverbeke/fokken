@@ -9,8 +9,9 @@ export const lessonDetails = {
   document: null,
 };
 
-export const lessonQuestions = () => {
+const generateLessonQuestions = () => {
   faker.seed(69);
+
   return {
     archived: faker.random.boolean(),
     centurySkills: [],
@@ -34,8 +35,9 @@ export const lessonQuestions = () => {
   };
 };
 
-export const lessonAnswers = () => {
+const generateLessonAnswers = () => {
   faker.seed(69);
+
   return Array.from(Array(10), (_, i) => ({
     id: faker.random.uuid(),
     lessonContentId: faker.random.uuid(),
@@ -49,3 +51,6 @@ export const lessonAnswers = () => {
     submittedAt: faker.date.past().toISOString(),
   }));
 };
+
+export const lessonAnswers = generateLessonAnswers();
+export const lessonQuestions = generateLessonQuestions();
