@@ -1,6 +1,6 @@
 import * as classGroup from './useClassGroup';
 import * as classGroupLesson from './useClassGroupLesson';
-import * as classGroupLessonStudent from './useClassGroupLessonStudent';
+import * as classGroupLessonStudents from './useClassGroupLessonStudents';
 import * as classGroupStudents from './useClassGroupStudents';
 import * as lesson from './useLesson';
 import * as user from './useUser';
@@ -10,8 +10,8 @@ import { defaultFetcher } from '@/utils/fetcher';
 const calls = {
   classGroup,
   classGroupLesson,
-  classGroupLessonStudent,
   classGroupStudents,
+  classGroupLessonStudents,
   lesson,
   user,
 };

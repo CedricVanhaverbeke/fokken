@@ -5,8 +5,7 @@ import dayjs from 'dayjs';
 
 import fetcher from '@/hooks/api/index';
 import useClassGroup from '@/hooks/api/useClassGroup';
-import useClassGroupLessonStudent from '@/hooks/api/useClassGroupLessonStudent';
-import useClassGroupStudents from '@/hooks/api/useClassGroupStudents';
+import useClassGroupLessonStudents from '@/hooks/api/useClassGroupLessonStudents';
 import useLesson from '@/hooks/api/useLesson';
 
 import c from '@/utils/c';
@@ -20,9 +19,9 @@ const createColumns = (classGroupId, lessonId) => [
   {
     Header: 'Name',
     Cell: ({ row }) => {
-      const { firstName, lastName } = row.original;
+      const { firstName, lastName, username } = row.original;
       return (
-        <div className="flex gap-x-4 items-center">
+        <div className="flex gap-x-4 items-center" title={username}>
           <Avatar
             className="w-10 h-10 flex-shrink-0 text-white"
             firstName={firstName}
@@ -57,7 +56,7 @@ const createColumns = (classGroupId, lessonId) => [
         <div className="flex items-center">
           <Link
             href={{
-              pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
+              pathname: `/classgroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
               query: { viewMode: 'HOME' },
             }}
             disabled={!submittedAt}
@@ -69,7 +68,7 @@ const createColumns = (classGroupId, lessonId) => [
 
           <Link
             href={{
-              pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
+              pathname: `/classgroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
               query: { viewMode: 'CLASS' },
             }}
             disabled={!submittedAt}
@@ -85,19 +84,14 @@ const createColumns = (classGroupId, lessonId) => [
 const StudentResultsOverview = ({
   classGroupId,
   lessonId,
-  initialClassGroupStudents,
   initialClassGroup,
   initialClassGroupLessonStudent,
   initialLessonDetails,
 }) => {
   const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
-  const { classGroupStudents } = useClassGroupStudents(
-    classGroupId,
-    initialClassGroupStudents,
-  );
 
   const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
-  const { classGroupLessonStudent } = useClassGroupLessonStudent(
+  const { classGroupLessonStudent } = useClassGroupLessonStudents(
     classGroupId,
     lessonId,
     initialClassGroupLessonStudent,
@@ -124,12 +118,7 @@ const StudentResultsOverview = ({
           columnClassName="p-2 font-normal"
           headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200"
           columns={columns}
-          data={
-            classGroupStudents?.map((s1) => ({
-              ...s1,
-              ...classGroupLessonStudent.find((s2) => s2.id === s1.id),
-            })) || []
-          }
+          data={classGroupLessonStudent}
         />
       </Content>
     </>
@@ -143,8 +132,7 @@ export async function getServerSideProps({
   const {
     fetchLesson,
     fetchClassGroup,
-    fetchClassGroupStudents,
-    fetchClassGroupLessonStudent,
+    fetchClassGroupLessonStudents,
   } = fetcher(req.cookies.authorization);
 
   const initialLessonDetails = await fetchLesson(lessonId);
@@ -161,7 +149,6 @@ export async function getServerSideProps({
     props: {
       classGroupId,
       lessonId,
-      initialClassGroupStudents,
       initialClassGroup,
       initialClassGroupLessonStudent,
       initialLessonDetails,
