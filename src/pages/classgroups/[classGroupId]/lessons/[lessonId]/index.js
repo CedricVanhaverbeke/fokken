@@ -121,10 +121,12 @@ const StudentResultsOverview = ({
           }
         />
         <div className="flex flex-col">
-          <PageTitle>{t('results-overview.title.results')}</PageTitle>
-          <span className="text-xl font-medium text-gray-600">{`${t(
-            'results-overview.title.class',
-          )} ${classGroup?.name} - ${lessonDetails?.title}`}</span>
+          <span className="text-xl font-medium text-gray-600">
+            {t('results-overview.title.results')}
+          </span>
+          <PageTitle>{`${t('results-overview.title.class')} ${
+            classGroup?.name
+          } - ${lessonDetails?.title}`}</PageTitle>
         </div>
       </PageHeader>
       <Content>

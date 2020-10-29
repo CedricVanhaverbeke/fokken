@@ -41,7 +41,9 @@ const StudentAnswers = ({
       <PageHeader>
         <div className="flex justify-between items-end">
           <div className="flex flex-col">
-            <div className="text-lg">Resultaten</div>
+            <span className="text-xl font-medium text-gray-600">
+              Resultaten
+            </span>
             <PageTitle>{lessonDetails.title}</PageTitle>
           </div>
           <span>{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</span>
