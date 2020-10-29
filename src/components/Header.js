@@ -3,14 +3,13 @@ import { useRouter } from 'next/router';
 
 import { Header, MenuButton } from '@ftrprf/tailwind-components';
 
-import useChangeLanguage from '@/hooks/useChangeLanguage';
-
 import Logo from '../assets/vectors/logo.svg';
 
 import FTRPRFLink from './FTRPRFLink';
 
 import useUser from '../hooks/api/useUser';
 import useFormatMessage from '../hooks/useFormatMessage';
+import useChangeLanguage from '@/hooks/useChangeLanguage';
 
 const TeacherHeader = () => {
   const t = useFormatMessage();

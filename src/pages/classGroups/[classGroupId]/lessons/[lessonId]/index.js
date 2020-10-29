@@ -1,12 +1,9 @@
 /* eslint-disable react/display-name */
 import { useMemo } from 'react';
-import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
 
-import Avatar from '@/components/Avatar';
-import Badge from '@/components/Badge';
-import Link from '@/components/Link';
-import Table from '@/components/Table';
+import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
+
 import useClassGroup, { fetchClassGroup } from '@/hooks/api/useClassGroup';
 import useClassGroupLessonStudent, {
   fetchClassGroupLessonStudent,
@@ -16,7 +13,13 @@ import useClassGroupStudents, {
 } from '@/hooks/api/useClassGroupStudents';
 import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
 import useFormatMessage from '@/hooks/useFormatMessage';
+
 import c from '@/utils/c';
+
+import Avatar from '@/components/Avatar';
+import Badge from '@/components/Badge';
+import Link from '@/components/Link';
+import Table from '@/components/Table';
 
 const createColumns = (classGroupId, lessonId, t) => [
   {

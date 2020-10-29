@@ -1,12 +1,12 @@
 import { SWRConfig } from 'swr';
 
-import LanguageProvider from '@/providers/LanguageProvider';
-
 import Header from '../components/Header';
 
 import { browserFetcher } from '../utils/fetcher';
 
 import '../theme/index.css';
+
+import LanguageProvider from '@/providers/LanguageProvider';
 
 if (
   process.env.NODE_ENV !== 'production' &&

@@ -8,6 +8,7 @@ import fetcher from '@/hooks/api/index';
 import useClassGroup from '@/hooks/api/useClassGroup';
 import useClassGroupLessonStudents from '@/hooks/api/useClassGroupLessonStudents';
 import useLesson from '@/hooks/api/useLesson';
+import useFormatMessage from '@/hooks/useFormatMessage';
 
 import c from '@/utils/c';
 
@@ -17,9 +18,9 @@ import Link from '@/components/Link';
 import Table from '@/components/Table';
 import Title from '@/components/Title';
 
-const createColumns = (classGroupId, lessonId) => [
+const createColumns = (classGroupId, lessonId, t) => [
   {
-    Header: 'Name',
+    Header: t('resultsOverview.colum.name'),
     Cell: ({ row }) => {
       const { firstName, lastName, username } = row.original;
       return (
@@ -35,7 +36,7 @@ const createColumns = (classGroupId, lessonId) => [
     },
   },
   {
-    Header: 'Submitted At',
+    Header: t('resultsOverview.colum.submittedAt'),
     Cell: ({ row }) => {
       const { submittedAt } = row.original;
       return (
@@ -51,7 +52,7 @@ const createColumns = (classGroupId, lessonId) => [
     },
   },
   {
-    Header: 'Results',
+    Header: t('resultsOverview.colum.results'),
     Cell: ({ row }) => {
       const { id, submittedAt } = row.original;
       return (
@@ -63,7 +64,7 @@ const createColumns = (classGroupId, lessonId) => [
             }}
             disabled={!submittedAt}
           >
-            home
+            {t('resultsOverview.home')}
           </Link>
 
           <div className="w-px h-4 ml-3 mr-3 bg-gray-300" />
@@ -75,7 +76,7 @@ const createColumns = (classGroupId, lessonId) => [
             }}
             disabled={!submittedAt}
           >
-            class
+            {t('resultsOverview.class')}
           </Link>
         </div>
       );
@@ -90,6 +91,7 @@ const StudentResultsOverview = ({
   initialClassGroupLessonStudent,
   initialLessonDetails,
 }) => {
+  const t = useFormatMessage();
   const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
 
   const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
@@ -99,9 +101,10 @@ const StudentResultsOverview = ({
     initialClassGroupLessonStudent,
   );
 
-  const columns = useMemo(() => createColumns(classGroupId, lessonId), [
+  const columns = useMemo(() => createColumns(classGroupId, lessonId, t), [
     classGroupId,
     lessonId,
+    t,
   ]);
 
   return (
@@ -109,12 +112,19 @@ const StudentResultsOverview = ({
       <PageHeader>
         <Title
           title={(join) =>
-            join(`Resultaten klas ${classGroup?.name}`, lessonDetails?.title)
+            join(
+              `${t('resultsOverview.title.results')} ${t(
+                'resultsOverview.title.class',
+              )} ${classGroup?.name}`,
+              lessonDetails?.title,
+            )
           }
         />
         <div className="flex flex-col">
-          <PageTitle>Resultaten</PageTitle>
-          <span className="text-xl font-medium text-gray-600">{`Class ${classGroup?.name} - ${lessonDetails?.title}`}</span>
+          <PageTitle>{t('resultsOverview.title.results')}</PageTitle>
+          <span className="text-xl font-medium text-gray-600">{`${t(
+            'resultsOverview.title.class',
+          )} ${classGroup?.name} - ${lessonDetails?.title}`}</span>
         </div>
       </PageHeader>
       <Content>

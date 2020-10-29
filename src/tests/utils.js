@@ -45,17 +45,18 @@ const mockPageRouter = () => {
 export const render = (children, { router } = {}) => {
   return {
     ...rtlRender(
-        <LanguageProvider onError={() => {}}>
-      <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-        <SWRConfig
-          value={{
-            fetcher: browserFetcher,
-          }}
-        >
-          {children}
-        </SWRConfig>
-      </RouterContext.Provider>,
-      </LanguageProvider>
+      <LanguageProvider onError={() => {}}>
+        <RouterContext.Provider value={{ ...mockRouter, ...router }}>
+          <SWRConfig
+            value={{
+              fetcher: browserFetcher,
+            }}
+          >
+            {children}
+          </SWRConfig>
+        </RouterContext.Provider>
+        ,
+      </LanguageProvider>,
     ),
   };
 };
