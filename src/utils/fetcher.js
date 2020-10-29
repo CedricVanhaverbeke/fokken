@@ -1,5 +1,4 @@
 import cookie from 'cookie';
-// eslint-disable-next-line no-unused-vars
 import next from 'next';
 
 export const defaultFetcher = (endpoint, token) => {
