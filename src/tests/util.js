@@ -8,7 +8,7 @@ import testFetcher from './testFetcher';
 export const render = (children) => {
   return {
     ...rtlRender(
-      <LanguageProvider>
+      <LanguageProvider onError={() => {}}>
         <SWRConfig
           value={{
             fetcher: testFetcher,

@@ -13,10 +13,6 @@ const linkTexts = [
   'header.navigation.studio',
 ];
 
-/* eslint-disable no-console */
-console.error = jest.fn();
-/* eslint-enable no-console */
-
 describe('Teacher header', () => {
   it('should render', () => {
     const { container } = render(<TeacherHeader />);
