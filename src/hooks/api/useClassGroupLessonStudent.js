@@ -9,7 +9,7 @@ export const fetchClassGroupLessonStudent = (classGroupId, lessonId) =>
   initialFetcher(URL(classGroupId, lessonId));
 
 const useClassGroupLessonStudent = (classGroupId, lessonId, initialData) => {
-  const response = useSWR(URL(classGroupId, lessonId), undefined, {
+  const response = useSWR(URL(classGroupId, lessonId), initialFetcher, {
     initialData,
   });
 
