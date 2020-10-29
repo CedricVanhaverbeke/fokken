@@ -20,7 +20,7 @@ const StudentAnswers = ({
   initialLessonAnswers,
 }) => {
   const { lessonDetails } = useLesson(lessonId, initialLesson);
-  // eslint-disable-next-line no-unused-vars
+
   const { classGroupLessonStudent } = useClassGroupLessonStudent(
     classGroupId,
     lessonId,
