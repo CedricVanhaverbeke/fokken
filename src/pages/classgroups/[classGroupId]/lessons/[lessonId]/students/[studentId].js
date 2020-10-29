@@ -5,7 +5,8 @@ const StudentAnswers = () => {
 };
 
 export function getServerSideProps({
-  query: { classGroupId, lessonId, studentId, viewMode },
+  params: { classGroupId, lessonId, studentId },
+  query: { viewMode },
 }) {
   return {
     props: {
