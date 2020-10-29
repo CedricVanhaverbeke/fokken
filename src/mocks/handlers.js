@@ -6,12 +6,16 @@ import {
   classGroupLessonStudents,
   classGroupStudents,
 } from './mockData/classGroup';
-import { lessonDetails } from './mockData/lesson';
+import { lessonDetails, lessonQuestions } from './mockData/lesson';
 import userDetails from './mockData/userDetails';
 
 export const handlers = [
   rest.get(`*/api/classgroups/:id`, (_, res, ctx) => {
     return res(ctx.json(classGroupDetails));
+  }),
+
+  rest.get(`*/api/lessons/:id/slides`, (_, res, ctx) => {
+    return res(ctx.json(lessonQuestions()));
   }),
 
   rest.get(

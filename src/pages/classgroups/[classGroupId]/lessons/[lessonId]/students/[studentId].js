@@ -1,22 +1,25 @@
 import React from 'react';
 import { PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 
-import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
 import useClassGroupLessonStudent, {
   fetchClassGroupLessonStudent,
 } from '@/hooks/api/useClassGroupLessonStudent';
 import useClassGroupStudents, {
   fetchClassGroupStudents,
 } from '@/hooks/api/useClassGroupStudents';
+import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
+import useLessonQuestions, {
+  fetchLessonQuestions,
+} from '@/hooks/api/useLessonQuestions';
 
 const StudentAnswers = ({
   classGroupId,
   lessonId,
   studentId,
-  viewMode,
   initialLesson,
   initialClassGroupStudents,
   initialClassGroupLessonStudent,
+  initialLessonQuestions,
 }) => {
   const { classGroupStudents } = useClassGroupStudents(
     classGroupId,
@@ -24,17 +27,22 @@ const StudentAnswers = ({
   );
 
   const { lessonDetails } = useLesson(lessonId, initialLesson);
+  // eslint-disable-next-line no-unused-vars
   const { classGroupLessonStudent } = useClassGroupLessonStudent(
     classGroupId,
     lessonId,
     initialClassGroupLessonStudent,
   );
 
+  // eslint-disable-next-line no-unused-vars
+  const { lessonQuestions } = useLessonQuestions(
+    lessonId,
+    initialLessonQuestions,
+  );
+
   const selectedStudent = classGroupStudents.find(
     (student) => student.id === studentId,
   );
-
-  console.log({ studentId, classGroupStudents, selectedStudent });
 
   return (
     <>
@@ -49,6 +57,7 @@ const StudentAnswers = ({
           <span>{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</span>
         </div>
       </PageHeader>
+      <div />
     </>
   );
 };
@@ -63,6 +72,7 @@ export async function getServerSideProps({
     classGroupId,
     lessonId,
   );
+  const initialLessonQuestions = await fetchLessonQuestions(lessonId);
 
   return {
     props: {
@@ -73,6 +83,7 @@ export async function getServerSideProps({
       initialLesson,
       initialClassGroupStudents,
       initialClassGroupLessonStudent,
+      initialLessonQuestions,
     },
   };
 }
