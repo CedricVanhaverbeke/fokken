@@ -10,6 +10,7 @@ const questionResults = {
 
 const QuestionResult = ({ question, givenAnswers }) => {
   const QuestionResult = questionResults[question.type];
+
   return (
     <QuestionResult
       possibleAnswers={question.questionAnswers}

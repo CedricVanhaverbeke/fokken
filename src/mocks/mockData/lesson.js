@@ -32,6 +32,7 @@ const generateLessonQuestions = () => {
                 track: true,
                 value: faker.lorem.sentence(),
                 correct: faker.random.boolean(),
+                explanation: faker.lorem.sentence(),
               }))
             : null,
       },
