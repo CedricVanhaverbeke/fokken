@@ -4,6 +4,8 @@ import { getPage } from 'next-page-tester';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 import { SWRConfig } from 'swr';
 
+import LanguageProvider from '../providers/LanguageProvider';
+
 import { browserFetcher } from '@/utils/fetcher';
 
 const mockRouter = {
@@ -43,6 +45,7 @@ const mockPageRouter = () => {
 export const render = (children, { router } = {}) => {
   return {
     ...rtlRender(
+        <LanguageProvider onError={() => {}}>
       <RouterContext.Provider value={{ ...mockRouter, ...router }}>
         <SWRConfig
           value={{
@@ -52,6 +55,7 @@ export const render = (children, { router } = {}) => {
           {children}
         </SWRConfig>
       </RouterContext.Provider>,
+      </LanguageProvider>
     ),
   };
 };

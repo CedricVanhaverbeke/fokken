@@ -17,12 +17,12 @@ exports[`StudentResultsOverview should render the results page when navigating t
           <h1
             class="text-4xl font-bold leading-none"
           >
-            Resultaten
+            resultsOverview.title.results
           </h1>
           <span
             class="text-xl font-medium text-gray-600"
           >
-            Class 1A - (a)Sociale media
+            resultsOverview.title.class 1A - (a)Sociale media
           </span>
         </div>
       </div>
@@ -50,21 +50,21 @@ exports[`StudentResultsOverview should render the results page when navigating t
             colspan="1"
             role="columnheader"
           >
-            Name
+            resultsOverview.colum.name
           </th>
           <th
             class="p-2 font-normal"
             colspan="1"
             role="columnheader"
           >
-            Submitted At
+            resultsOverview.colum.submittedAt
           </th>
           <th
             class="p-2 font-normal"
             colspan="1"
             role="columnheader"
           >
-            Results
+            resultsOverview.colum.results
           </th>
         </tr>
       </thead>
@@ -112,7 +112,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -120,7 +120,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -174,7 +174,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -182,7 +182,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -236,7 +236,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -244,7 +244,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -298,7 +298,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -306,7 +306,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -352,7 +352,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -360,7 +360,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -414,7 +414,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -422,7 +422,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -476,7 +476,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -484,7 +484,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -538,7 +538,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -546,7 +546,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -592,7 +592,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -600,7 +600,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -654,7 +654,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -662,7 +662,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -716,7 +716,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -724,7 +724,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -778,7 +778,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -786,7 +786,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -832,7 +832,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -840,7 +840,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -894,7 +894,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -902,7 +902,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -956,7 +956,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -964,7 +964,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -1018,7 +1018,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -1026,7 +1026,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -1072,7 +1072,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -1080,7 +1080,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -1134,7 +1134,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -1142,7 +1142,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -1196,7 +1196,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -1204,7 +1204,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>
@@ -1258,7 +1258,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                home
+                resultsOverview.home
               </span>
               <div
                 class="w-px h-4 ml-3 mr-3 bg-gray-300"
@@ -1266,7 +1266,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
               <span
                 class="cursor-pointer text-blue-700 "
               >
-                class
+                resultsOverview.class
               </span>
             </div>
           </td>

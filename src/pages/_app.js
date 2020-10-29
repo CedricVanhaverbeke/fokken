@@ -1,5 +1,7 @@
 import { SWRConfig } from 'swr';
 
+import LanguageProvider from '@/providers/LanguageProvider';
+
 import Header from '../components/Header';
 
 import { browserFetcher } from '../utils/fetcher';
@@ -13,18 +15,21 @@ if (
   // eslint-disable-next-line global-require
   require('../mocks');
 }
+
 function MyApp({ Component, pageProps }) {
   return (
-    <SWRConfig
-      value={{
-        fetcher: browserFetcher,
-      }}
-    >
-      <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
-        <Header />
-        <Component {...pageProps} />
-      </div>
-    </SWRConfig>
+    <LanguageProvider>
+      <SWRConfig
+        value={{
+          fetcher: browserFetcher,
+        }}
+      >
+        <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
+          <Header />
+          <Component {...pageProps} />
+        </div>
+      </SWRConfig>
+    </LanguageProvider>
   );
 }
 
