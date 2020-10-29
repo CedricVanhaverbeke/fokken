@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 
+import { SlideViewerTextSlide } from '@ftrprf/slideviewer';
 import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
 import fetcher from '@/hooks/api/index';
@@ -7,6 +8,9 @@ import useClassGroupLessonStudent from '@/hooks/api/useClassGroupLessonStudent';
 import useLesson from '@/hooks/api/useLesson';
 import useLessonAnswers from '@/hooks/api/useLessonAnswers';
 import useLessonSlides from '@/hooks/api/useLessonSlides';
+import useFormatMessage from '@/hooks/useFormatMessage';
+
+import '@ftrprf/slideviewer/styles.css';
 
 import QuestionResult from '@/components/pages/StudentAnswers/QuestionResult';
 import PageTitle from '@/components/PageTitle';
@@ -21,6 +25,8 @@ const StudentAnswers = ({
   initialLessonSlides,
   initialLessonAnswers,
 }) => {
+  const t = useFormatMessage();
+
   const { lessonDetails } = useLesson(lessonId, initialLesson);
 
   const { classGroupLessonStudent } = useClassGroupLessonStudent(
@@ -62,24 +68,40 @@ const StudentAnswers = ({
     <>
       <PageHeader>
         <div className="flex justify-between items-end">
-          <PageTitle label="Resultaten">{lessonDetails.title}</PageTitle>
+          <PageTitle label={t('student-answers.title.results')}>
+            {lessonDetails.title}
+          </PageTitle>
 
           <span>{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</span>
         </div>
       </PageHeader>
-      <Content>
-        <div className="flex flex-col gap-y-2">
-          {questionSlides.map(({ slide, answer }, i) => (
-            <div className="flex gap-x-4 mb-4" key={slide.question.id}>
-              <span className="flex-shrink-0">Vraag {i + 1}</span>
-              <div className="flex flex-col flex-grow gap-y-8">
-                <div>{slide.content}</div>
-                <QuestionResult question={slide.question} answer={answer} />
+      <div className="flex flex-col w-full">
+        {questionSlides.map(({ slide, answer }, i) => (
+          <div
+            className="flex w-full justify-center divide-y divide-gray-400 border-gray-300"
+            key={slide.question.id}
+          >
+            <Content>
+              <span className="flex-shrink-0 mr-8 uppercase text-xs font-semibold text-gray-600">
+                {t('student-answers.question_label')} {i + 1}
+              </span>
+              <div className="flex flex-col flex-grow">
+                {/* TEMP FIX: we should only use the question value instead of the slide content */}
+                <div>
+                  {slide.question.value ? (
+                    <div className="font-semibold">{slide.question.value}</div>
+                  ) : (
+                    <SlideViewerTextSlide value="Dit is een testvraag" />
+                  )}
+                </div>
+                <div className="mt-4">
+                  <QuestionResult question={slide.question} answer={answer} />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </Content>
+            </Content>
+          </div>
+        ))}
+      </div>
     </>
   );
 };

@@ -1192,6 +1192,15 @@
     intl-messageformat-parser "^6.0.11"
     tslib "^2.0.1"
 
+"@ftrprf/slideviewer@^23.0.0":
+  version "23.0.0"
+  resolved "https://npm.pkg.github.com/download/@ftrprf/slideviewer/23.0.0/f5d888b8c7c707a853cacc2fb0ac3ba738b8e8a5b1f7db09a715ac7ed899ef5e#4cf50f551a4a06f54534390ae847e250e971798e"
+  integrity sha512-dq6Mm8kAK/DHOwCSxteIDDtOqX3WkV8UeCmCH+iwannZZzjAmArBfMfqrjyudAOCh9bDozSwrico9zjjitXYzA==
+  dependencies:
+    "@stomp/stompjs" "^5.4.4"
+    html-react-parser "^0.13.0"
+    react-icons "^3.11.0"
+
 "@ftrprf/tailwind-components@^1.0.6":
   version "1.0.6"
   resolved "https://npm.pkg.github.com/download/@ftrprf/tailwind-components/1.0.6/e60e7c6a393e0349ed07940612a7abcb19616cbc4404f83fb4976fc09c3dfc4d#aaba135a3817b67d805fe56a74ba85a1655f6e04"
@@ -1556,6 +1565,11 @@
   integrity sha512-MZPUxrmFubI36XS1DI3qmI0YdN1gks62JtFZvxR67ljjSNCeK6U08Zx4msEWOXuofgqUt6zPHSi1H9fbjR/NRA==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
+
+"@stomp/stompjs@^5.4.4":
+  version "5.4.4"
+  resolved "https://registry.yarnpkg.com/@stomp/stompjs/-/stompjs-5.4.4.tgz#f51d2edf9a00fac645dde3a494738d96ca17e5aa"
+  integrity sha512-RIzQ7MLRSJLUpTHcje1ZclnHH982amJSKC9bDxGO0wyu5OF9ROuuiLf7TxKxo1zUu7lGEYNedg9SEi87uMWDqg==
 
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
@@ -5192,6 +5206,16 @@ html-escaper@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
+
+html-react-parser@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-0.13.0.tgz#be15f24795a57f0927e7b7d56e97b699e24160f4"
+  integrity sha512-hU94hE2p9xhMM61EOoiY3Kr+DfzH/uY7hGeVXQpGFRjgbYRUeyuSKORDNMIaY8IAcuHQ6Ov9pJ3x94Wvso/OmQ==
+  dependencies:
+    "@types/htmlparser2" "3.10.1"
+    html-dom-parser "0.3.0"
+    react-property "1.0.1"
+    style-to-object "0.3.0"
 
 html-react-parser@^0.14.0:
   version "0.14.0"

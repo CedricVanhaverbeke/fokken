@@ -17,4 +17,7 @@ export default {
   'results-overview.colum.results': 'Resultaten',
   'results-overview.home': 'thuis',
   'results-overview.class': 'klas',
+
+  'student-answers.title.results': 'Resultaten',
+  'student-answers.question_label': 'Vraag',
 };

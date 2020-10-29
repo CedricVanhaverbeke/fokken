@@ -17,4 +17,7 @@ export default {
   'results-overview.colum.results': 'Results',
   'results-overview.home': 'home',
   'results-overview.class': 'class',
+
+  'student-answers.title.results': 'Results',
+  'student-answers.question_label': 'Question',
 };
