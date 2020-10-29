@@ -1,19 +1,12 @@
 import useSWR from 'swr';
 
-import initialFetcher from '@/utils/initialFetcher';
-
-const URL = (classGroupId, lessonId, studentId) =>
-  `${process.env.NEXT_PUBLIC_API_URL}/api/classgroups/${classGroupId}/lessons/${lessonId}/students/${studentId}/answers`;
-
-export const fetchLessonAnswers = (classGroupId, lessonId, studentId) =>
-  initialFetcher(URL(classGroupId, lessonId, studentId));
+export const URL = (classGroupId, lessonId, studentId) =>
+  `${process.env.NEXT_PUBLIC_API_URL}/classgroups/${classGroupId}/lessons/${lessonId}/students/${studentId}/answers`;
 
 const useLessonAnswers = (classGroupId, lessonId, studentId, initialData) => {
-  const response = useSWR(
-    URL(classGroupId, lessonId, studentId),
-    initialFetcher,
-    { initialData },
-  );
+  const response = useSWR(URL(classGroupId, lessonId, studentId), undefined, {
+    initialData,
+  });
 
   return {
     lessonAnswers: response.data.reduce(

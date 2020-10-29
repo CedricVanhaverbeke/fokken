@@ -4,7 +4,7 @@ export const URL = (classGroupId) =>
   `${process.env.NEXT_PUBLIC_API_URL}/classgroups/${classGroupId}`;
 
 const useClassGroup = (classGroupId, initialData) => {
-  const response = useSWR(URL(classGroupId), initialFetcher, { initialData });
+  const response = useSWR(URL(classGroupId), undefined, { initialData });
 
   return { classGroup: response.data, ...response };
 };

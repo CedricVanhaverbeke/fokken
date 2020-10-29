@@ -1,42 +1,30 @@
 import React from 'react';
+
 import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 
+import fetcher from '@/hooks/api/index';
+import useClassGroupLessonStudent from '@/hooks/api/useClassGroupLessonStudent';
+import useLesson from '@/hooks/api/useLesson';
+import useLessonAnswers from '@/hooks/api/useLessonAnswers';
+import useLessonQuestions from '@/hooks/api/useLessonQuestions';
+
 import QuestionResult from '@/components/pages/StudentAnswers/QuestionResult';
-import useClassGroupLessonStudent, {
-  fetchClassGroupLessonStudent,
-} from '@/hooks/api/useClassGroupLessonStudent';
-import useClassGroupStudents, {
-  fetchClassGroupStudents,
-} from '@/hooks/api/useClassGroupStudents';
-import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
-import useLessonAnswers, {
-  fetchLessonAnswers,
-} from '@/hooks/api/useLessonAnswers';
-import useLessonQuestions, {
-  fetchLessonQuestions,
-} from '@/hooks/api/useLessonQuestions';
 
 const StudentAnswers = ({
   classGroupId,
   lessonId,
   studentId,
   initialLesson,
-  initialClassGroupStudents,
-  initialClassGroupLessonStudent,
+  initialClassGroupLessonStudents,
   initialLessonQuestions,
   initialLessonAnswers,
 }) => {
-  const { classGroupStudents } = useClassGroupStudents(
-    classGroupId,
-    initialClassGroupStudents,
-  );
-
   const { lessonDetails } = useLesson(lessonId, initialLesson);
   // eslint-disable-next-line no-unused-vars
   const { classGroupLessonStudent } = useClassGroupLessonStudent(
     classGroupId,
     lessonId,
-    initialClassGroupLessonStudent,
+    initialClassGroupLessonStudents,
   );
 
   const { lessonQuestions } = useLessonQuestions(
@@ -51,7 +39,7 @@ const StudentAnswers = ({
     initialLessonAnswers,
   );
 
-  const selectedStudent = classGroupStudents.find(
+  const selectedStudent = classGroupLessonStudent.find(
     (student) => student.id === studentId,
   );
 
@@ -95,17 +83,23 @@ const StudentAnswers = ({
 export async function getServerSideProps({
   params: { classGroupId, lessonId, studentId },
   query: { viewMode },
+  req,
 }) {
+  const {
+    fetchLesson,
+    fetchClassGroupLessonStudents,
+    fetchLessonQuestions,
+    fetchLessonAnswers,
+  } = fetcher(req.cookies.authorization);
+
   const [
     initialLesson,
-    initialClassGroupStudents,
-    initialClassGroupLessonStudent,
+    initialClassGroupLessonStudents,
     initialLessonQuestions,
     initialLessonAnswers,
   ] = await Promise.all([
     fetchLesson(lessonId),
-    fetchClassGroupStudents(classGroupId),
-    fetchClassGroupLessonStudent(classGroupId, lessonId),
+    fetchClassGroupLessonStudents(classGroupId, lessonId),
     fetchLessonQuestions(lessonId),
     fetchLessonAnswers(classGroupId, lessonId, studentId),
   ]);
@@ -117,8 +111,7 @@ export async function getServerSideProps({
       studentId,
       viewMode,
       initialLesson,
-      initialClassGroupStudents,
-      initialClassGroupLessonStudent,
+      initialClassGroupLessonStudents,
       initialLessonQuestions,
       initialLessonAnswers,
     },

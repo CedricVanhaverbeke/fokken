@@ -3,6 +3,8 @@ import { URL as classGroupLesson } from './useClassGroupLesson';
 import { URL as classGroupLessonStudents } from './useClassGroupLessonStudents';
 import { URL as classGroupStudents } from './useClassGroupStudents';
 import { URL as lesson } from './useLesson';
+import { URL as lessonAnswers } from './useLessonAnswers';
+import { URL as lessonQuestions } from './useLessonQuestions';
 import { URL as user } from './useUser';
 
 import { defaultFetcher } from '@/utils/fetcher';
@@ -13,6 +15,8 @@ const calls = {
   classGroupStudents,
   classGroupLessonStudents,
   lesson,
+  lessonAnswers,
+  lessonQuestions,
   user,
 };
 

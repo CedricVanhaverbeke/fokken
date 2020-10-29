@@ -47,7 +47,7 @@ export const handlers = [
   rest.get(
     `*/api/classGroups/:classGroupId/lessons/:lessonId`,
     (_, res, ctx) => {
-      return res(ctx.json(classGroupLesson()));
+      return res(ctx.json(classGroupLesson));
     },
   ),
 
