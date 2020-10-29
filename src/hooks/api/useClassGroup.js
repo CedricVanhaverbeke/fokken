@@ -1,16 +1,10 @@
 import useSWR from 'swr';
 
-import initialFetcher from '@/utils/initialFetcher';
-
-const URL = (classGroupId) =>
-  `${process.env.NEXT_PUBLIC_API_URL}/api/classGroups/${classGroupId}`;
-
-export const fetchClassGroup = (id) => {
-  return initialFetcher(URL(id));
-};
+export const URL = (classGroupId) =>
+  `${process.env.NEXT_PUBLIC_API_URL}/classgroups/${classGroupId}`;
 
 const useClassGroup = (classGroupId, initialData) => {
-  const response = useSWR(URL(classGroupId), null, { initialData });
+  const response = useSWR(URL(classGroupId), undefined, { initialData });
 
   return { classGroup: response.data, ...response };
 };

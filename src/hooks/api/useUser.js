@@ -1,9 +1,9 @@
 import useSWR from 'swr';
 
-const URL = () => `${process.env.NEXT_PUBLIC_API_URL}/users/me`;
+export const URL = `${process.env.NEXT_PUBLIC_API_URL}/users/me`;
 
 const useUser = () => {
-  const response = useSWR(URL());
+  const response = useSWR(URL);
 
   return { user: response.data, ...response };
 };

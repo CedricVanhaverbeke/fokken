@@ -2,7 +2,7 @@ import { SWRConfig } from 'swr';
 
 import Header from '../components/Header';
 
-import browserFetcher from '../utils/browserFetcher';
+import { browserFetcher } from '../utils/fetcher';
 
 import '../theme/index.css';
 

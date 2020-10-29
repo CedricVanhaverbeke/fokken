@@ -3,19 +3,18 @@ import { useMemo } from 'react';
 import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
 
+import fetcher from '@/hooks/api/index';
+import useClassGroup from '@/hooks/api/useClassGroup';
+import useClassGroupLessonStudent from '@/hooks/api/useClassGroupLessonStudent';
+import useClassGroupStudents from '@/hooks/api/useClassGroupStudents';
+import useLesson from '@/hooks/api/useLesson';
+
+import c from '@/utils/c';
+
 import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
 import Table from '@/components/Table';
-import useClassGroup, { fetchClassGroup } from '@/hooks/api/useClassGroup';
-import useClassGroupLessonStudent, {
-  fetchClassGroupLessonStudent,
-} from '@/hooks/api/useClassGroupLessonStudent';
-import useClassGroupStudents, {
-  fetchClassGroupStudents,
-} from '@/hooks/api/useClassGroupStudents';
-import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
-import c from '@/utils/c';
 
 const createColumns = (classGroupId, lessonId) => [
   {
@@ -139,14 +138,24 @@ const StudentResultsOverview = ({
 
 export async function getServerSideProps({
   params: { classGroupId, lessonId },
+  req,
 }) {
+  const {
+    fetchLesson,
+    fetchClassGroup,
+    fetchClassGroupStudents,
+    fetchClassGroupLessonStudent,
+  } = fetcher(req.cookies.authorization);
+
+  const initialLessonDetails = await fetchLesson(lessonId);
   const initialClassGroup = await fetchClassGroup(classGroupId);
   const initialClassGroupStudents = await fetchClassGroupStudents(classGroupId);
   const initialClassGroupLessonStudent = await fetchClassGroupLessonStudent(
     classGroupId,
     lessonId,
   );
-  const initialLessonDetails = await fetchLesson(lessonId);
+
+  console.log('test');
 
   return {
     props: {
