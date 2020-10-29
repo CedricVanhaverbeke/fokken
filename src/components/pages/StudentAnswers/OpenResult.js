@@ -1,10 +1,10 @@
 import React from 'react';
 
-const OpenResult = ({ givenAnswer }) => {
+const OpenResult = ({ givenAnswers }) => {
   return (
     <textarea
       className="flex-grow bg-gray-300"
-      value={givenAnswer[0].value}
+      value={givenAnswers[0].value}
       disabled
     />
   );

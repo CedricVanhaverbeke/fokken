@@ -2,10 +2,7 @@ import React from 'react';
 
 import c from '@/utils/c';
 
-const MultipleChoiceResult = ({
-  possibleAnswers,
-  givenAnswer: givenAnswers,
-}) => (
+const MultipleChoiceResult = ({ possibleAnswers, givenAnswers }) => (
   <div className="grid grid-cols-2 gap-2 w-full">
     {possibleAnswers.map(({ id: answerId, value, correct }) => {
       const studentSelectedAnswer = !!givenAnswers.find(
