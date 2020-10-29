@@ -5,7 +5,7 @@ module.exports = {
     defaultLocale: 'nl',
     domains: [
       {
-        domain: 'ftrprf.be',
+        domain: 'school.ftrprf.be',
         defaultLocale: 'nl',
       },
       {
