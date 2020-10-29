@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 5000",
+    "dev:mock": "NEXT_PUBLIC_ENABLE_MOCK=1 next dev -p 5000",
     "debug": "NODE_OPTIONS='--inspect' next dev -p 5000",
     "build": "next build",
     "start": "next start",
