@@ -1,7 +1,7 @@
 import React from 'react';
 import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 
-import AnswerOverview from '@/components/pages/StudentAnswers/AnswerOverview';
+import QuestionResult from '@/components/pages/StudentAnswers/QuestionResult';
 import useClassGroupLessonStudent, {
   fetchClassGroupLessonStudent,
 } from '@/hooks/api/useClassGroupLessonStudent';
@@ -55,6 +55,10 @@ const StudentAnswers = ({
     (student) => student.id === studentId,
   );
 
+  const questionSlides = lessonQuestions.slides.filter(
+    (slide) => !!slide.question,
+  );
+
   return (
     <>
       <PageHeader>
@@ -69,10 +73,20 @@ const StudentAnswers = ({
         </div>
       </PageHeader>
       <Content>
-        <AnswerOverview
-          slides={lessonQuestions.slides}
-          lessonAnswers={lessonAnswers}
-        />
+        <div className="flex flex-col gap-y-2">
+          {questionSlides.map(({ question, content }, i) => (
+            <div className="flex gap-x-4 mb-4" key={question.id}>
+              <span className="flex-shrink-0">Vraag {i + 1}</span>
+              <div className="flex flex-col flex-grow gap-y-8">
+                <div>{content}</div>
+                <QuestionResult
+                  question={question}
+                  givenAnswer={lessonAnswers[question.id]}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
       </Content>
     </>
   );

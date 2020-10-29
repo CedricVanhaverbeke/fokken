@@ -24,6 +24,7 @@ const generateLessonQuestions = () => {
       module: 'NORMAL',
       question: {
         id: 100 + i,
+        type: 'MULTIPLE_CHOICE',
         questionAnswers: Array.from(Array(4), (_, i) => ({
           id: `${200 + i}`,
           track: true,
