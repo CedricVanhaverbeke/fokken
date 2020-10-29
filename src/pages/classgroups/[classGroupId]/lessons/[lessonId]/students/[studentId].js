@@ -11,6 +11,9 @@ import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
 import useLessonQuestions, {
   fetchLessonQuestions,
 } from '@/hooks/api/useLessonQuestions';
+import useLessonAnswers, {
+  fetchLessonAnswers,
+} from '@/hooks/api/useLessonAnswers';
 
 const StudentAnswers = ({
   classGroupId,
@@ -20,6 +23,7 @@ const StudentAnswers = ({
   initialClassGroupStudents,
   initialClassGroupLessonStudent,
   initialLessonQuestions,
+  //initialLessonAnswers,
 }) => {
   const { classGroupStudents } = useClassGroupStudents(
     classGroupId,
@@ -40,6 +44,9 @@ const StudentAnswers = ({
     initialLessonQuestions,
   );
 
+  // eslint-disable-next-line no-unused-vars
+  const { lessonAnswers } = useLessonAnswers(lessonId);
+
   const selectedStudent = classGroupStudents.find(
     (student) => student.id === studentId,
   );
@@ -57,7 +64,7 @@ const StudentAnswers = ({
           <span>{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</span>
         </div>
       </PageHeader>
-      <div />
+      <div className="flex-col"></div>
     </>
   );
 };
@@ -66,13 +73,19 @@ export async function getServerSideProps({
   params: { classGroupId, lessonId, studentId },
   query: { viewMode },
 }) {
-  const initialLesson = await fetchLesson(lessonId);
-  const initialClassGroupStudents = await fetchClassGroupStudents(classGroupId);
-  const initialClassGroupLessonStudent = await fetchClassGroupLessonStudent(
-    classGroupId,
-    lessonId,
-  );
-  const initialLessonQuestions = await fetchLessonQuestions(lessonId);
+  const [
+    initialLesson,
+    initialClassGroupStudents,
+    initialClassGroupLessonStudent,
+    initialLessonQuestions,
+    initialLessonAnswers,
+  ] = await Promise.all([
+    fetchLesson(lessonId),
+    fetchClassGroupStudents(classGroupId),
+    fetchClassGroupLessonStudent(classGroupId, lessonId),
+    fetchLessonQuestions(lessonId),
+    fetchLessonAnswers(classGroupId, lessonId, studentId),
+  ]);
 
   return {
     props: {
@@ -84,6 +97,7 @@ export async function getServerSideProps({
       initialClassGroupStudents,
       initialClassGroupLessonStudent,
       initialLessonQuestions,
+      initialLessonAnswers,
     },
   };
 }
