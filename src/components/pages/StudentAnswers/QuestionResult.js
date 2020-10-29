@@ -11,12 +11,10 @@ const questionResults = {
 const QuestionResult = ({ question, givenAnswer }) => {
   const QuestionResult = questionResults[question.type];
   return (
-    <div className="grid grid-cols-2 gap-2 w-full">
-      <QuestionResult
-        possibleAnswers={question.questionAnswers}
-        givenAnswer={givenAnswer.answers}
-      />
-    </div>
+    <QuestionResult
+      possibleAnswers={question.questionAnswers}
+      givenAnswer={givenAnswer.answers}
+    />
   );
 };
 

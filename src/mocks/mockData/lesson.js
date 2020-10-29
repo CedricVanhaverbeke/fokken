@@ -24,13 +24,16 @@ const generateLessonQuestions = () => {
       module: 'NORMAL',
       question: {
         id: 100 + i,
-        type: 'MULTIPLE_CHOICE',
-        questionAnswers: Array.from(Array(4), (_, i) => ({
-          id: `${200 + i}`,
-          track: true,
-          value: faker.lorem.sentence(),
-          correct: faker.random.boolean(),
-        })),
+        type: i % 2 ? 'MULTIPLE_CHOICE' : 'OPEN',
+        questionAnswers:
+          i % 2
+            ? Array.from(Array(4), (_, i) => ({
+                id: `${200 + i}`,
+                track: true,
+                value: faker.lorem.sentence(),
+                correct: faker.random.boolean(),
+              }))
+            : null,
       },
     })),
   };
@@ -45,10 +48,15 @@ const generateLessonAnswers = () => {
     answerType: 'MULTIPLECHOICE',
     questionId: 100 + i,
     userId: faker.random.uuid(),
-    answers: Array.from(Array(2), (_, j) => ({
-      id: `${300 + j}`,
-      multipleChoiceAnswerId: `${200 + (Math.ceil(Math.random() * 10) % 4)}`,
-    })),
+    answers:
+      i % 2
+        ? Array.from(Array(2), (_, j) => ({
+            id: `${300 + j}`,
+            multipleChoiceAnswerId: `${
+              200 + (Math.ceil(Math.random() * 10) % 4)
+            }`,
+          }))
+        : [{ id: '300', value: faker.lorem.sentences() }],
     submittedAt: faker.date.past().toISOString(),
   }));
 };
