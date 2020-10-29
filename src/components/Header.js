@@ -28,9 +28,7 @@ const TeacherHeader = () => {
     <Header
       logo={<Logo className="h-full" />}
       languages={languages}
-      onLanguageChange={(newLanguage) => {
-        changeLanguage(newLanguage);
-      }}
+      onLanguageChange={changeLanguage}
       profileChildren={() => (
         <div>
           <FTRPRFLink to="/schoolteacherprofile/profile">
