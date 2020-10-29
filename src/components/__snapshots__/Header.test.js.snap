@@ -97,7 +97,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
-                  Leerlingen
+                  header.navigation.students
                 </button>
               </div>
             </div>
@@ -108,7 +108,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 bg-gray-200 font-bold"
               >
                 <button>
-                  Leer
+                  header.navigation.lessons
                 </button>
               </div>
             </div>
@@ -119,7 +119,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
-                  Test
+                  header.navigation.exams
                 </button>
               </div>
             </div>
@@ -130,7 +130,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
-                  Codeer
+                  header.navigation.exercises
                 </button>
               </div>
             </div>
@@ -141,7 +141,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
-                  Hack Room
+                  header.navigation.hack_room
                 </button>
               </div>
             </div>
@@ -152,7 +152,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
-                  Studio
+                  header.navigation.studio
                 </button>
               </div>
             </div>
@@ -185,7 +185,7 @@ exports[`Teacher header should render 1`] = `
                       <div
                         class="hidden md:block"
                       >
-                        Hello, 
+                        header.hello
                          
                         <b />
                       </div>
@@ -294,5 +294,6 @@ exports[`Teacher header should render 1`] = `
   <hr
     class="w-full border-gray-300"
   />
+  ,
 </div>
 `;

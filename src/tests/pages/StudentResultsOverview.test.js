@@ -22,7 +22,7 @@ describe('StudentResultsOverview', () => {
 
     const pushSpy = jest.spyOn(router, 'push');
 
-    const activeHomeLink = getAllByText('home')[listIndex];
+    const activeHomeLink = getAllByText('results-overview.home')[listIndex];
     userEvent.click(activeHomeLink);
     expect(pushSpy).toHaveBeenCalledTimes(1);
     expect(
@@ -41,7 +41,7 @@ describe('StudentResultsOverview', () => {
 
     const pushSpy = jest.spyOn(router, 'push');
 
-    const activeClassLink = getAllByText('class')[listIndex];
+    const activeClassLink = getAllByText('results-overview.class')[listIndex];
     userEvent.click(activeClassLink);
     expect(pushSpy).toHaveBeenCalledTimes(1);
     expect(
@@ -61,7 +61,7 @@ describe('StudentResultsOverview', () => {
 
     const pushSpy = jest.spyOn(router, 'push');
 
-    const activeClassLink = getAllByText('class')[listIndex];
+    const activeClassLink = getAllByText('results-overview.class')[listIndex];
     userEvent.click(activeClassLink);
     expect(pushSpy).toHaveBeenCalledTimes(0);
   });
@@ -74,7 +74,7 @@ describe('StudentResultsOverview', () => {
 
     const pushSpy = jest.spyOn(router, 'push');
 
-    const activeClassLink = getAllByText('home')[listIndex];
+    const activeClassLink = getAllByText('results-overview.home')[listIndex];
     userEvent.click(activeClassLink);
     expect(pushSpy).toHaveBeenCalledTimes(0);
   });

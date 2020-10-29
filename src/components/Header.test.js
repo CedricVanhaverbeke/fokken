@@ -5,12 +5,12 @@ import TeacherHeader from './Header';
 import { render } from '../tests/utils';
 
 const linkTexts = [
-  'Leerlingen',
-  'Leer',
-  'Test',
-  'Codeer',
-  'Hack Room',
-  'Studio',
+  'header.navigation.students',
+  'header.navigation.lessons',
+  'header.navigation.exams',
+  'header.navigation.exercises',
+  'header.navigation.hack_room',
+  'header.navigation.studio',
 ];
 
 describe('Teacher header', () => {
@@ -28,7 +28,7 @@ describe('Teacher header', () => {
       <div
         class="hidden md:block"
       >
-        Hello, 
+        header.hello
          
         <b>
           Joske
@@ -37,14 +37,14 @@ describe('Teacher header', () => {
     `);
     userEvent.click(button.parentElement);
 
-    const profile = await findByText('Profiel');
+    const profile = await findByText('header.profile');
 
     expect(profile).toMatchInlineSnapshot(`
       <button
         class="w-full py-1 px-4 text-left rounded-lg hover:bg-gray-200 flex items-center cursor-pointer"
         type="button"
       >
-        Profiel
+        header.profile
       </button>
     `);
   });

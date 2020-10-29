@@ -6,6 +6,8 @@ import { browserFetcher } from '../utils/fetcher';
 
 import '../theme/index.css';
 
+import LanguageProvider from '@/providers/LanguageProvider';
+
 if (
   process.env.NODE_ENV !== 'production' &&
   process.env.NEXT_PUBLIC_ENABLE_MOCK
@@ -13,18 +15,21 @@ if (
   // eslint-disable-next-line global-require
   require('../mocks');
 }
+
 function MyApp({ Component, pageProps }) {
   return (
-    <SWRConfig
-      value={{
-        fetcher: browserFetcher,
-      }}
-    >
-      <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
-        <Header />
-        <Component {...pageProps} />
-      </div>
-    </SWRConfig>
+    <LanguageProvider>
+      <SWRConfig
+        value={{
+          fetcher: browserFetcher,
+        }}
+      >
+        <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
+          <Header />
+          <Component {...pageProps} />
+        </div>
+      </SWRConfig>
+    </LanguageProvider>
   );
 }
 

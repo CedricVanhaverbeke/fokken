@@ -1,4 +1,5 @@
 import { serialize } from 'cookie';
+import decodeJwt from 'jwt-decode';
 
 import { EMPTY_PROPS } from '../utils/constants';
 
@@ -13,6 +14,8 @@ export function getServerSideProps({ query, res }) {
     return EMPTY_PROPS;
   }
 
+  const decoded = decodeJwt(query.token);
+
   res.setHeader(
     'Set-Cookie',
     serialize('authorization', query.token, {
@@ -22,7 +25,9 @@ export function getServerSideProps({ query, res }) {
     }),
   );
 
-  res.writeHead(302, { Location: query.redirect }).end();
+  res
+    .writeHead(302, { Location: `/${decoded.language}${query.redirect}` })
+    .end();
 
   return EMPTY_PROPS;
 }
