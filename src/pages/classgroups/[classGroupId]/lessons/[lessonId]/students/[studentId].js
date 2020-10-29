@@ -40,7 +40,7 @@ const StudentAnswers = ({
     <>
       <PageHeader>
         <div className="flex justify-between items-end">
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-y-2">
             <span className="text-xl font-medium text-gray-600">
               Resultaten
             </span>

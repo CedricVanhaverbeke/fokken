@@ -6,7 +6,7 @@ import {
   classGroupLessonStudents,
   classGroupStudents,
 } from './mockData/classGroup';
-import lessonDetails from './mockData/lessonDetails';
+import { lessonDetails } from './mockData/lesson';
 import userDetails from './mockData/userDetails';
 
 export const handlers = [
