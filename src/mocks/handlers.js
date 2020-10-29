@@ -3,26 +3,26 @@ import { rest } from 'msw';
 import {
   classGroupDetails,
   classGroupLesson,
-  generateClassGroupLessonStudents,
-  generateClassGroupStudents,
+  classGroupLessonStudents,
+  classGroupStudents,
 } from './mockData/classGroup';
 import lessonDetails from './mockData/lessonDetails';
 import userDetails from './mockData/userDetails';
 
 export const handlers = [
-  rest.get(`*/api/classGroups/:id`, (_, res, ctx) => {
+  rest.get(`*/api/classgroups/:id`, (_, res, ctx) => {
     return res(ctx.json(classGroupDetails));
   }),
 
   rest.get(
     `*/api/classGroups/:classGroupId/lessons/:lessonId/students`,
     (_, res, ctx) => {
-      return res(ctx.json(generateClassGroupLessonStudents()));
+      return res(ctx.json(classGroupLessonStudents));
     },
   ),
 
   rest.get(`*/api/classGroups/:classGroupId/students`, (_, res, ctx) => {
-    return res(ctx.json(generateClassGroupStudents()));
+    return res(ctx.json(classGroupStudents));
   }),
 
   rest.get(`*/api/lessons/:id`, (_, res, ctx) => {
