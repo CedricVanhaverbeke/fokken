@@ -9,12 +9,7 @@ const useLessonAnswers = (classGroupId, lessonId, studentId, initialData) => {
   });
 
   return {
-    lessonAnswers: response.data.reduce(
-      // eslint-disable-next-line no-sequences
-      (obj, answer) => ((obj[answer.questionId] = answer), obj),
-      {},
-    ),
-    ...response,
+    lessonAnswers: response.data,
   };
 };
 

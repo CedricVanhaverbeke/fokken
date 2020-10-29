@@ -8,15 +8,11 @@ const questionResults = {
   OPEN: OpenResult,
 };
 
-const QuestionResult = ({ question, givenAnswers }) => {
-  const QuestionResult = questionResults[question.type];
+const QuestionResult = ({ question, answer }) => {
+  // TEMP fix: a question does not yet contain a type, so defaulting to multiple choice
+  const Component = questionResults.MULTIPLE_CHOICE;
 
-  return (
-    <QuestionResult
-      possibleAnswers={question.questionAnswers}
-      givenAnswers={givenAnswers.answers}
-    />
-  );
+  return <Component question={question} answer={answer} />;
 };
 
 export default QuestionResult;
