@@ -11,6 +11,7 @@ const MultipleChoiceResult = ({
       const studentSelectedAnswer = !!givenAnswers.find(
         (studentAnswer) => studentAnswer.multipleChoiceAnswerId === answerId,
       );
+
       return (
         <div
           key={answerId}
