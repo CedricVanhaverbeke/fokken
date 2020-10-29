@@ -97,7 +97,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
-                  header.navigation.pupils
+                  header.navigation.students
                 </button>
               </div>
             </div>
@@ -141,7 +141,7 @@ exports[`Teacher header should render 1`] = `
                 class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
-                  header.navigation.hackRoom
+                  header.navigation.hack_room
                 </button>
               </div>
             </div>

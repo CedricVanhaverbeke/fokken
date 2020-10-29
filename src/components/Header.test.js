@@ -5,11 +5,11 @@ import TeacherHeader from './Header';
 import { render } from '../tests/utils';
 
 const linkTexts = [
-  'header.navigation.pupils',
+  'header.navigation.students',
   'header.navigation.lessons',
   'header.navigation.exams',
   'header.navigation.exercises',
-  'header.navigation.hackRoom',
+  'header.navigation.hack_room',
   'header.navigation.studio',
 ];
 

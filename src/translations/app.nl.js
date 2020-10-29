@@ -1,24 +1,20 @@
 export default {
   //Header
-  'header.navigation.pupils': 'Leerlingen',
+  'header.navigation.students': 'Leerlingen',
   'header.navigation.lessons': 'Leer',
   'header.navigation.exams': 'Test',
   'header.navigation.exercises': 'Codeer',
-  'header.navigation.hackRoom': 'Hack room',
+  'header.navigation.hack_room': 'Hack room',
   'header.navigation.studio': 'Studio',
   'header.hello': 'Hallo, ',
   'header.profile': 'Profiel',
 
-  // Languages
-  'languages.nl': 'Nederlands',
-  'languages.en': 'English',
-
   //Results overview
-  'resultsOverview.title.results': 'Resultaten',
-  'resultsOverview.title.class': 'Klas',
-  'resultsOverview.colum.name': 'NAAM',
-  'resultsOverview.colum.submittedAt': 'INGEZONDEN OP',
-  'resultsOverview.colum.results': 'RESULTATEN',
-  'resultsOverview.home': 'thuis',
-  'resultsOverview.class': 'klas',
+  'results-overview.title.results': 'Resultaten',
+  'results-overview.title.class': 'Klas',
+  'results-overview.colum.name': 'NAAM',
+  'results-overview.colum.submitted_at': 'INGEZONDEN OP',
+  'results-overview.colum.results': 'RESULTATEN',
+  'results-overview.home': 'thuis',
+  'results-overview.class': 'klas',
 };

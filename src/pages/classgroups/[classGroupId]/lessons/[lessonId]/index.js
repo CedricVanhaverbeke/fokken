@@ -20,7 +20,7 @@ import Title from '@/components/Title';
 
 const createColumns = (classGroupId, lessonId, t) => [
   {
-    Header: t('resultsOverview.colum.name'),
+    Header: t('results-overview.colum.name'),
     Cell: ({ row }) => {
       const { firstName, lastName, username } = row.original;
       return (
@@ -36,7 +36,7 @@ const createColumns = (classGroupId, lessonId, t) => [
     },
   },
   {
-    Header: t('resultsOverview.colum.submittedAt'),
+    Header: t('results-overview.colum.submitted_at'),
     Cell: ({ row }) => {
       const { submittedAt } = row.original;
       return (
@@ -52,7 +52,7 @@ const createColumns = (classGroupId, lessonId, t) => [
     },
   },
   {
-    Header: t('resultsOverview.colum.results'),
+    Header: t('results-overview.colum.results'),
     Cell: ({ row }) => {
       const { id, submittedAt } = row.original;
       return (
@@ -64,7 +64,7 @@ const createColumns = (classGroupId, lessonId, t) => [
             }}
             disabled={!submittedAt}
           >
-            {t('resultsOverview.home')}
+            {t('results-overview.home')}
           </Link>
 
           <div className="w-px h-4 ml-3 mr-3 bg-gray-300" />
@@ -76,7 +76,7 @@ const createColumns = (classGroupId, lessonId, t) => [
             }}
             disabled={!submittedAt}
           >
-            {t('resultsOverview.class')}
+            {t('results-overview.class')}
           </Link>
         </div>
       );
@@ -113,17 +113,17 @@ const StudentResultsOverview = ({
         <Title
           title={(join) =>
             join(
-              `${t('resultsOverview.title.results')} ${t(
-                'resultsOverview.title.class',
+              `${t('results-overview.title.results')} ${t(
+                'results-overview.title.class',
               )} ${classGroup?.name}`,
               lessonDetails?.title,
             )
           }
         />
         <div className="flex flex-col">
-          <PageTitle>{t('resultsOverview.title.results')}</PageTitle>
+          <PageTitle>{t('results-overview.title.results')}</PageTitle>
           <span className="text-xl font-medium text-gray-600">{`${t(
-            'resultsOverview.title.class',
+            'results-overview.title.class',
           )} ${classGroup?.name} - ${lessonDetails?.title}`}</span>
         </div>
       </PageHeader>

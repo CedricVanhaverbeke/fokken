@@ -11,6 +11,11 @@ import useUser from '../hooks/api/useUser';
 import useFormatMessage from '../hooks/useFormatMessage';
 import useChangeLanguage from '@/hooks/useChangeLanguage';
 
+const languages = [
+  { key: 'en', label: 'English' },
+  { key: 'nl', label: 'Nederlands' },
+];
+
 const TeacherHeader = () => {
   const t = useFormatMessage();
   const changeLanguage = useChangeLanguage();
@@ -18,14 +23,6 @@ const TeacherHeader = () => {
   const { pathname } = useRouter();
 
   const userNameOnly = useMemo(() => ({ first_name: user?.firstName }), [user]);
-
-  const languages = useMemo(
-    () => [
-      { key: 'en', label: t('languages.en') },
-      { key: 'nl', label: t('languages.nl') },
-    ],
-    [t],
-  );
 
   return (
     <Header
@@ -48,7 +45,7 @@ const TeacherHeader = () => {
         to="/schoolteacherprofile/students"
         active={pathname.startsWith('/classgroups/[classGroupId]/students')}
       >
-        <button>{t('header.navigation.pupils')}</button>
+        <button>{t('header.navigation.students')}</button>
       </FTRPRFLink>
       <FTRPRFLink
         to="/schoolteacherprofile/lessons"
@@ -72,7 +69,7 @@ const TeacherHeader = () => {
         to="/schoolteacherprofile/hackroom"
         active={pathname.startsWith('/classgroups/[classGroupId]/hackroom')}
       >
-        <button>{t('header.navigation.hackRoom')}</button>
+        <button>{t('header.navigation.hack_room')}</button>
       </FTRPRFLink>
       <FTRPRFLink to="https://studio.ftrprf.be">
         <button>{t('header.navigation.studio')}</button>

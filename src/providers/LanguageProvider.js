@@ -11,11 +11,7 @@ const languages = {
 
 const LanguageProvider = ({ onError, children }) => {
   const router = useRouter();
-  let locale = 'en';
-
-  if (process.browser) {
-    locale = router.locale;
-  }
+  const locale = process.browser ? router.locale : 'en';
 
   return (
     <IntlProvider
