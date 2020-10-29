@@ -24,9 +24,9 @@ const generateLessonQuestions = () => {
       module: 'NORMAL',
       question: {
         id: 100 + i,
-        type: i % 2 ? 'MULTIPLE_CHOICE' : 'OPEN',
+        type: i % 7 ? 'MULTIPLE_CHOICE' : 'OPEN',
         questionAnswers:
-          i % 2
+          i % 7
             ? Array.from(Array(4), (_, i) => ({
                 id: `${200 + i}`,
                 track: true,
@@ -50,7 +50,7 @@ const generateLessonAnswers = () => {
     questionId: 100 + i,
     userId: faker.random.uuid(),
     answers:
-      i % 2
+      i % 7
         ? Array.from(Array(2), (_, j) => ({
             id: `${300 + j}`,
             multipleChoiceAnswerId: `${
