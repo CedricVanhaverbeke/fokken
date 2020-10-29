@@ -1,6 +1,7 @@
 import React from 'react';
 import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 
+import AnswerOverview from '@/components/pages/StudentAnswers/AnswerOverview';
 import useClassGroupLessonStudent, {
   fetchClassGroupLessonStudent,
 } from '@/hooks/api/useClassGroupLessonStudent';
@@ -14,7 +15,6 @@ import useLessonAnswers, {
 import useLessonQuestions, {
   fetchLessonQuestions,
 } from '@/hooks/api/useLessonQuestions';
-import c from '@/utils/c';
 
 const StudentAnswers = ({
   classGroupId,
@@ -69,46 +69,10 @@ const StudentAnswers = ({
         </div>
       </PageHeader>
       <Content>
-        <div className="flex flex-col gap-y-2">
-          {lessonQuestions.slides.map(
-            ({ question, content }, i) =>
-              question && (
-                <div className="flex gap-x-4 mb-4">
-                  <span className="flex-shrink-0">Vraag {i + 1}</span>
-                  <div className="flex flex-col flex-grow gap-y-8">
-                    <div>{content}</div>
-                    <div className="grid grid-cols-2 gap-2 w-full">
-                      {question.questionAnswers.map(
-                        ({ id: answerId, value, correct }) => {
-                          const studentSelectedAnswer = !!lessonAnswers[
-                            question.id
-                          ].answers.find(
-                            (studentAnswer) => studentAnswer.id === answerId,
-                          );
-                          return (
-                            <div
-                              key={answerId}
-                              className={c(
-                                studentSelectedAnswer &&
-                                  correct &&
-                                  'text-green-500',
-                                studentSelectedAnswer &&
-                                  !correct &&
-                                  'text-red-500',
-                                studentSelectedAnswer && 'font-bold',
-                              )}
-                            >
-                              {value}
-                            </div>
-                          );
-                        },
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ),
-          )}
-        </div>
+        <AnswerOverview
+          slides={lessonQuestions.slides}
+          lessonAnswers={lessonAnswers}
+        />
       </Content>
     </>
   );
