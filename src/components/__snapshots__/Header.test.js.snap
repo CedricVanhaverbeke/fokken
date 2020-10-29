@@ -94,7 +94,7 @@ exports[`Teacher header should render 1`] = `
               class="mr-2"
             >
               <div
-                class="py-1 px-4 rounded transition-colors duration-100 bg-gray-200 font-bold"
+                class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
               >
                 <button>
                   Leerlingen
@@ -105,7 +105,7 @@ exports[`Teacher header should render 1`] = `
               class="mr-2"
             >
               <div
-                class="py-1 px-4 rounded transition-colors duration-100 hover:bg-gray-200"
+                class="py-1 px-4 rounded transition-colors duration-100 bg-gray-200 font-bold"
               >
                 <button>
                   Leer
