@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+
 import { Header, MenuButton } from '@ftrprf/tailwind-components';
 
 import Logo from '../assets/vectors/logo.svg';

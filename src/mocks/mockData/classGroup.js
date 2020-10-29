@@ -13,7 +13,7 @@ export const classGroupLesson = {
   givenBy: null,
 };
 
-export const generateClassGroupStudents = () => {
+const generateClassGroupStudents = () => {
   faker.seed(69);
   return Array.from(Array(20), (_, i) => ({
     id: i,
@@ -27,9 +27,9 @@ export const generateClassGroupStudents = () => {
   }));
 };
 
-export const generateClassGroupLessonStudents = () => {
-  return Array.from(Array(20), (_, i) => ({
-    id: i,
-    submittedAt: i % 4 === 0 ? null : '2020-07-09T04:57:09.441Z',
-  }));
-};
+export const classGroupStudents = generateClassGroupStudents();
+
+export const classGroupLessonStudents = classGroupStudents.map((s, i) => ({
+  ...s,
+  submittedAt: i % 4 === 0 ? null : '2020-07-09T04:57:09.441+0000',
+}));

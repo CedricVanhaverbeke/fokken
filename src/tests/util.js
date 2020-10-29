@@ -1,14 +1,14 @@
 import { render as rtlRender } from '@testing-library/react';
 import { SWRConfig } from 'swr';
 
-import testFetcher from './testFetcher';
+import { browserFetcher } from '@/utils/fetcher';
 
 export const render = (children) => {
   return {
     ...rtlRender(
       <SWRConfig
         value={{
-          fetcher: testFetcher,
+          fetcher: browserFetcher,
         }}
       >
         {children}

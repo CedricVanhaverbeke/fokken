@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 5000",
+    "dev:mock": "NEXT_PUBLIC_ENABLE_MOCK=1 next dev -p 5000",
     "debug": "NODE_OPTIONS='--inspect' next dev -p 5000",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --collect-coverage",
+    "test": "TZ=UTC jest",
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --collect-coverage",
     "lint": "yarn eslint && yarn prettier",
     "lint:fix": "yarn eslint:fix && yarn prettier:fix",
     "eslint": "eslint --ignore-path .gitignore \"./src/**/*.+(js|jsx|json)\"",
@@ -24,7 +25,6 @@
     "dayjs": "^1.9.4",
     "dotenv": "^8.2.0",
     "faker": "^5.1.0",
-    "isomorphic-fetch": "^3.0.0",
     "next": "9.5.5",
     "next-page-tester": "^0.4.0",
     "react": "16.14.0",
@@ -82,9 +82,9 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 45,
-        "functions": 79,
-        "lines": 75
+        "branches": 30,
+        "functions": 30,
+        "lines": 30
       }
     },
     "setupFilesAfterEnv": [

@@ -18,6 +18,7 @@ export function getServerSideProps({ query, res }) {
     serialize('authorization', query.token, {
       httpOnly: false,
       maxAge: 60 * 60 * 24 * 7,
+      path: '/',
     }),
   );
 

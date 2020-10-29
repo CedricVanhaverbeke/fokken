@@ -1,29 +1,28 @@
 /* eslint-disable react/display-name */
 import { useMemo } from 'react';
-import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
+
+import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
+
+import fetcher from '@/hooks/api/index';
+import useClassGroup from '@/hooks/api/useClassGroup';
+import useClassGroupLessonStudents from '@/hooks/api/useClassGroupLessonStudents';
+import useLesson from '@/hooks/api/useLesson';
+
+import c from '@/utils/c';
 
 import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
 import Table from '@/components/Table';
-import useClassGroup, { fetchClassGroup } from '@/hooks/api/useClassGroup';
-import useClassGroupLessonStudent, {
-  fetchClassGroupLessonStudent,
-} from '@/hooks/api/useClassGroupLessonStudent';
-import useClassGroupStudents, {
-  fetchClassGroupStudents,
-} from '@/hooks/api/useClassGroupStudents';
-import useLesson, { fetchLesson } from '@/hooks/api/useLesson';
-import c from '@/utils/c';
 
 const createColumns = (classGroupId, lessonId) => [
   {
     Header: 'Name',
     Cell: ({ row }) => {
-      const { firstName, lastName } = row.original;
+      const { firstName, lastName, username } = row.original;
       return (
-        <div className="flex gap-x-4 items-center">
+        <div className="flex gap-x-4 items-center" title={username}>
           <Avatar
             className="w-10 h-10 flex-shrink-0 text-white"
             firstName={firstName}
@@ -58,7 +57,7 @@ const createColumns = (classGroupId, lessonId) => [
         <div className="flex items-center">
           <Link
             href={{
-              pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
+              pathname: `/classgroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
               query: { viewMode: 'HOME' },
             }}
             disabled={!submittedAt}
@@ -70,7 +69,7 @@ const createColumns = (classGroupId, lessonId) => [
 
           <Link
             href={{
-              pathname: `/classGroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
+              pathname: `/classgroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
               query: { viewMode: 'CLASS' },
             }}
             disabled={!submittedAt}
@@ -86,19 +85,14 @@ const createColumns = (classGroupId, lessonId) => [
 const StudentResultsOverview = ({
   classGroupId,
   lessonId,
-  initialClassGroupStudents,
   initialClassGroup,
   initialClassGroupLessonStudent,
   initialLessonDetails,
 }) => {
   const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
-  const { classGroupStudents } = useClassGroupStudents(
-    classGroupId,
-    initialClassGroupStudents,
-  );
 
   const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
-  const { classGroupLessonStudent } = useClassGroupLessonStudent(
+  const { classGroupLessonStudent } = useClassGroupLessonStudents(
     classGroupId,
     lessonId,
     initialClassGroupLessonStudent,
@@ -125,12 +119,7 @@ const StudentResultsOverview = ({
           columnClassName="p-2 font-normal"
           headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200"
           columns={columns}
-          data={
-            classGroupStudents?.map((s1) => ({
-              ...s1,
-              ...classGroupLessonStudent.find((s2) => s2.id === s1.id),
-            })) || []
-          }
+          data={classGroupLessonStudent}
         />
       </Content>
     </>
@@ -139,20 +128,28 @@ const StudentResultsOverview = ({
 
 export async function getServerSideProps({
   params: { classGroupId, lessonId },
+  req,
 }) {
-  const initialClassGroup = await fetchClassGroup(classGroupId);
-  const initialClassGroupStudents = await fetchClassGroupStudents(classGroupId);
-  const initialClassGroupLessonStudent = await fetchClassGroupLessonStudent(
-    classGroupId,
-    lessonId,
-  );
-  const initialLessonDetails = await fetchLesson(lessonId);
+  const {
+    fetchLesson,
+    fetchClassGroup,
+    fetchClassGroupLessonStudents,
+  } = fetcher(req.cookies.authorization);
+
+  const [
+    initialLessonDetails,
+    initialClassGroup,
+    initialClassGroupLessonStudent,
+  ] = await Promise.all([
+    fetchLesson(lessonId),
+    fetchClassGroup(classGroupId),
+    fetchClassGroupLessonStudents(classGroupId, lessonId),
+  ]);
 
   return {
     props: {
       classGroupId,
       lessonId,
-      initialClassGroupStudents,
       initialClassGroup,
       initialClassGroupLessonStudent,
       initialLessonDetails,
