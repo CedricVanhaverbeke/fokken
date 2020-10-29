@@ -16,7 +16,7 @@ export const classGroupLesson = {
 const generateClassGroupStudents = () => {
   faker.seed(69);
   return Array.from(Array(20), (_, i) => ({
-    id: i,
+    id: `${i}`,
     username: faker.internet.userName(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
@@ -27,9 +27,12 @@ const generateClassGroupStudents = () => {
   }));
 };
 
-export const classGroupStudents = generateClassGroupStudents();
+const generateClassGroupLessonStudents = () =>
+  Array.from(Array(20), (_, i) => ({
+    id: `${i}`,
+    submittedAt: parseInt(i, 10) % 4 === 0 ? null : '2020-07-09T04:57:09.441Z',
+  }));
 
-export const classGroupLessonStudents = classGroupStudents.map((s, i) => ({
-  ...s,
-  submittedAt: i % 4 === 0 ? null : '2020-07-09T04:57:09.441+0000',
-}));
+export const classGroupLessonStudents = generateClassGroupLessonStudents();
+
+export const classGroupStudents = generateClassGroupStudents();
