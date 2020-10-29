@@ -2,8 +2,6 @@ import React from 'react';
 
 import { MultipleChoiceCard } from '@ftrprf/tailwind-components';
 
-import c from '@/utils/c';
-
 const MultipleChoiceResult = ({ possibleAnswers, givenAnswers }) => (
   <div className="grid grid-cols-2 gap-2 w-full">
     {possibleAnswers.map(({ id: answerId, value, correct, explanation }) => {
