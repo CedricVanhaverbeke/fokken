@@ -31,5 +31,5 @@ export const classGroupStudents = generateClassGroupStudents();
 
 export const classGroupLessonStudents = classGroupStudents.map((s, i) => ({
   ...s,
-  submittedAt: i % 4 === 0 ? null : '2020-07-09T04:57:09.441Z',
+  submittedAt: i % 4 === 0 ? null : '2020-07-09T04:57:09.441+0000',
 }));
