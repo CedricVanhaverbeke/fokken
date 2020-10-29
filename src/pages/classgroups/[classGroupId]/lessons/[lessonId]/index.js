@@ -1,7 +1,8 @@
 /* eslint-disable react/display-name */
 import { useMemo } from 'react';
-import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 import dayjs from 'dayjs';
+
+import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
 
 import fetcher from '@/hooks/api/index';
 import useClassGroup from '@/hooks/api/useClassGroup';
