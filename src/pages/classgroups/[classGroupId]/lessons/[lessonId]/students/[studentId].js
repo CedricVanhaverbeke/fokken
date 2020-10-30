@@ -82,23 +82,28 @@ const StudentAnswers = ({
             key={slide.question.id}
           >
             <Content>
-              <span className="flex-shrink-0 mr-8 uppercase text-xs font-semibold text-gray-600">
-                {t('student-answers.question_label')} {i + 1}
-              </span>
-              <div className="w-full flex flex-col items-center">
-                <div className="max-w-6xl w-full">
-                  {/* TEMP FIX: we should only use the question value instead of the slide content */}
-                  <div>
-                    {slide.question.value ? (
-                      <div className="font-semibold">
-                        {slide.question.value}
-                      </div>
-                    ) : (
-                      <SlideViewerTextSlide value="Dit is een testvraag" />
-                    )}
-                  </div>
-                  <div className="mt-4">
-                    <QuestionResult question={slide.question} answer={answer} />
+              <div className="w-full flex flex-col sm:flex-row">
+                <span className="flex-shrink-0 mr-8 uppercase text-xs font-semibold text-gray-600">
+                  {t('student-answers.question_label')} {i + 1}
+                </span>
+                <div className="w-full flex flex-col items-center">
+                  <div className="max-w-6xl w-full">
+                    {/* TEMP FIX: we should only use the question value instead of the slide content */}
+                    <div>
+                      {slide.question.value ? (
+                        <div className="font-semibold">
+                          {slide.question.value}
+                        </div>
+                      ) : (
+                        <SlideViewerTextSlide value="Dit is een testvraag" />
+                      )}
+                    </div>
+                    <div className="mt-4">
+                      <QuestionResult
+                        question={slide.question}
+                        answer={answer}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
