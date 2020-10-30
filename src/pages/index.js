@@ -1,14 +1,9 @@
-import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
-
 const Home = () => {
-  return (
-    <>
-      <PageHeader>
-        <PageTitle>Een testje</PageTitle>
-      </PageHeader>
-      <Content>test</Content>
-    </>
-  );
+  return null;
 };
+
+export function getServerSideProps({ res }) {
+  res.writeHead(302, { Location: process.env.NEXT_PUBLIC_EDU_URL }).end();
+}
 
 export default Home;

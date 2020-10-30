@@ -17,4 +17,10 @@ export default {
   'results-overview.colum.results': 'Resultaten',
   'results-overview.home': 'thuis',
   'results-overview.class': 'klas',
+
+  'student-answers.title.results': 'Resultaten',
+  'student-answers.question_label': 'Vraag',
+  'student-answers.no_questions': 'Er zijn geen vragen in deze weergave.',
+
+  'question-result.no-result': 'Er is geen antwoord voor deze vraag',
 };

@@ -2,7 +2,7 @@
 import { useMemo } from 'react';
 import dayjs from 'dayjs';
 
-import { Content, PageHeader, PageTitle } from '@ftrprf/tailwind-components';
+import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
 import fetcher from '@/hooks/api/index';
 import useClassGroup from '@/hooks/api/useClassGroup';
@@ -15,6 +15,7 @@ import c from '@/utils/c';
 import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
+import PageTitle from '@/components/PageTitle';
 import Table from '@/components/Table';
 import Title from '@/components/Title';
 
@@ -60,7 +61,7 @@ const createColumns = (classGroupId, lessonId, t) => [
           <Link
             href={{
               pathname: `/classgroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
-              query: { viewMode: 'HOME' },
+              query: { viewMode: 'SELFSTUDY' },
             }}
             disabled={!submittedAt}
           >
@@ -72,7 +73,7 @@ const createColumns = (classGroupId, lessonId, t) => [
           <Link
             href={{
               pathname: `/classgroups/${classGroupId}/lessons/${lessonId}/students/${id}`,
-              query: { viewMode: 'CLASS' },
+              query: { viewMode: 'CLASSICAL' },
             }}
             disabled={!submittedAt}
           >
@@ -120,12 +121,11 @@ const StudentResultsOverview = ({
             )
           }
         />
-        <div className="flex flex-col">
-          <PageTitle>{t('results-overview.title.results')}</PageTitle>
-          <span className="text-xl font-medium text-gray-600">{`${t(
-            'results-overview.title.class',
-          )} ${classGroup?.name} - ${lessonDetails?.title}`}</span>
-        </div>
+        <PageTitle label={t('results-overview.title.results')}>
+          {`${t('results-overview.title.class')} ${classGroup?.name} - ${
+            lessonDetails?.title
+          }`}
+        </PageTitle>
       </PageHeader>
       <Content>
         <Table

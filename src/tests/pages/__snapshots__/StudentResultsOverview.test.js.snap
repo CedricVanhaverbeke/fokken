@@ -11,20 +11,16 @@ exports[`StudentResultsOverview should render the results page when navigating t
       <div
         class="mb-4 rounded w-full max-w-5/6 self-center"
       >
-        <div
-          class="flex flex-col"
+        <h1
+          class="text-4xl font-bold leading-none"
         >
-          <h1
-            class="text-4xl font-bold leading-none"
+          <div
+            class="mb-2 text-2xl text-gray-600 font-semibold"
           >
             results-overview.title.results
-          </h1>
-          <span
-            class="text-xl font-medium text-gray-600"
-          >
-            results-overview.title.class 1A - (a)Sociale media
-          </span>
-        </div>
+          </div>
+          results-overview.title.class 1A - (a)Sociale media
+        </h1>
       </div>
       <hr
         class="border-gray-300"

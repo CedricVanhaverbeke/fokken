@@ -19,7 +19,8 @@
     "prettier:fix": "yarn prettier --write"
   },
   "dependencies": {
-    "@ftrprf/tailwind-components": "^1.0.6",
+    "@ftrprf/tailwind-components": "^1.1.0",
+    "@ftrprf/slideviewer": "^23.0.0",
     "@reach/tooltip": "^0.11.2",
     "cookie": "^0.4.1",
     "dayjs": "^1.9.4",
@@ -27,6 +28,7 @@
     "faker": "^5.1.0",
     "jwt-decode": "^3.0.0",
     "next": "10.0.0",
+    "html-react-parser": "^0.14.0",
     "next-page-tester": "^0.4.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
@@ -84,9 +86,9 @@
     ],
     "coverageThreshold": {
       "global": {
-        "branches": 43,
-        "functions": 78,
-        "lines": 75
+        "branches": 40,
+        "functions": 65,
+        "lines": 65
       }
     },
     "setupFilesAfterEnv": [

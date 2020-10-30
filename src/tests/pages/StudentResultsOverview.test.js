@@ -28,8 +28,8 @@ describe('StudentResultsOverview', () => {
     expect(
       pushSpy,
     ).toHaveBeenLastCalledWith(
-      `${URL}/students/${listIndex}?viewMode=HOME`,
-      `${URL}/students/${listIndex}?viewMode=HOME`,
+      `${URL}/students/${listIndex}?viewMode=SELFSTUDY`,
+      `${URL}/students/${listIndex}?viewMode=SELFSTUDY`,
       { shallow: undefined },
     );
   });
@@ -47,8 +47,8 @@ describe('StudentResultsOverview', () => {
     expect(
       pushSpy,
     ).toHaveBeenLastCalledWith(
-      `${URL}/students/${listIndex}?viewMode=CLASS`,
-      `${URL}/students/${listIndex}?viewMode=CLASS`,
+      `${URL}/students/${listIndex}?viewMode=CLASSICAL`,
+      `${URL}/students/${listIndex}?viewMode=CLASSICAL`,
       { shallow: undefined },
     );
   });
