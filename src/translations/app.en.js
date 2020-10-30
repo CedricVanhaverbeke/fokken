@@ -20,4 +20,6 @@ export default {
 
   'student-answers.title.results': 'Results',
   'student-answers.question_label': 'Question',
+
+  'question-result.no-result': 'There is no answer for this question',
 };

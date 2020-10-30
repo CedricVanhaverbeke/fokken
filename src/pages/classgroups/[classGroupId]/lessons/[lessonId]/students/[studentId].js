@@ -88,14 +88,13 @@ const StudentAnswers = ({
                 </span>
                 <div className="w-full flex flex-col items-center">
                   <div className="max-w-6xl w-full">
-                    {/* TEMP FIX: we should only use the question value instead of the slide content */}
                     <div>
                       {slide.question.value ? (
                         <div className="font-semibold">
                           {slide.question.value}
                         </div>
                       ) : (
-                        <SlideViewerTextSlide value="Dit is een testvraag" />
+                        <SlideViewerTextSlide value={slide.content} />
                       )}
                     </div>
                     <div className="mt-4">

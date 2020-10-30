@@ -9,8 +9,7 @@ const questionResults = {
 };
 
 const QuestionResult = ({ question, answer }) => {
-  // TEMP fix: a question does not yet contain a type, so defaulting to multiple choice
-  const Component = questionResults.MULTIPLE_CHOICE;
+  const Component = questionResults[question.type];
 
   return <Component question={question} answer={answer} />;
 };

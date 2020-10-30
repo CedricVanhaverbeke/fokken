@@ -2,13 +2,16 @@ import React from 'react';
 
 import { MultipleChoiceCard } from '@ftrprf/tailwind-components';
 
-const MultipleChoiceResult = ({ question, answer }) => {
-  // TEMP fix: this field will be renamed to questionAnswersMultipleChoice in the future
-  const options = question.questionAnswers;
+import useFormatMessage from '@/hooks/useFormatMessage';
 
-  // TODO: add a message that this answer was not filled in
+const MultipleChoiceResult = ({ question, answer }) => {
+  const t = useFormatMessage();
+
+  const options =
+    question.questionAnswersMultipleChoice || question.questionAnswers;
+
   if (!answer) {
-    return null;
+    return <div>{t('question-result.no-result')}</div>;
   }
 
   return (

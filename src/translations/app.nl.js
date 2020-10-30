@@ -20,4 +20,6 @@ export default {
 
   'student-answers.title.results': 'Resultaten',
   'student-answers.question_label': 'Vraag',
+
+  'question-result.no-result': 'Er is geen antwoord voor deze vraag',
 };
