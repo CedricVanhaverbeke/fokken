@@ -60,7 +60,7 @@ const StudentAnswers = ({
     }));
   }, [lessonSlides, lessonAnswers]);
 
-  const selectedStudent = classGroupLessonStudent.find(
+  const student = classGroupLessonStudent.find(
     (student) => student.id === studentId,
   );
 
@@ -72,44 +72,49 @@ const StudentAnswers = ({
             {lessonDetails.title}
           </PageTitle>
 
-          <span>{`${selectedStudent.firstName} ${selectedStudent.lastName}`}</span>
+          <span>{`${student.firstName} ${student.lastName}`}</span>
         </div>
       </PageHeader>
-      <div className="flex flex-col w-full">
-        {questionSlides.map(({ slide, answer }, i) => (
-          <div
-            className="flex w-full justify-center divide-y divide-gray-400 border-gray-300"
-            key={slide.question.id}
-          >
-            <Content>
-              <div className="w-full flex flex-col sm:flex-row">
-                <span className="flex-shrink-0 mr-8 uppercase text-xs font-semibold text-gray-600">
-                  {t('student-answers.question_label')} {i + 1}
-                </span>
-                <div className="w-full flex flex-col items-center">
-                  <div className="max-w-6xl w-full">
-                    <div>
-                      {slide.question.value ? (
-                        <div className="font-semibold">
-                          {slide.question.value}
-                        </div>
-                      ) : (
-                        <SlideViewerTextSlide value={slide.content} />
-                      )}
-                    </div>
-                    <div className="mt-4">
-                      <QuestionResult
-                        question={slide.question}
-                        answer={answer}
-                      />
+      {questionSlides.length === 0 && (
+        <Content>{t('student-answers.no_questions')}</Content>
+      )}
+      {questionSlides.length > 0 && (
+        <div className="flex flex-col w-full">
+          {questionSlides.map(({ slide, answer }, i) => (
+            <div
+              className="flex w-full justify-center divide-y divide-gray-400 border-gray-300"
+              key={slide.question.id}
+            >
+              <Content>
+                <div className="w-full flex flex-col sm:flex-row">
+                  <span className="flex-shrink-0 mr-8 uppercase text-xs font-semibold text-gray-600">
+                    {t('student-answers.question_label')} {i + 1}
+                  </span>
+                  <div className="w-full flex flex-col items-center">
+                    <div className="max-w-6xl w-full">
+                      <div>
+                        {slide.question.value ? (
+                          <div className="font-semibold">
+                            {slide.question.value}
+                          </div>
+                        ) : (
+                          <SlideViewerTextSlide value={slide.content} />
+                        )}
+                      </div>
+                      <div className="mt-4">
+                        <QuestionResult
+                          question={slide.question}
+                          answer={answer}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Content>
-          </div>
-        ))}
-      </div>
+              </Content>
+            </div>
+          ))}
+        </div>
+      )}
     </>
   );
 };
