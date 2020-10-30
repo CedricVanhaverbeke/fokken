@@ -1201,10 +1201,10 @@
     html-react-parser "^0.13.0"
     react-icons "^3.11.0"
 
-"@ftrprf/tailwind-components@^1.0.6":
-  version "1.0.6"
-  resolved "https://npm.pkg.github.com/download/@ftrprf/tailwind-components/1.0.6/e60e7c6a393e0349ed07940612a7abcb19616cbc4404f83fb4976fc09c3dfc4d#aaba135a3817b67d805fe56a74ba85a1655f6e04"
-  integrity sha512-NNRqFCLxrrxtbtdSUzoaV3K+aPQhaMmv/3K9fbafWy5LCb1yEIGoDD/gRhtP92jKe8Ze6TaXTdzmMy5ht9amrw==
+"@ftrprf/tailwind-components@^1.1.0":
+  version "1.1.0"
+  resolved "https://npm.pkg.github.com/download/@ftrprf/tailwind-components/1.1.0/46534fa67f98a6faf99037c2ee63398985b688997d787717b1c9328a341eeb73#6025ecaa21ffb907a16e5466ae4da7c59cd64b2a"
+  integrity sha512-xnOB9oUDbS5iSvNxeoHLQybWnrnqMiFDy7zXVufbg18LKyxVKl/FvhLnYyRyYOWNAEfvbX5d7SDfHkn4UtzzbQ==
   dependencies:
     tailwindcss "^1.9.4"
 

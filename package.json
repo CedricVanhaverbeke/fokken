@@ -19,7 +19,7 @@
     "prettier:fix": "yarn prettier --write"
   },
   "dependencies": {
-    "@ftrprf/tailwind-components": "^1.0.6",
+    "@ftrprf/tailwind-components": "^1.1.0",
     "@ftrprf/slideviewer": "^23.0.0",
     "@reach/tooltip": "^0.11.2",
     "cookie": "^0.4.1",
