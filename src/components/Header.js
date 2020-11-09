@@ -27,9 +27,7 @@ const TeacherHeader = () => {
   return (
     <Header
       logo={
-        <FTRPRFLink
-          to="/schoolteacherprofile/students"
-        >
+        <FTRPRFLink to="/schoolteacherprofile/students">
           <Logo className="h-full cursor-pointer" />
         </FTRPRFLink>
       }
