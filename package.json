@@ -34,8 +34,8 @@
     "react-dom": "16.14.0",
     "react-icons": "^3.11.0",
     "react-intl": "^5.8.8",
-    "react-table": "^7.6.0",
-    "swr": "^0.3.6"
+    "react-query": "^2.26.2",
+    "react-table": "^7.6.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^7.26.3",
