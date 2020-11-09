@@ -1,9 +1,9 @@
-import useSWR from 'swr';
+import { useQuery } from 'react-query';
 
 export const URL = (id) => `${process.env.NEXT_PUBLIC_API_URL}/lessons/${id}`;
 
 const useLesson = (id, initialData) => {
-  const response = useSWR(URL(id), undefined, { initialData });
+  const response = useQuery(URL(id), initialData && { initialData });
 
   return { lessonDetails: response.data, ...response };
 };
