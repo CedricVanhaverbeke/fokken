@@ -16,7 +16,7 @@ import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
 import PageTitle from '@/components/PageTitle';
-import Table from '@/components/Table';
+import Table from '@/components/Table/Table';
 import Title from '@/components/Title';
 
 const createColumns = (classGroupId, lessonId, t) => [
@@ -35,6 +35,12 @@ const createColumns = (classGroupId, lessonId, t) => [
         </div>
       );
     },
+    Skeleton: () => (
+      <div className="flex gap-x-4 items-center">
+        <div className="w-10 h-10 flex-shrink-0 rounded-full bg-gray-100 animate-pulse" />
+        <div className="flex-grow h-10 rounded bg-gray-100 animate-pulse" />
+      </div>
+    ),
   },
   {
     Header: t('results-overview.colum.submitted_at'),
@@ -85,21 +91,14 @@ const createColumns = (classGroupId, lessonId, t) => [
   },
 ];
 
-const StudentResultsOverview = ({
-  classGroupId,
-  lessonId,
-  initialClassGroup,
-  initialClassGroupLessonStudent,
-  initialLessonDetails,
-}) => {
+const StudentResultsOverview = ({ classGroupId, lessonId }) => {
   const t = useFormatMessage();
-  const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
+  const { classGroup } = useClassGroup(classGroupId);
 
-  const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
+  const { lessonDetails } = useLesson(lessonId);
   const { classGroupLessonStudent } = useClassGroupLessonStudents(
     classGroupId,
     lessonId,
-    initialClassGroupLessonStudent,
   );
 
   const columns = useMemo(() => createColumns(classGroupId, lessonId, t), [

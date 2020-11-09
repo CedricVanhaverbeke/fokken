@@ -15,39 +15,19 @@ import '@ftrprf/slideviewer/styles.css';
 import QuestionResult from '@/components/pages/StudentAnswers/QuestionResult';
 import PageTitle from '@/components/PageTitle';
 
-const StudentAnswers = ({
-  classGroupId,
-  lessonId,
-  studentId,
-  viewMode,
-  initialLesson,
-  initialClassGroupLessonStudents,
-  initialLessonSlides,
-  initialLessonAnswers,
-}) => {
+const StudentAnswers = ({ classGroupId, lessonId, studentId, viewMode }) => {
   const t = useFormatMessage();
 
-  const { lessonDetails } = useLesson(lessonId, initialLesson);
+  const { lessonDetails } = useLesson(lessonId);
 
   const { classGroupLessonStudent } = useClassGroupLessonStudent(
     classGroupId,
     lessonId,
-    initialClassGroupLessonStudents,
   );
 
-  const { lessonSlides } = useLessonSlides(
-    lessonId,
-    viewMode,
-    true,
-    initialLessonSlides,
-  );
+  const { lessonSlides } = useLessonSlides(lessonId, viewMode, true);
 
-  const { lessonAnswers } = useLessonAnswers(
-    classGroupId,
-    lessonId,
-    studentId,
-    initialLessonAnswers,
-  );
+  const { lessonAnswers } = useLessonAnswers(classGroupId, lessonId, studentId);
 
   const questionSlides = useMemo(() => {
     const index = Object.fromEntries(
