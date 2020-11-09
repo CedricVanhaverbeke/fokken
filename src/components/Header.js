@@ -29,7 +29,6 @@ const TeacherHeader = () => {
       logo={
         <FTRPRFLink
           to="/schoolteacherprofile/students"
-          active={pathname.startsWith('/classgroups/[classGroupId]/students')}
         >
           <Logo className="h-full cursor-pointer" />
         </FTRPRFLink>
