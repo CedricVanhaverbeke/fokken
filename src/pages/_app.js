@@ -2,7 +2,7 @@ import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 
 import Header from '../components/Header';
 
-import { browserFetcher } from '../utils/fetcher';
+import { browserFetcher as queryFn } from '../utils/fetcher';
 
 import '../theme/index.css';
 
@@ -19,7 +19,7 @@ if (
 const queryCache = new QueryCache({
   defaultConfig: {
     queries: {
-      queryFn: browserFetcher,
+      queryFn,
     },
   },
 });
