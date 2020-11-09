@@ -26,7 +26,11 @@ const TeacherHeader = () => {
 
   return (
     <Header
-      logo={<Logo className="h-full" />}
+      logo={
+        <FTRPRFLink to="/schoolteacherprofile/students">
+          <Logo className="h-full cursor-pointer" />
+        </FTRPRFLink>
+      }
       languages={languages}
       onLanguageChange={changeLanguage}
       profileChildren={() => (
