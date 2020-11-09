@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
 import { useMemo } from 'react';
 import dayjs from 'dayjs';
+import { useRouter } from 'next/router';
 
 import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
-import fetcher from '@/hooks/api/index';
 import useClassGroup from '@/hooks/api/useClassGroup';
 import useClassGroupLessonStudents from '@/hooks/api/useClassGroupLessonStudents';
 import useLesson from '@/hooks/api/useLesson';
@@ -15,8 +15,8 @@ import c from '@/utils/c';
 import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
-import PageTitle from '@/components/PageTitle';
-import Table from '@/components/Table/Table';
+import PageTitle, { PageTitleSkeleton } from '@/components/PageTitle';
+import Table from '@/components/Table';
 import Title from '@/components/Title';
 
 const createColumns = (classGroupId, lessonId, t) => [
@@ -37,8 +37,10 @@ const createColumns = (classGroupId, lessonId, t) => [
     },
     Skeleton: () => (
       <div className="flex gap-x-4 items-center">
-        <div className="w-10 h-10 flex-shrink-0 rounded-full bg-gray-100 animate-pulse" />
-        <div className="flex-grow h-10 rounded bg-gray-100 animate-pulse" />
+        <div className="w-10 h-10 flex-shrink-0 rounded-full bg-gray-200 animate-pulse" />
+        <div className="flex-grow h-10 rounded bg-gray-200 text-gray-200 animate-pulse">
+          Cedric vhb
+        </div>
       </div>
     ),
   },
@@ -91,16 +93,14 @@ const createColumns = (classGroupId, lessonId, t) => [
   },
 ];
 
-const StudentResultsOverview = ({
-  classGroupId,
-  lessonId,
-  initialClassGroup,
-  initialLessonDetails,
-}) => {
+const StudentResultsOverview = () => {
   const t = useFormatMessage();
-  const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
 
-  const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
+  const router = useRouter();
+  const { classGroupId, lessonId } = router.query;
+
+  const { classGroup } = useClassGroup(classGroupId);
+  const { lessonDetails } = useLesson(lessonId);
   const { classGroupLessonStudent } = useClassGroupLessonStudents(
     classGroupId,
     lessonId,
@@ -125,11 +125,15 @@ const StudentResultsOverview = ({
             )
           }
         />
-        <PageTitle label={t('results-overview.title.results')}>
-          {`${t('results-overview.title.class')} ${classGroup?.name} - ${
-            lessonDetails?.title
-          }`}
-        </PageTitle>
+        {classGroup && lessonDetails ? (
+          <PageTitle label={t('results-overview.title.results')}>
+            {`${t('results-overview.title.class')} ${classGroup?.name} - ${
+              lessonDetails?.title
+            }`}
+          </PageTitle>
+        ) : (
+          <PageTitleSkeleton />
+        )}
       </PageHeader>
       <Content>
         <Table
@@ -146,23 +150,11 @@ const StudentResultsOverview = ({
   );
 };
 
-export async function getServerSideProps({
-  params: { classGroupId, lessonId },
-  req,
-}) {
-  const { fetchLesson, fetchClassGroup } = fetcher(req.cookies.authorization);
-
-  const [initialLessonDetails, initialClassGroup] = await Promise.all([
-    fetchLesson(lessonId),
-    fetchClassGroup(classGroupId),
-  ]);
-
+export function getServerSideProps({ params: { classGroupId, lessonId } }) {
   return {
     props: {
       classGroupId,
       lessonId,
-      initialClassGroup,
-      initialLessonDetails,
     },
   };
 }

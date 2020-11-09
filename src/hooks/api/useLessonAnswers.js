@@ -13,6 +13,7 @@ const useLessonAnswers = (classGroupId, lessonId, studentId, initialData) => {
 
   return {
     lessonAnswers: response.data,
+    ...response,
   };
 };
 

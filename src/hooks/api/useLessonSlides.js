@@ -16,7 +16,7 @@ const useLessonSlides = (id, viewMode, hasQuestion, initialData) => {
     },
   );
 
-  return { lessonSlides: response.data.slides, ...response };
+  return { lessonSlides: response.data?.slides, ...response };
 };
 
 export default useLessonSlides;
