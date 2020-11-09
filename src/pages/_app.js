@@ -1,4 +1,4 @@
-import { SWRConfig } from 'swr';
+import { QueryCache, ReactQueryCacheProvider } from 'react-query';
 
 import Header from '../components/Header';
 
@@ -16,19 +16,23 @@ if (
   require('../mocks');
 }
 
+const queryCache = new QueryCache({
+  defaultConfig: {
+    queries: {
+      queryFn: browserFetcher,
+    },
+  },
+});
+
 function MyApp({ Component, pageProps }) {
   return (
     <LanguageProvider>
-      <SWRConfig
-        value={{
-          fetcher: browserFetcher,
-        }}
-      >
+      <ReactQueryCacheProvider queryCache={queryCache}>
         <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
           <Header />
           <Component {...pageProps} />
         </div>
-      </SWRConfig>
+      </ReactQueryCacheProvider>
     </LanguageProvider>
   );
 }
