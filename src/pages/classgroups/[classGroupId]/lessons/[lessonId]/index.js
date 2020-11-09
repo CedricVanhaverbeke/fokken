@@ -91,11 +91,16 @@ const createColumns = (classGroupId, lessonId, t) => [
   },
 ];
 
-const StudentResultsOverview = ({ classGroupId, lessonId }) => {
+const StudentResultsOverview = ({
+  classGroupId,
+  lessonId,
+  initialClassGroup,
+  initialLessonDetails,
+}) => {
   const t = useFormatMessage();
-  const { classGroup } = useClassGroup(classGroupId);
+  const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
 
-  const { lessonDetails } = useLesson(lessonId);
+  const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
   const { classGroupLessonStudent } = useClassGroupLessonStudents(
     classGroupId,
     lessonId,
@@ -145,20 +150,11 @@ export async function getServerSideProps({
   params: { classGroupId, lessonId },
   req,
 }) {
-  const {
-    fetchLesson,
-    fetchClassGroup,
-    fetchClassGroupLessonStudents,
-  } = fetcher(req.cookies.authorization);
+  const { fetchLesson, fetchClassGroup } = fetcher(req.cookies.authorization);
 
-  const [
-    initialLessonDetails,
-    initialClassGroup,
-    initialClassGroupLessonStudent,
-  ] = await Promise.all([
+  const [initialLessonDetails, initialClassGroup] = await Promise.all([
     fetchLesson(lessonId),
     fetchClassGroup(classGroupId),
-    fetchClassGroupLessonStudents(classGroupId, lessonId),
   ]);
 
   return {
@@ -166,7 +162,6 @@ export async function getServerSideProps({
       classGroupId,
       lessonId,
       initialClassGroup,
-      initialClassGroupLessonStudent,
       initialLessonDetails,
     },
   };
