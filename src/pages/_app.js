@@ -16,7 +16,7 @@ if (
   require('../mocks');
 }
 
-const queryCache = new QueryCache({
+export const queryCache = new QueryCache({
   defaultConfig: {
     queries: {
       queryFn,
