@@ -2,8 +2,8 @@ import { useQuery } from 'react-query';
 
 export const URL = (id) => `${process.env.NEXT_PUBLIC_API_URL}/lessons/${id}`;
 
-const useLesson = (id, initialData) => {
-  const response = useQuery(URL(id), initialData && { initialData });
+const useLesson = (id) => {
+  const response = useQuery(URL(id));
 
   return { lessonDetails: response.data, ...response };
 };

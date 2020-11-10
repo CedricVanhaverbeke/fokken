@@ -120,8 +120,8 @@ const StudentResultsOverview = () => {
             join(
               `${t('results-overview.title.results')} ${t(
                 'results-overview.title.class',
-              )} ${classGroup?.name}`,
-              lessonDetails?.title,
+              )} ${classGroup?.name || ''}`,
+              lessonDetails?.title || '',
             )
           }
         />

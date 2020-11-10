@@ -3,30 +3,6 @@ import { useTable } from 'react-table';
 
 import c from '@/utils/c';
 
-const TableHeader = ({ headerGroups, headerClassName, columnClassName }) => (
-  <thead className="rounded-t-md">
-    {headerGroups.map((headerGroup) => (
-      <tr
-        key={headerGroup}
-        {...headerGroup.getHeaderGroupProps([{ className: headerClassName }])}
-      >
-        {headerGroup.headers.map((column) => (
-          <th
-            key={column}
-            {...column.getHeaderProps([
-              {
-                className: columnClassName,
-              },
-            ])}
-          >
-            {column.render('Header')}
-          </th>
-        ))}
-      </tr>
-    ))}
-  </thead>
-);
-
 const Table = ({
   columns,
   data,
@@ -65,11 +41,29 @@ const Table = ({
 
   return (
     <table className={c(className)} {...getTableProps()}>
-      <TableHeader
-        headerGroups={headerGroups}
-        headerClassName={headerClassName}
-        columnClassName={columnClassName}
-      />
+      <thead className="rounded-t-md">
+        {headerGroups.map((headerGroup) => (
+          <tr
+            key={headerGroup}
+            {...headerGroup.getHeaderGroupProps([
+              { className: headerClassName },
+            ])}
+          >
+            {headerGroup.headers.map((column) => (
+              <th
+                key={column}
+                {...column.getHeaderProps([
+                  {
+                    className: columnClassName,
+                  },
+                ])}
+              >
+                {column.render('Header')}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);

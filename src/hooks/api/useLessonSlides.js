@@ -8,13 +8,8 @@ export const URL = (id, viewMode, hasQuestion) => {
   }`;
 };
 
-const useLessonSlides = (id, viewMode, hasQuestion, initialData) => {
-  const response = useQuery(
-    URL(id, viewMode, hasQuestion),
-    initialData && {
-      initialData,
-    },
-  );
+const useLessonSlides = (id, viewMode, hasQuestion) => {
+  const response = useQuery(URL(id, viewMode, hasQuestion));
 
   return { lessonSlides: response.data?.slides, ...response };
 };
