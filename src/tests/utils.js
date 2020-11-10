@@ -4,9 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { getPage } from 'next-page-tester';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 
-import LanguageProvider from '../providers/LanguageProvider';
-
 import { queryCache } from '../pages/_app';
+import LanguageProvider from '../providers/LanguageProvider';
 
 const mockRouter = {
   basePath: '',
