@@ -13,8 +13,12 @@ import {
 } from './mockData/lesson';
 import userDetails from './mockData/userDetails';
 
-const delayedResponse = (response, res, ctx) =>
-  res(ctx.delay(1000), ctx.json(response));
+const delayedResponse = (response, res, ctx) => {
+  if (process.env.NODE_ENV === 'test') {
+    return res(ctx.json(response));
+  }
+  return res(ctx.delay(1000), ctx.json(response));
+};
 
 export const handlers = [
   rest.get(`*/api/classgroups/:id`, (_, res, ctx) => {

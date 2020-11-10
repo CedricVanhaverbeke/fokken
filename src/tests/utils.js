@@ -30,7 +30,7 @@ const mockRouter = {
   isFallback: false,
 };
 
-const mockPageRouter = () => {
+const mockPageRouter = (query) => {
   const push = jest.fn().mockImplementation(async () => {});
   const replace = jest.fn().mockImplementation(async () => {});
   const prefetch = jest.fn().mockImplementation(async () => {});
@@ -39,6 +39,7 @@ const mockPageRouter = () => {
     push,
     replace,
     prefetch,
+    query,
   };
 };
 
@@ -57,7 +58,11 @@ export const render = (children, { router } = {}) => {
 };
 
 export const renderPage = async (route) => {
-  const router = mockPageRouter();
+  const queryParams = Object.fromEntries(
+    route.match(/\/:([^/]+)/g)?.map((queryId) => [queryId.substr(2), 69]),
+  );
+  const router = mockPageRouter(queryParams);
+
   const Page = await getPage({
     route,
     pagesDirectory: process.cwd() + '/src/pages',
@@ -66,7 +71,11 @@ export const renderPage = async (route) => {
 
   return {
     ...rtlRender(
-      <LanguageProvider onError={() => {}}>{Page}</LanguageProvider>,
+      <LanguageProvider onError={() => {}}>
+        <ReactQueryCacheProvider queryCache={queryCache}>
+          {Page}
+        </ReactQueryCacheProvider>
+      </LanguageProvider>,
     ),
     router,
     userEvent,
