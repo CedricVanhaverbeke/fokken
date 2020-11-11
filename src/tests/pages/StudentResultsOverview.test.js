@@ -19,6 +19,11 @@ describe('StudentResultsOverview', () => {
     );
   });
 
+  it('should show a skeleton when initially loading the page', async () => {
+    const { queryByRole } = await renderPage(URL);
+    expect(queryByRole('loading')).toBeDefined();
+  });
+
   it('should route to the individual home result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
     const { getAllByText, userEvent, router, route } = await renderPage(URL);
