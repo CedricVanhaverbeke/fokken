@@ -1,8 +1,8 @@
-import { QueryCache, ReactQueryCacheProvider } from 'react-query';
+import { ReactQueryCacheProvider } from 'react-query';
 
 import Header from '../components/Header';
 
-import { browserFetcher as queryFn } from '../utils/fetcher';
+import queryCache from '@/utils/queryCache';
 
 import '../theme/index.css';
 
@@ -15,14 +15,6 @@ if (
   // eslint-disable-next-line global-require
   require('../mocks');
 }
-
-export const queryCache = new QueryCache({
-  defaultConfig: {
-    queries: {
-      queryFn,
-    },
-  },
-});
 
 function MyApp({ Component, pageProps }) {
   return (

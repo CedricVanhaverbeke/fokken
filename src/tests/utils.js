@@ -4,8 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { getPage } from 'next-page-tester';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
 
-import { queryCache } from '../pages/_app';
 import LanguageProvider from '../providers/LanguageProvider';
+
+import queryCache from '../utils/queryCache';
 
 const mockRouter = {
   basePath: '',
@@ -62,8 +63,18 @@ export const renderPage = async (route) => {
   );
   const router = mockPageRouter(queryParams);
 
+  const queryParamsRegex = new RegExp(
+    `:${Object.keys(queryParams).join('|:')}`,
+    'gi',
+  );
+
+  const routeWithParams = route.replace(
+    queryParamsRegex,
+    (queryParam) => router.query[queryParam.substr(1)],
+  );
+
   const Page = await getPage({
-    route,
+    route: routeWithParams,
     pagesDirectory: process.cwd() + '/src/pages',
     router: () => router,
   });
@@ -76,6 +87,7 @@ export const renderPage = async (route) => {
         </ReactQueryCacheProvider>
       </LanguageProvider>,
     ),
+    route: routeWithParams,
     router,
     userEvent,
   };

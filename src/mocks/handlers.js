@@ -17,6 +17,7 @@ const delayedResponse = (response, res, ctx) => {
   if (process.env.NODE_ENV === 'test') {
     return res(ctx.json(response));
   }
+
   return res(ctx.delay(1000), ctx.json(response));
 };
 

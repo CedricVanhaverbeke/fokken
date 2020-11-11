@@ -21,48 +21,38 @@ describe('StudentResultsOverview', () => {
 
   it('should route to the individual home result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
-    const { getAllByText, userEvent, router } = await renderPage(URL);
+    const { getAllByText, userEvent, router, route } = await renderPage(URL);
 
     const pushSpy = jest.spyOn(router, 'push');
 
     const activeHomeLink = getAllByText('results-overview.home')[listIndex];
     userEvent.click(activeHomeLink);
 
-    const newURL = URL.replace(
-      ':classGroupId',
-      router.query.classGroupId,
-    ).replace(':lessonId', router.query.lessonId);
-
     expect(pushSpy).toHaveBeenCalledTimes(1);
     expect(
       pushSpy,
     ).toHaveBeenLastCalledWith(
-      `${newURL}/students/${listIndex}?viewMode=SELFSTUDY`,
-      `${newURL}/students/${listIndex}?viewMode=SELFSTUDY`,
+      `${route}/students/${listIndex}?viewMode=SELFSTUDY`,
+      `${route}/students/${listIndex}?viewMode=SELFSTUDY`,
       { shallow: undefined },
     );
   });
 
   it('should route to the individual class result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
-    const { getAllByText, userEvent, router } = await renderPage(URL);
+    const { getAllByText, userEvent, router, route } = await renderPage(URL);
 
     const pushSpy = jest.spyOn(router, 'push');
 
     const activeClassLink = getAllByText('results-overview.class')[listIndex];
     userEvent.click(activeClassLink);
 
-    const newURL = URL.replace(
-      ':classGroupId',
-      router.query.classGroupId,
-    ).replace(':lessonId', router.query.lessonId);
-
     expect(pushSpy).toHaveBeenCalledTimes(1);
     expect(
       pushSpy,
     ).toHaveBeenLastCalledWith(
-      `${newURL}/students/${listIndex}?viewMode=CLASSICAL`,
-      `${newURL}/students/${listIndex}?viewMode=CLASSICAL`,
+      `${route}/students/${listIndex}?viewMode=CLASSICAL`,
+      `${route}/students/${listIndex}?viewMode=CLASSICAL`,
       { shallow: undefined },
     );
   });

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 
-import throwIfDevelopment from '../utils/functions/throwIfDevelopment';
+import throwIfDevelopment from '../utils/throwIfDevelopment';
 
 const useFormatMessage = () => {
   const { formatMessage } = useIntl();

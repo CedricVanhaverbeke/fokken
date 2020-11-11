@@ -1,8 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 
-import c from '@/utils/c';
-
 const Table = ({
   columns,
   data,
@@ -40,7 +38,7 @@ const Table = ({
   });
 
   return (
-    <table className={c(className)} {...getTableProps()}>
+    <table className={className} {...getTableProps()}>
       <thead className="rounded-t-md">
         {headerGroups.map((headerGroup) => (
           <tr
