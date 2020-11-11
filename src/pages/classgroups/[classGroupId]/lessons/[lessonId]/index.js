@@ -38,9 +38,7 @@ const createColumns = (classGroupId, lessonId, t) => [
     Skeleton: () => (
       <div className="flex gap-x-4 items-center">
         <div className="w-10 h-10 flex-shrink-0 rounded-full bg-gray-200 animate-pulse" />
-        <div className="flex-grow h-10 rounded bg-gray-200 text-gray-200 animate-pulse">
-          Cedric vhb
-        </div>
+        <div className="w-24 h-10 flex-grow rounded bg-gray-200 text-gray-200 animate-pulse" />
       </div>
     ),
   },
@@ -114,7 +112,7 @@ const StudentResultsOverview = () => {
 
   return (
     <>
-      <PageHeader>
+      <PageHeader className="h-16">
         <Title
           title={(join) =>
             join(
@@ -141,7 +139,7 @@ const StudentResultsOverview = () => {
           rowClassName="border-b border-gray-200"
           cellClassName="p-2 whitespace-no-wrap"
           columnClassName="p-2 font-normal"
-          headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200"
+          headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8"
           columns={columns}
           data={classGroupLessonStudent}
         />

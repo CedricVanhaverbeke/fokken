@@ -1,15 +1,10 @@
 import React from 'react';
 
 export const PageTitleSkeleton = () => (
-  <h1 className="text-4xl font-bold leading-none">
-    <div className="text-2xl mb-2 w-36 text-gray-300 font-semibold bg-gray-300 animate-pulse rounded">
-      Title
-    </div>
-
-    <div className="text-gray-300 bg-gray-300 w-88 rounded animate-pulse">
-      Subtitle
-    </div>
-  </h1>
+  <div>
+    <div className="w-36 h-6 mb-2 bg-gray-300 animate-pulse rounded" />
+    <div className="bg-gray-300 h-10 w-88 rounded animate-pulse -mb-1" />
+  </div>
 );
 
 const PageTitle = ({ label, children }) => {
