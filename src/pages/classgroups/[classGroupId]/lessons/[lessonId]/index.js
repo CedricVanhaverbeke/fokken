@@ -36,7 +36,7 @@ const createColumns = (classGroupId, lessonId, t) => [
       );
     },
     Skeleton: () => (
-      <div className="flex gap-x-4 items-center">
+      <div className="flex gap-x-4 items-center" role="loading">
         <div className="w-10 h-10 flex-shrink-0 rounded-full bg-gray-200 animate-pulse" />
         <div className="w-24 h-10 flex-grow rounded bg-gray-200 text-gray-200 animate-pulse" />
       </div>

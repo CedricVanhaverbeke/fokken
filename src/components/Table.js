@@ -22,7 +22,10 @@ const Table = ({
             Cell: Skeleton ? (
               <Skeleton />
             ) : (
-              <div className="bg-gray-200 animate-pulse h-10 rounded items-center" />
+              <div
+                role="loading"
+                className="bg-gray-200 animate-pulse h-10 rounded items-center"
+              />
             ),
           })),
     [columns, data],

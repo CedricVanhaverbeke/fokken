@@ -59,7 +59,7 @@ export const render = (children, { router } = {}) => {
 
 export const renderPage = async (route) => {
   const queryParams = Object.fromEntries(
-    route.match(/\/:([^/]+)/g)?.map((queryId) => [queryId.substr(2), 69]),
+    route.match(/\/:([^/]+)/g)?.map((queryId) => [queryId.substr(2), 1]),
   );
   const router = mockPageRouter(queryParams);
 

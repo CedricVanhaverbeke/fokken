@@ -3,7 +3,7 @@ import React from 'react';
 import c from '@/utils/c';
 
 const Skeleton = () => (
-  <div className="flex flex-col w-full">
+  <div className="flex flex-col w-full" role="loading">
     {Array.from(Array(20), (_, i) => (
       <div className="flex w-full justify-center" key={i}>
         <div className="w-full flex flex-col sm:flex-row">

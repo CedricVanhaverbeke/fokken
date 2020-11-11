@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const PageTitleSkeleton = () => (
-  <div>
+  <div role="loading">
     <div className="w-36 h-6 mb-2 bg-gray-300 animate-pulse rounded" />
     <div className="bg-gray-300 h-10 w-88 rounded animate-pulse -mb-1" />
   </div>
