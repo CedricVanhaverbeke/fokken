@@ -20,8 +20,11 @@ const Skeleton = () => (
                 <div className="grid grid-cols-2 gap-2 w-full mb-4">
                   {Array.from(
                     Array(Math.floor((Math.random() * 10) % 5)),
-                    () => (
-                      <div className="h-12 bg-gray-200 rounded animate-pulse" />
+                    (_, i) => (
+                      <div
+                        className="h-12 bg-gray-200 rounded animate-pulse"
+                        key={`answer${i}`}
+                      />
                     ),
                   )}
                 </div>
