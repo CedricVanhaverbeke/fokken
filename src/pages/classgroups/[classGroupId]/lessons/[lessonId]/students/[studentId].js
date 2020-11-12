@@ -13,8 +13,11 @@ import useFormatMessage from '@/hooks/useFormatMessage';
 import '@ftrprf/slideviewer/styles.css';
 
 import QuestionResult from '@/components/pages/StudentAnswers/QuestionResult';
-import Skeleton from '@/components/pages/StudentAnswers/Skeleton';
-import PageTitle, { PageTitleSkeleton } from '@/components/PageTitle';
+import {
+  ContentSkeleton,
+  HeaderSkeleton,
+} from '@/components/pages/StudentAnswers/StudentAnswersSkeleton';
+import PageTitle from '@/components/PageTitle';
 
 const StudentAnswers = () => {
   const t = useFormatMessage();
@@ -22,12 +25,14 @@ const StudentAnswers = () => {
   const router = useRouter();
   const { classGroupId, lessonId, studentId, viewMode } = router.query;
 
-  const { lessonDetails } = useLesson(lessonId);
-
-  const { classGroupLessonStudent } = useClassGroupLessonStudent(
-    classGroupId,
+  const { lessonDetails, isLoading: lessonDetailsLoading } = useLesson(
     lessonId,
   );
+
+  const {
+    classGroupLessonStudent,
+    isLoading: classGroupLessonStudentLoading,
+  } = useClassGroupLessonStudent(classGroupId, lessonId);
 
   const { lessonSlides, isLoading: slidesLoading } = useLessonSlides(
     lessonId,
@@ -56,73 +61,70 @@ const StudentAnswers = () => {
     return null;
   }, [lessonSlides, lessonAnswers]);
 
-  const isLoading = slidesLoading || answersLoading;
-
   const student = classGroupLessonStudent?.find(
     (student) => student.id === studentId,
   );
 
   return (
     <>
-      <PageHeader>
-        <div className="flex justify-between items-end">
-          {student ? (
-            <>
-              <PageTitle label={t('student-answers.title.results')}>
-                {lessonDetails?.title}
-              </PageTitle>
-              <span>{`${student?.firstName} ${student?.lastName}`}</span>
-            </>
-          ) : (
-            <>
-              <PageTitleSkeleton />
-              <div className="bg-gray-300 w-32 h-8 animate-pulse rounded" />
-            </>
-          )}
-        </div>
-      </PageHeader>
+      <HeaderSkeleton
+        lessonDetailsLoading={lessonDetailsLoading}
+        classGroupLessonStudentLoading={classGroupLessonStudentLoading}
+      >
+        <PageHeader>
+          <div className="flex justify-between items-end">
+            <PageTitle label={t('student-answers.title.results')}>
+              {lessonDetails?.title}
+            </PageTitle>
+            <span>{`${student?.firstName} ${student?.lastName}`}</span>
+          </div>
+        </PageHeader>
+      </HeaderSkeleton>
 
-      <Content>
-        {isLoading ? (
-          <Skeleton />
-        ) : questionSlides?.length === 0 ? (
-          t('student-answers.no_questions')
-        ) : (
-          <div className="flex flex-col w-full gap-4">
-            {questionSlides?.map(({ slide, answer }, i) => (
-              <div
-                className="flex w-full justify-center divide-y divide-gray-400 border-gray-300"
-                key={slide.question.id}
-              >
-                <div className="w-full flex flex-col sm:flex-row">
-                  <span className="flex-shrink-0 mr-8 uppercase text-xs font-semibold text-gray-600">
-                    {t('student-answers.question_label')} {i + 1}
-                  </span>
-                  <div className="w-full flex flex-col items-center">
-                    <div className="max-w-6xl w-full">
-                      <div>
-                        {slide.question.value ? (
-                          <div className="font-semibold">
-                            {slide.question.value}
-                          </div>
-                        ) : (
-                          <SlideViewerTextSlide value={slide.content} />
-                        )}
-                      </div>
-                      <div className="mt-4">
-                        <QuestionResult
-                          question={slide.question}
-                          answer={answer}
-                        />
+      <ContentSkeleton
+        slidesLoading={slidesLoading}
+        answersLoading={answersLoading}
+      >
+        <Content>
+          {questionSlides?.length === 0 ? (
+            t('student-answers.no_questions')
+          ) : (
+            <div className="flex flex-col w-full gap-4">
+              {questionSlides?.map(({ slide, answer }, i) => (
+                <div
+                  className="flex w-full justify-center divide-y divide-gray-400 border-gray-300"
+                  key={slide.question.id}
+                >
+                  <div className="w-full flex flex-col sm:flex-row">
+                    <span className="flex-shrink-0 mr-8 uppercase text-xs font-semibold text-gray-600">
+                      {t('student-answers.question_label')} {i + 1}
+                    </span>
+                    <div className="w-full flex flex-col items-center">
+                      <div className="max-w-6xl w-full">
+                        <div>
+                          {slide.question.value ? (
+                            <div className="font-semibold">
+                              {slide.question.value}
+                            </div>
+                          ) : (
+                            <SlideViewerTextSlide value={slide.content} />
+                          )}
+                        </div>
+                        <div className="mt-4">
+                          <QuestionResult
+                            question={slide.question}
+                            answer={answer}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </Content>
+              ))}
+            </div>
+          )}
+        </Content>
+      </ContentSkeleton>
     </>
   );
 };

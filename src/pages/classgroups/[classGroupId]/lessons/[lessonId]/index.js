@@ -15,7 +15,10 @@ import c from '@/utils/c';
 import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
-import StudentsResultsOverviewSkeleton from '@/components/pages/StudentResultsOverview/StudentResultsOverviewSkeleton';
+import {
+  ContentSkeleton,
+  HeaderSkeleton,
+} from '@/components/pages/StudentResultsOverview/StudentResultsOverviewSkeleton';
 import PageTitle from '@/components/PageTitle';
 import Table from '@/components/Table';
 import Title from '@/components/Title';
@@ -110,50 +113,47 @@ const StudentResultsOverview = () => {
   ]);
 
   return (
-    <StudentsResultsOverviewSkeleton
-      lessonDetailsLoading={lessonDetailsLoading}
-      classGroupLessonStudentsLoading={classGroupLessonStudentsLoading}
-      classGroupLoading={classGroupLoading}
-    >
-      <PageHeader className="h-16">
-        <Title
-          title={(join) =>
-            join(
-              `${t('results-overview.title.results')} ${t(
-                'results-overview.title.class',
-              )} ${classGroup?.name || ''}`,
-              lessonDetails?.title || '',
-            )
-          }
-        />
-        <PageTitle label={t('results-overview.title.results')}>
-          {`${t('results-overview.title.class')} ${classGroup?.name} - ${
-            lessonDetails?.title
-          }`}
-        </PageTitle>
-      </PageHeader>
-      <Content>
-        <Table
-          className="overflow-x-auto w-full border border-gray-200 rounded-md"
-          rowClassName="border-b border-gray-200"
-          cellClassName="p-2 whitespace-no-wrap"
-          columnClassName="p-2 font-normal"
-          headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8"
-          columns={columns}
-          data={classGroupLessonStudents}
-        />
-      </Content>
-    </StudentsResultsOverviewSkeleton>
+    <>
+      <HeaderSkeleton
+        lessonDetailsLoading={lessonDetailsLoading}
+        classGroupLoading={classGroupLoading}
+      >
+        <PageHeader className="h-16">
+          <Title
+            title={(join) =>
+              join(
+                `${t('results-overview.title.results')} ${t(
+                  'results-overview.title.class',
+                )} ${classGroup?.name || ''}`,
+                lessonDetails?.title || '',
+              )
+            }
+          />
+          <PageTitle label={t('results-overview.title.results')}>
+            {`${t('results-overview.title.class')} ${classGroup?.name} - ${
+              lessonDetails?.title
+            }`}
+          </PageTitle>
+        </PageHeader>
+      </HeaderSkeleton>
+
+      <ContentSkeleton
+        classGroupLessonStudentsLoading={classGroupLessonStudentsLoading}
+      >
+        <Content>
+          <Table
+            className="overflow-x-auto w-full border border-gray-200 rounded-md"
+            rowClassName="border-b border-gray-200"
+            cellClassName="p-2 whitespace-no-wrap"
+            columnClassName="p-2 font-normal"
+            headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8"
+            columns={columns}
+            data={classGroupLessonStudents}
+          />
+        </Content>
+      </ContentSkeleton>
+    </>
   );
 };
-
-export function getServerSideProps({ params: { classGroupId, lessonId } }) {
-  return {
-    props: {
-      classGroupId,
-      lessonId,
-    },
-  };
-}
 
 export default StudentResultsOverview;
