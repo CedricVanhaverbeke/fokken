@@ -29,7 +29,7 @@ const StudentSwitcher = () => {
   }
 
   return (
-    <div className="flex gap-x-2 items-center">
+    <div className="flex gap-x-2 items-center text-center">
       <button
         disabled={studentIndex === 0}
         onClick={() =>
