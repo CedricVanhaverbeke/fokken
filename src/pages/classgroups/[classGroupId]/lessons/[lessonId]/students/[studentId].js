@@ -81,10 +81,7 @@ const StudentAnswers = () => {
         </PageHeader>
       </HeaderSkeleton>
 
-      <ContentSkeleton
-        slidesLoading={slidesLoading}
-        answersLoading={answersLoading}
-      >
+      <ContentSkeleton questionSlides={questionSlides}>
         <Content>
           {questionSlides?.length === 0 ? (
             t('student-answers.no_questions')
