@@ -22,7 +22,6 @@
     "@ftrprf/slideviewer": "^23.0.0",
     "@ftrprf/tailwind-components": "^1.1.0",
     "@reach/tooltip": "^0.11.2",
-    "babel-plugin-add-react-displayname": "^0.0.5",
     "cookie": "^0.4.1",
     "dayjs": "^1.9.4",
     "dotenv": "^8.2.0",
