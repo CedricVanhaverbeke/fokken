@@ -38,7 +38,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
         class="rounded-t-md"
       >
         <tr
-          class="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8 [object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
+          class="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8"
           role="row"
         >
           <th
@@ -46,33 +46,21 @@ exports[`StudentResultsOverview should render the results page when navigating t
             colspan="1"
             role="columnheader"
           >
-            <div
-              class="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
-            >
-              results-overview.colum.name
-            </div>
+            results-overview.colum.name
           </th>
           <th
             class="p-2 font-normal"
             colspan="1"
             role="columnheader"
           >
-            <div
-              class="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
-            >
-              results-overview.colum.submitted_at
-            </div>
+            results-overview.colum.submitted_at
           </th>
           <th
             class="p-2 font-normal"
             colspan="1"
             role="columnheader"
           >
-            <div
-              class="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"
-            >
-              results-overview.colum.results
-            </div>
+            results-overview.colum.results
           </th>
         </tr>
       </thead>
