@@ -4,11 +4,11 @@ import { useRouter } from 'next/router';
 import { SlideViewerTextSlide } from '@ftrprf/slideviewer';
 import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
-import useClassGroupLessonStudent from '@/hooks/api/useClassGroupLessonStudent';
 import useLesson from '@/hooks/api/useLesson';
 import useLessonAnswers from '@/hooks/api/useLessonAnswers';
 import useLessonSlides from '@/hooks/api/useLessonSlides';
 import useFormatMessage from '@/hooks/useFormatMessage';
+import useClassGroupLessonStudents from '@/hooks/api/useClassGroupLessonStudents';
 
 import '@ftrprf/slideviewer/styles.css';
 
@@ -18,6 +18,7 @@ import {
   StudentAnswersContentSkeleton,
   StudentAnswersHeaderSkeleton,
 } from '@/components/partials/StudentAnswers/StudentAnswersSkeleton';
+import StudentSwitcher from '@/components/pages/StudentAnswers/StudentSwitcher';
 
 const StudentAnswers = () => {
   const t = useFormatMessage();
@@ -28,9 +29,9 @@ const StudentAnswers = () => {
   const { lessonDetails, isLoading: lessonLoading } = useLesson(lessonId);
 
   const {
-    classGroupLessonStudent,
+    classGroupLessonStudents,
     isLoading: classGroupLessonStudentLoading,
-  } = useClassGroupLessonStudent(classGroupId, lessonId);
+  } = useClassGroupLessonStudents(classGroupId, lessonId);
 
   const { lessonSlides, isLoading: lessonSlidesLoading } = useLessonSlides(
     lessonId,
@@ -58,7 +59,7 @@ const StudentAnswers = () => {
     return [];
   }, [lessonSlides, lessonAnswers]);
 
-  const student = classGroupLessonStudent?.find(
+  const student = classGroupLessonStudents?.find(
     (student) => student.id === studentId,
   );
 

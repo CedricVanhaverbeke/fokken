@@ -1,7 +1,5 @@
 import React from 'react';
 
-import c from '@/utils/c';
-
 const Skeleton = () => (
   <div className="flex flex-col w-full" role="loading">
     {Array.from(Array(20), (_, i) => (
