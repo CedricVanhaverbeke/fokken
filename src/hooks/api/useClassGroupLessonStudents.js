@@ -6,7 +6,7 @@ export const URL = (classGroupId, lessonId) =>
 const useClassGroupLessonStudents = (classGroupId, lessonId) => {
   const response = useQuery(URL(classGroupId, lessonId));
 
-  return { classGroupLessonStudent: response.data, ...response };
+  return { classGroupLessonStudents: response.data, ...response };
 };
 
 export default useClassGroupLessonStudents;

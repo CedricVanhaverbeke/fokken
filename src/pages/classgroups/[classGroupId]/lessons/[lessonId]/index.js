@@ -15,7 +15,8 @@ import c from '@/utils/c';
 import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
-import PageTitle, { PageTitleSkeleton } from '@/components/PageTitle';
+import StudentsResultsOverviewSkeleton from '@/components/pages/StudentResultsOverview/StudentResultsOverviewSkeleton';
+import PageTitle from '@/components/PageTitle';
 import Table from '@/components/Table';
 import Title from '@/components/Title';
 
@@ -35,12 +36,6 @@ const createColumns = (classGroupId, lessonId, t) => [
         </div>
       );
     },
-    Skeleton: () => (
-      <div className="flex gap-x-4 items-center" role="loading">
-        <div className="w-10 h-10 flex-shrink-0 rounded-full bg-gray-200 animate-pulse" />
-        <div className="w-24 h-10 flex-grow rounded bg-gray-200 text-gray-200 animate-pulse" />
-      </div>
-    ),
   },
   {
     Header: t('results-overview.colum.submitted_at'),
@@ -97,12 +92,16 @@ const StudentResultsOverview = () => {
   const router = useRouter();
   const { classGroupId, lessonId } = router.query;
 
-  const { classGroup } = useClassGroup(classGroupId);
-  const { lessonDetails } = useLesson(lessonId);
-  const { classGroupLessonStudent } = useClassGroupLessonStudents(
+  const { classGroup, isLoading: classGroupLoading } = useClassGroup(
     classGroupId,
+  );
+  const { lessonDetails, isLoading: lessonDetailsLoading } = useLesson(
     lessonId,
   );
+  const {
+    classGroupLessonStudents,
+    isLoading: classGroupLessonStudentsLoading,
+  } = useClassGroupLessonStudents(classGroupId, lessonId);
 
   const columns = useMemo(() => createColumns(classGroupId, lessonId, t), [
     classGroupId,
@@ -111,7 +110,11 @@ const StudentResultsOverview = () => {
   ]);
 
   return (
-    <>
+    <StudentsResultsOverviewSkeleton
+      lessonDetailsLoading={lessonDetailsLoading}
+      classGroupLessonStudentsLoading={classGroupLessonStudentsLoading}
+      classGroupLoading={classGroupLoading}
+    >
       <PageHeader className="h-16">
         <Title
           title={(join) =>
@@ -123,15 +126,11 @@ const StudentResultsOverview = () => {
             )
           }
         />
-        {classGroup && lessonDetails ? (
-          <PageTitle label={t('results-overview.title.results')}>
-            {`${t('results-overview.title.class')} ${classGroup?.name} - ${
-              lessonDetails?.title
-            }`}
-          </PageTitle>
-        ) : (
-          <PageTitleSkeleton />
-        )}
+        <PageTitle label={t('results-overview.title.results')}>
+          {`${t('results-overview.title.class')} ${classGroup?.name} - ${
+            lessonDetails?.title
+          }`}
+        </PageTitle>
       </PageHeader>
       <Content>
         <Table
@@ -141,10 +140,10 @@ const StudentResultsOverview = () => {
           columnClassName="p-2 font-normal"
           headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8"
           columns={columns}
-          data={classGroupLessonStudent}
+          data={classGroupLessonStudents}
         />
       </Content>
-    </>
+    </StudentsResultsOverviewSkeleton>
   );
 };
 

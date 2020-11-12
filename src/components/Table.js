@@ -1,8 +1,6 @@
 import React, { useMemo } from 'react';
 import { useTable } from 'react-table';
 
-import c from '@/utils/c';
-
 const Table = ({
   columns,
   data,
@@ -12,24 +10,8 @@ const Table = ({
   cellClassName,
   headerClassName,
 }) => {
-  const memoizedData = useMemo(() => data || Array(30).fill({}), [data]);
-  const memoizedColumns = useMemo(
-    () =>
-      !!data
-        ? columns
-        : columns.map(({ Skeleton, ...columnProps }) => ({
-            ...columnProps,
-            Cell: Skeleton ? (
-              <Skeleton />
-            ) : (
-              <div
-                role="loading"
-                className="bg-gray-200 animate-pulse h-10 rounded items-center"
-              />
-            ),
-          })),
-    [columns, data],
-  );
+  const memoizedData = useMemo(() => data, [data]);
+  const memoizedColumns = useMemo(() => columns, [columns]);
 
   const {
     getTableProps,
@@ -49,7 +31,7 @@ const Table = ({
           <tr
             key={headerGroup}
             {...headerGroup.getHeaderGroupProps([
-              { className: c(headerClassName, data || 'animate-pulse') },
+              { className: headerClassName },
             ])}
           >
             {headerGroup.headers.map((column) => (
@@ -61,9 +43,7 @@ const Table = ({
                   },
                 ])}
               >
-                <div className={c(data || 'invisible')}>
-                  {column.render('Header')}
-                </div>
+                {column.render('Header')}
               </th>
             ))}
           </tr>
