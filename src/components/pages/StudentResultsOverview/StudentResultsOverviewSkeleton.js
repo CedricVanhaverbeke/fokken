@@ -27,7 +27,7 @@ export const ContentSkeleton = ({
       <div role="loading" className="w-full flex-flex-col">
         <div className="h-8 bg-gray-200 animate-pulse w-full" />
         <div className="border-l border-r border-gray-200">
-          {Array(30)
+          {Array(5)
             .fill({})
             .map((_, i) => (
               <div

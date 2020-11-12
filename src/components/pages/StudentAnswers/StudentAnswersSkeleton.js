@@ -25,7 +25,7 @@ export const ContentSkeleton = ({ questionSlides, children }) =>
   !questionSlides ? (
     <Content>
       <div className="flex flex-col w-full" role="loading">
-        {Array.from(Array(20), (_, i) => (
+        {Array.from(Array(5), (_, i) => (
           <div className="flex w-full justify-center" key={i}>
             <div className="w-full flex flex-col sm:flex-row gap-x-4">
               <span className="flex-shrink-0 h-8 w-32 bg-gray-200 animate-pulse mb-2" />
