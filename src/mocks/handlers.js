@@ -13,53 +13,40 @@ import {
 } from './mockData/lesson';
 import userDetails from './mockData/userDetails';
 
-const delayedResponse = (response, res, ctx) => {
+const delayedResponse = (data) => (_, res, ctx) => {
   if (process.env.NODE_ENV === 'test') {
-    return res(ctx.json(response));
+    return res(ctx.json(data));
   }
 
-  return res(ctx.delay(1000), ctx.json(response));
+  return res(ctx.delay(1000), ctx.json(data));
 };
 
 export const handlers = [
-  rest.get(`*/api/classgroups/:id`, (_, res, ctx) => {
-    return delayedResponse(classGroupDetails, res, ctx);
-  }),
+  rest.get(`*/api/classgroups/:id`, delayedResponse(classGroupDetails)),
 
-  rest.get(`*/api/lessons/:id/slides`, (_, res, ctx) => {
-    return delayedResponse(lessonQuestions, res, ctx);
-  }),
+  rest.get(`*/api/lessons/:id/slides`, delayedResponse(lessonQuestions)),
 
   rest.get(
     `*/api/classgroups/:classGroupId/lessons/:lessonId/students/:studentId/answers`,
-    (_, res, ctx) => {
-      return delayedResponse(lessonAnswers, res, ctx);
-    },
+    delayedResponse(lessonAnswers),
   ),
 
   rest.get(
     `*/api/classGroups/:classGroupId/lessons/:lessonId/students`,
-    (_, res, ctx) => {
-      return delayedResponse(classGroupLessonStudents, res, ctx);
-    },
+    delayedResponse(classGroupLessonStudents),
   ),
 
-  rest.get(`*/api/classGroups/:classGroupId/students`, (_, res, ctx) => {
-    return delayedResponse(classGroupStudents, res, ctx);
-  }),
+  rest.get(
+    `*/api/classGroups/:classGroupId/students`,
+    delayedResponse(classGroupStudents),
+  ),
 
-  rest.get(`*/api/lessons/:id`, (_, res, ctx) => {
-    return delayedResponse(lessonDetails, res, ctx);
-  }),
+  rest.get(`*/api/lessons/:id`, delayedResponse(lessonDetails)),
 
   rest.get(
     `*/api/classGroups/:classGroupId/lessons/:lessonId`,
-    (_, res, ctx) => {
-      return delayedResponse(classGroupLesson, res, ctx);
-    },
+    delayedResponse(classGroupLesson),
   ),
 
-  rest.get(`*/api/users/me`, (_, res, ctx) => {
-    return delayedResponse(userDetails, res, ctx);
-  }),
+  rest.get(`*/api/users/me`, delayedResponse(userDetails)),
 ];
