@@ -32,8 +32,16 @@ const StudentAnswers = () => {
     isLoading: classGroupLessonStudentLoading,
   } = useClassGroupLessonStudent(classGroupId, lessonId);
 
-  const { lessonSlides } = useLessonSlides(lessonId, viewMode, true);
-  const { lessonAnswers } = useLessonAnswers(classGroupId, lessonId, studentId);
+  const { lessonSlides, isLoading: lessonSlidesLoading } = useLessonSlides(
+    lessonId,
+    viewMode,
+    true,
+  );
+  const { lessonAnswers, isLoading: lessonAnswersLoading } = useLessonAnswers(
+    classGroupId,
+    lessonId,
+    studentId,
+  );
 
   const questionSlides = useMemo(() => {
     if (lessonAnswers && lessonSlides) {
@@ -70,7 +78,7 @@ const StudentAnswers = () => {
         </PageHeader>
       </HeaderSkeleton>
 
-      <ContentSkeleton questionSlides={!!questionSlides}>
+      <ContentSkeleton loading={lessonSlidesLoading || lessonAnswersLoading}>
         <Content>
           {questionSlides.length === 0 ? (
             t('student-answers.no_questions')

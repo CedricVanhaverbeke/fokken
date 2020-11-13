@@ -21,8 +21,8 @@ export const HeaderSkeleton = ({
     children
   );
 
-export const ContentSkeleton = ({ questionSlides, children }) =>
-  !questionSlides ? (
+export const ContentSkeleton = ({ loading, children }) =>
+  loading ? (
     <Content>
       <div className="flex flex-col w-full" role="loading">
         {Array.from(Array(5), (_, i) => (
