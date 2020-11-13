@@ -4,7 +4,7 @@ import { MultipleChoiceCard } from '@ftrprf/tailwind-components';
 
 import useFormatMessage from '@/hooks/useFormatMessage';
 
-const MultipleChoiceResult = ({ question, answer }) => {
+const StudentAnswersMultipleChoiceResult = ({ question, answer }) => {
   const t = useFormatMessage();
 
   const options =
@@ -37,4 +37,4 @@ const MultipleChoiceResult = ({ question, answer }) => {
   );
 };
 
-export default MultipleChoiceResult;
+export default StudentAnswersMultipleChoiceResult;

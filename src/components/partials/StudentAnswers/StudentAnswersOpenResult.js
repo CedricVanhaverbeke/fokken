@@ -2,7 +2,7 @@ import React from 'react';
 
 import useFormatMessage from '@/hooks/useFormatMessage';
 
-const OpenResult = ({ answer }) => {
+const StudentAnswersOpenResult = ({ answer }) => {
   const t = useFormatMessage();
 
   if (!answer) {
@@ -18,4 +18,4 @@ const OpenResult = ({ answer }) => {
   );
 };
 
-export default OpenResult;
+export default StudentAnswersOpenResult;

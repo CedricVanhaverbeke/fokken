@@ -3,11 +3,11 @@ import React from 'react';
 import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
 export const HeaderSkeleton = ({
-  lessonDetailsLoading,
+  lessonLoading,
   classGroupLessonStudentLoading,
   children,
 }) =>
-  lessonDetailsLoading && classGroupLessonStudentLoading ? (
+  lessonLoading && classGroupLessonStudentLoading ? (
     <PageHeader>
       <div className="flex justify-between items-end">
         <div className="flex flex-col">

@@ -14,11 +14,11 @@ const Table = ({
   const memoizedColumns = useMemo(() => columns, [columns]);
 
   const {
+    rows,
+    headerGroups,
+    prepareRow,
     getTableProps,
     getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
   } = useTable({
     columns: memoizedColumns,
     data: memoizedData,

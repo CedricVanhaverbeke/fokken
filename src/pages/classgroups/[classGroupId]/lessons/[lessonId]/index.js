@@ -15,11 +15,11 @@ import c from '@/utils/c';
 import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
+import PageTitle from '@/components/PageTitle';
 import {
   ContentSkeleton,
   HeaderSkeleton,
-} from '@/components/pages/StudentResultsOverview/StudentResultsOverviewSkeleton';
-import PageTitle from '@/components/PageTitle';
+} from '@/components/partials/StudentResultsOverview/StudentResultsOverviewSkeleton';
 import Table from '@/components/Table';
 import Title from '@/components/Title';
 

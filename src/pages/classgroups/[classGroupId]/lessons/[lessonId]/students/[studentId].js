@@ -12,12 +12,12 @@ import useFormatMessage from '@/hooks/useFormatMessage';
 
 import '@ftrprf/slideviewer/styles.css';
 
-import QuestionResult from '@/components/pages/StudentAnswers/QuestionResult';
+import PageTitle from '@/components/PageTitle';
+import StudentAnswersQuestionResult from '@/components/partials/StudentAnswers/StudentAnswersQuestionResult';
 import {
   ContentSkeleton,
   HeaderSkeleton,
-} from '@/components/pages/StudentAnswers/StudentAnswersSkeleton';
-import PageTitle from '@/components/PageTitle';
+} from '@/components/partials/StudentAnswers/StudentAnswersSkeleton';
 
 const StudentAnswers = () => {
   const t = useFormatMessage();
@@ -25,26 +25,15 @@ const StudentAnswers = () => {
   const router = useRouter();
   const { classGroupId, lessonId, studentId, viewMode } = router.query;
 
-  const { lessonDetails, isLoading: lessonDetailsLoading } = useLesson(
-    lessonId,
-  );
+  const { lessonDetails, isLoading: lessonLoading } = useLesson(lessonId);
 
   const {
     classGroupLessonStudent,
     isLoading: classGroupLessonStudentLoading,
   } = useClassGroupLessonStudent(classGroupId, lessonId);
 
-  const { lessonSlides, isLoading: slidesLoading } = useLessonSlides(
-    lessonId,
-    viewMode,
-    true,
-  );
-
-  const { lessonAnswers, isLoading: answersLoading } = useLessonAnswers(
-    classGroupId,
-    lessonId,
-    studentId,
-  );
+  const { lessonSlides } = useLessonSlides(lessonId, viewMode, true);
+  const { lessonAnswers } = useLessonAnswers(classGroupId, lessonId, studentId);
 
   const questionSlides = useMemo(() => {
     if (lessonAnswers && lessonSlides) {
@@ -58,7 +47,7 @@ const StudentAnswers = () => {
       }));
     }
 
-    return null;
+    return [];
   }, [lessonSlides, lessonAnswers]);
 
   const student = classGroupLessonStudent?.find(
@@ -68,7 +57,7 @@ const StudentAnswers = () => {
   return (
     <>
       <HeaderSkeleton
-        lessonDetailsLoading={lessonDetailsLoading}
+        lessonLoading={lessonLoading}
         classGroupLessonStudentLoading={classGroupLessonStudentLoading}
       >
         <PageHeader>
@@ -81,13 +70,13 @@ const StudentAnswers = () => {
         </PageHeader>
       </HeaderSkeleton>
 
-      <ContentSkeleton questionSlides={questionSlides}>
+      <ContentSkeleton questionSlides={!!questionSlides}>
         <Content>
-          {questionSlides?.length === 0 ? (
+          {questionSlides.length === 0 ? (
             t('student-answers.no_questions')
           ) : (
             <div className="flex flex-col w-full gap-4">
-              {questionSlides?.map(({ slide, answer }, i) => (
+              {questionSlides.map(({ slide, answer }, i) => (
                 <div
                   className="flex w-full justify-center divide-y divide-gray-400 border-gray-300"
                   key={slide.question.id}
@@ -108,7 +97,7 @@ const StudentAnswers = () => {
                           )}
                         </div>
                         <div className="mt-4">
-                          <QuestionResult
+                          <StudentAnswersQuestionResult
                             question={slide.question}
                             answer={answer}
                           />
