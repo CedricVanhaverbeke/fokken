@@ -1,9 +1,9 @@
-import useSWR from 'swr';
+import { useQuery } from 'react-query';
 
 export const URL = () => `${process.env.NEXT_PUBLIC_API_URL}/users/me`;
 
 const useUser = () => {
-  const response = useSWR(URL());
+  const response = useQuery(URL());
 
   return { user: response.data, ...response };
 };

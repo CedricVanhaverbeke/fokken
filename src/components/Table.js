@@ -10,15 +10,15 @@ const Table = ({
   cellClassName,
   headerClassName,
 }) => {
-  const memoizedColumns = useMemo(() => columns, [columns]);
   const memoizedData = useMemo(() => data, [data]);
+  const memoizedColumns = useMemo(() => columns, [columns]);
 
   const {
+    rows,
+    headerGroups,
+    prepareRow,
     getTableProps,
     getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
   } = useTable({
     columns: memoizedColumns,
     data: memoizedData,
@@ -49,7 +49,6 @@ const Table = ({
           </tr>
         ))}
       </thead>
-
       <tbody {...getTableBodyProps()}>
         {rows.map((row) => {
           prepareRow(row);

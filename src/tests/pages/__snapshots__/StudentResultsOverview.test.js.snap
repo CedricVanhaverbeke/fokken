@@ -38,7 +38,7 @@ exports[`StudentResultsOverview should render the results page when navigating t
         class="rounded-t-md"
       >
         <tr
-          class="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200"
+          class="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8"
           role="row"
         >
           <th

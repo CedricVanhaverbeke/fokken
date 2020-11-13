@@ -1,8 +1,8 @@
-import { SWRConfig } from 'swr';
+import { ReactQueryCacheProvider } from 'react-query';
 
 import Header from '../components/Header';
 
-import { browserFetcher } from '../utils/fetcher';
+import queryCache from '@/utils/queryCache';
 
 import '../theme/index.css';
 
@@ -19,16 +19,12 @@ if (
 function MyApp({ Component, pageProps }) {
   return (
     <LanguageProvider>
-      <SWRConfig
-        value={{
-          fetcher: browserFetcher,
-        }}
-      >
+      <ReactQueryCacheProvider queryCache={queryCache}>
         <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
           <Header />
           <Component {...pageProps} />
         </div>
-      </SWRConfig>
+      </ReactQueryCacheProvider>
     </LanguageProvider>
   );
 }

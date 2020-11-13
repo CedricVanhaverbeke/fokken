@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
 import { useMemo } from 'react';
 import dayjs from 'dayjs';
+import { useRouter } from 'next/router';
 
 import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
-import fetcher from '@/hooks/api/index';
 import useClassGroup from '@/hooks/api/useClassGroup';
 import useClassGroupLessonStudents from '@/hooks/api/useClassGroupLessonStudents';
 import useLesson from '@/hooks/api/useLesson';
@@ -16,6 +16,10 @@ import Avatar from '@/components/Avatar';
 import Badge from '@/components/Badge';
 import Link from '@/components/Link';
 import PageTitle from '@/components/PageTitle';
+import {
+  StudentResultsOverviewContentSkeleton,
+  StudentResultsOverviewHeaderSkeleton,
+} from '@/components/partials/StudentResultsOverview/StudentResultsOverviewSkeleton';
 import Table from '@/components/Table';
 import Title from '@/components/Title';
 
@@ -85,22 +89,22 @@ const createColumns = (classGroupId, lessonId, t) => [
   },
 ];
 
-const StudentResultsOverview = ({
-  classGroupId,
-  lessonId,
-  initialClassGroup,
-  initialClassGroupLessonStudent,
-  initialLessonDetails,
-}) => {
+const StudentResultsOverview = () => {
   const t = useFormatMessage();
-  const { classGroup } = useClassGroup(classGroupId, initialClassGroup);
 
-  const { lessonDetails } = useLesson(lessonId, initialLessonDetails);
-  const { classGroupLessonStudent } = useClassGroupLessonStudents(
+  const router = useRouter();
+  const { classGroupId, lessonId } = router.query;
+
+  const { classGroup, isLoading: classGroupLoading } = useClassGroup(
     classGroupId,
-    lessonId,
-    initialClassGroupLessonStudent,
   );
+  const { lessonDetails, isLoading: lessonDetailsLoading } = useLesson(
+    lessonId,
+  );
+  const {
+    classGroupLessonStudents,
+    isLoading: classGroupLessonStudentsLoading,
+  } = useClassGroupLessonStudents(classGroupId, lessonId);
 
   const columns = useMemo(() => createColumns(classGroupId, lessonId, t), [
     classGroupId,
@@ -110,67 +114,46 @@ const StudentResultsOverview = ({
 
   return (
     <>
-      <PageHeader>
-        <Title
-          title={(join) =>
-            join(
-              `${t('results-overview.title.results')} ${t(
-                'results-overview.title.class',
-              )} ${classGroup?.name}`,
-              lessonDetails?.title,
-            )
-          }
-        />
-        <PageTitle label={t('results-overview.title.results')}>
-          {`${t('results-overview.title.class')} ${classGroup?.name} - ${
-            lessonDetails?.title
-          }`}
-        </PageTitle>
-      </PageHeader>
-      <Content>
-        <Table
-          className="overflow-x-auto w-full border border-gray-200 rounded-md"
-          rowClassName="border-b border-gray-200"
-          cellClassName="p-2 whitespace-no-wrap"
-          columnClassName="p-2 font-normal"
-          headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200"
-          columns={columns}
-          data={classGroupLessonStudent}
-        />
-      </Content>
+      <StudentResultsOverviewHeaderSkeleton
+        lessonDetailsLoading={lessonDetailsLoading}
+        classGroupLoading={classGroupLoading}
+      >
+        <PageHeader className="h-16">
+          <Title
+            title={(join) =>
+              join(
+                `${t('results-overview.title.results')} ${t(
+                  'results-overview.title.class',
+                )} ${classGroup?.name || ''}`,
+                lessonDetails?.title || '',
+              )
+            }
+          />
+          <PageTitle label={t('results-overview.title.results')}>
+            {`${t('results-overview.title.class')} ${classGroup?.name} - ${
+              lessonDetails?.title
+            }`}
+          </PageTitle>
+        </PageHeader>
+      </StudentResultsOverviewHeaderSkeleton>
+
+      <StudentResultsOverviewContentSkeleton
+        classGroupLessonStudentsLoading={classGroupLessonStudentsLoading}
+      >
+        <Content>
+          <Table
+            className="overflow-x-auto w-full border border-gray-200 rounded-md"
+            rowClassName="border-b border-gray-200"
+            cellClassName="p-2 whitespace-no-wrap"
+            columnClassName="p-2 font-normal"
+            headerClassName="uppercase text-xs leading-4 tracking-wide text-left rounded-t text-gray-600 bg-gray-200 h-8"
+            columns={columns}
+            data={classGroupLessonStudents}
+          />
+        </Content>
+      </StudentResultsOverviewContentSkeleton>
     </>
   );
 };
-
-export async function getServerSideProps({
-  params: { classGroupId, lessonId },
-  req,
-}) {
-  const {
-    fetchLesson,
-    fetchClassGroup,
-    fetchClassGroupLessonStudents,
-  } = fetcher(req.cookies.authorization);
-
-  const [
-    initialLessonDetails,
-    initialClassGroup,
-    initialClassGroupLessonStudent,
-  ] = await Promise.all([
-    fetchLesson(lessonId),
-    fetchClassGroup(classGroupId),
-    fetchClassGroupLessonStudents(classGroupId, lessonId),
-  ]);
-
-  return {
-    props: {
-      classGroupId,
-      lessonId,
-      initialClassGroup,
-      initialClassGroupLessonStudent,
-      initialLessonDetails,
-    },
-  };
-}
 
 export default StudentResultsOverview;

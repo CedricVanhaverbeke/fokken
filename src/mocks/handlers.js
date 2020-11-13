@@ -13,45 +13,40 @@ import {
 } from './mockData/lesson';
 import userDetails from './mockData/userDetails';
 
-export const handlers = [
-  rest.get(`*/api/classgroups/:id`, (_, res, ctx) => {
-    return res(ctx.json(classGroupDetails));
-  }),
+const delayedResponse = (data) => (_, res, ctx) => {
+  if (process.env.NODE_ENV === 'test') {
+    return res(ctx.json(data));
+  }
 
-  rest.get(`*/api/lessons/:id/slides`, (_, res, ctx) => {
-    return res(ctx.json(lessonQuestions));
-  }),
+  return res(ctx.delay(1000), ctx.json(data));
+};
+
+export const handlers = [
+  rest.get(`*/api/classgroups/:id`, delayedResponse(classGroupDetails)),
+
+  rest.get(`*/api/lessons/:id/slides`, delayedResponse(lessonQuestions)),
 
   rest.get(
     `*/api/classgroups/:classGroupId/lessons/:lessonId/students/:studentId/answers`,
-    (_, res, ctx) => {
-      return res(ctx.json(lessonAnswers));
-    },
+    delayedResponse(lessonAnswers),
   ),
 
   rest.get(
     `*/api/classGroups/:classGroupId/lessons/:lessonId/students`,
-    (_, res, ctx) => {
-      return res(ctx.json(classGroupLessonStudents));
-    },
+    delayedResponse(classGroupLessonStudents),
   ),
 
-  rest.get(`*/api/classGroups/:classGroupId/students`, (_, res, ctx) => {
-    return res(ctx.json(classGroupStudents));
-  }),
+  rest.get(
+    `*/api/classGroups/:classGroupId/students`,
+    delayedResponse(classGroupStudents),
+  ),
 
-  rest.get(`*/api/lessons/:id`, (_, res, ctx) => {
-    return res(ctx.json(lessonDetails));
-  }),
+  rest.get(`*/api/lessons/:id`, delayedResponse(lessonDetails)),
 
   rest.get(
     `*/api/classGroups/:classGroupId/lessons/:lessonId`,
-    (_, res, ctx) => {
-      return res(ctx.json(classGroupLesson));
-    },
+    delayedResponse(classGroupLesson),
   ),
 
-  rest.get(`*/api/users/me`, (_, res, ctx) => {
-    return res(ctx.json(userDetails));
-  }),
+  rest.get(`*/api/users/me`, delayedResponse(userDetails)),
 ];

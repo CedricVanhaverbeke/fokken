@@ -1,4 +1,4 @@
-import useSWR from 'swr';
+import { useQuery } from 'react-query';
 
 export const URL = (id, viewMode, hasQuestion) => {
   return `${
@@ -8,12 +8,10 @@ export const URL = (id, viewMode, hasQuestion) => {
   }`;
 };
 
-const useLessonSlides = (id, viewMode, hasQuestion, initialData) => {
-  const response = useSWR(URL(id, viewMode, hasQuestion), undefined, {
-    initialData,
-  });
+const useLessonSlides = (id, viewMode, hasQuestion) => {
+  const response = useQuery(URL(id, viewMode, hasQuestion));
 
-  return { lessonSlides: response.data.slides, ...response };
+  return { lessonSlides: response.data?.slides, ...response };
 };
 
 export default useLessonSlides;

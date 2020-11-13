@@ -1,12 +1,12 @@
+import { ReactQueryCacheProvider } from 'react-query';
 import { render as rtlRender } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getPage } from 'next-page-tester';
 import { RouterContext } from 'next/dist/next-server/lib/router-context';
-import { SWRConfig } from 'swr';
 
 import LanguageProvider from '../providers/LanguageProvider';
 
-import { browserFetcher } from '@/utils/fetcher';
+import queryCache from '../utils/queryCache';
 
 const mockRouter = {
   basePath: '',
@@ -30,7 +30,7 @@ const mockRouter = {
   isFallback: false,
 };
 
-const mockPageRouter = () => {
+const mockPageRouter = (query) => {
   const push = jest.fn().mockImplementation(async () => {});
   const replace = jest.fn().mockImplementation(async () => {});
   const prefetch = jest.fn().mockImplementation(async () => {});
@@ -39,6 +39,7 @@ const mockPageRouter = () => {
     push,
     replace,
     prefetch,
+    query,
   };
 };
 
@@ -46,33 +47,47 @@ export const render = (children, { router } = {}) => {
   return {
     ...rtlRender(
       <LanguageProvider onError={() => {}}>
-        <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-          <SWRConfig
-            value={{
-              fetcher: browserFetcher,
-            }}
-          >
+        <ReactQueryCacheProvider queryCache={queryCache}>
+          <RouterContext.Provider value={{ ...mockRouter, ...router }}>
             {children}
-          </SWRConfig>
-        </RouterContext.Provider>
-        ,
+          </RouterContext.Provider>
+        </ReactQueryCacheProvider>
       </LanguageProvider>,
     ),
   };
 };
 
 export const renderPage = async (route) => {
-  const router = mockPageRouter();
+  const queryParams = Object.fromEntries(
+    route.match(/\/:([^/]+)/g)?.map((queryId) => [queryId.substr(2), 1]),
+  );
+  const router = mockPageRouter(queryParams);
+
+  const queryParamsRegex = new RegExp(
+    `:${Object.keys(queryParams).join('|:')}`,
+    'gi',
+  );
+
+  const routeWithParams = route.replace(
+    queryParamsRegex,
+    (queryParam) => router.query[queryParam.substr(1)],
+  );
+
   const Page = await getPage({
-    route,
+    route: routeWithParams,
     pagesDirectory: process.cwd() + '/src/pages',
     router: () => router,
   });
 
   return {
     ...rtlRender(
-      <LanguageProvider onError={() => {}}>{Page}</LanguageProvider>,
+      <LanguageProvider onError={() => {}}>
+        <ReactQueryCacheProvider queryCache={queryCache}>
+          {Page}
+        </ReactQueryCacheProvider>
+      </LanguageProvider>,
     ),
+    route: routeWithParams,
     router,
     userEvent,
   };
