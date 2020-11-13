@@ -15,8 +15,8 @@ import '@ftrprf/slideviewer/styles.css';
 import PageTitle from '@/components/PageTitle';
 import StudentAnswersQuestionResult from '@/components/partials/StudentAnswers/StudentAnswersQuestionResult';
 import {
-  ContentSkeleton,
-  HeaderSkeleton,
+  StudentAnswersContentSkeleton,
+  StudentAnswersHeaderSkeleton,
 } from '@/components/partials/StudentAnswers/StudentAnswersSkeleton';
 
 const StudentAnswers = () => {
@@ -64,7 +64,7 @@ const StudentAnswers = () => {
 
   return (
     <>
-      <HeaderSkeleton
+      <StudentAnswersHeaderSkeleton
         lessonLoading={lessonLoading}
         classGroupLessonStudentLoading={classGroupLessonStudentLoading}
       >
@@ -76,9 +76,11 @@ const StudentAnswers = () => {
             <span>{`${student?.firstName} ${student?.lastName}`}</span>
           </div>
         </PageHeader>
-      </HeaderSkeleton>
+      </StudentAnswersHeaderSkeleton>
 
-      <ContentSkeleton loading={lessonSlidesLoading || lessonAnswersLoading}>
+      <StudentAnswersContentSkeleton
+        loading={lessonSlidesLoading || lessonAnswersLoading}
+      >
         <Content>
           {questionSlides.length === 0 ? (
             t('student-answers.no_questions')
@@ -118,7 +120,7 @@ const StudentAnswers = () => {
             </div>
           )}
         </Content>
-      </ContentSkeleton>
+      </StudentAnswersContentSkeleton>
     </>
   );
 };

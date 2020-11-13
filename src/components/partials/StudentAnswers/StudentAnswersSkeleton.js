@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
-export const HeaderSkeleton = ({
+export const StudentAnswersHeaderSkeleton = ({
   lessonLoading,
   classGroupLessonStudentLoading,
   children,
@@ -21,7 +21,7 @@ export const HeaderSkeleton = ({
     children
   );
 
-export const ContentSkeleton = ({ loading, children }) =>
+export const StudentAnswersContentSkeleton = ({ loading, children }) =>
   loading ? (
     <Content>
       <div className="flex flex-col w-full" role="loading">

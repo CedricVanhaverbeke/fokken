@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Content, PageHeader } from '@ftrprf/tailwind-components';
 
-export const HeaderSkeleton = ({
+export const StudentResultsOverviewHeaderSkeleton = ({
   classGroupLoading,
   lessonDetailsLoading,
   children,
@@ -18,7 +18,7 @@ export const HeaderSkeleton = ({
     children
   );
 
-export const ContentSkeleton = ({
+export const StudentResultsOverviewContentSkeleton = ({
   classGroupLessonStudentsLoading,
   children,
 }) =>

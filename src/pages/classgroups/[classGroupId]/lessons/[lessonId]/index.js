@@ -17,8 +17,8 @@ import Badge from '@/components/Badge';
 import Link from '@/components/Link';
 import PageTitle from '@/components/PageTitle';
 import {
-  ContentSkeleton,
-  HeaderSkeleton,
+  StudentResultsOverviewContentSkeleton,
+  StudentResultsOverviewHeaderSkeleton,
 } from '@/components/partials/StudentResultsOverview/StudentResultsOverviewSkeleton';
 import Table from '@/components/Table';
 import Title from '@/components/Title';
@@ -114,7 +114,7 @@ const StudentResultsOverview = () => {
 
   return (
     <>
-      <HeaderSkeleton
+      <StudentResultsOverviewHeaderSkeleton
         lessonDetailsLoading={lessonDetailsLoading}
         classGroupLoading={classGroupLoading}
       >
@@ -135,9 +135,9 @@ const StudentResultsOverview = () => {
             }`}
           </PageTitle>
         </PageHeader>
-      </HeaderSkeleton>
+      </StudentResultsOverviewHeaderSkeleton>
 
-      <ContentSkeleton
+      <StudentResultsOverviewContentSkeleton
         classGroupLessonStudentsLoading={classGroupLessonStudentsLoading}
       >
         <Content>
@@ -151,7 +151,7 @@ const StudentResultsOverview = () => {
             data={classGroupLessonStudents}
           />
         </Content>
-      </ContentSkeleton>
+      </StudentResultsOverviewContentSkeleton>
     </>
   );
 };
