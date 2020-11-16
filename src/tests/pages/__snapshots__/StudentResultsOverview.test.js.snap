@@ -77,17 +77,17 @@ exports[`StudentResultsOverview should render the results page when navigating t
           >
             <div
               class="flex gap-x-4 items-center"
-              title="Elenor_Jacobs35"
+              title="Polly.Koelpin"
             >
               <div
                 class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
               >
                 <span>
-                  C
-                  S
+                  R
+                  B
                 </span>
               </div>
-              Carolyne Schamberger
+              Rowena Bahringer
             </div>
           </td>
           <td
@@ -131,17 +131,17 @@ exports[`StudentResultsOverview should render the results page when navigating t
           >
             <div
               class="flex gap-x-4 items-center"
-              title="Melany.Lehner"
+              title="Darrel82"
             >
               <div
                 class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
               >
                 <span>
-                  J
-                  G
+                  E
+                  B
                 </span>
               </div>
-              Jaron Gottlieb
+              Edmund Bailey
             </div>
           </td>
           <td
@@ -193,17 +193,79 @@ exports[`StudentResultsOverview should render the results page when navigating t
           >
             <div
               class="flex gap-x-4 items-center"
-              title="Carmen45"
+              title="Ulises.Effertz"
             >
               <div
                 class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
               >
                 <span>
-                  A
-                  S
+                  G
+                  B
                 </span>
               </div>
-              Adelle Schoen
+              Gwendolyn Botsford
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                04:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Jonathon54"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  L
+                  C
+                </span>
+              </div>
+              Laverna Cormier
             </div>
           </td>
           <td
@@ -317,6 +379,122 @@ exports[`StudentResultsOverview should render the results page when navigating t
           >
             <div
               class="flex gap-x-4 items-center"
+              title="Kaci_Feest"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  K
+                  D
+                </span>
+              </div>
+              Katheryn Dooley
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            />
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Melany.Lehner"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  J
+                  G
+                </span>
+              </div>
+              Jaron Gottlieb
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                04:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
               title="Einar.Powlowski78"
             >
               <div
@@ -355,6 +533,254 @@ exports[`StudentResultsOverview should render the results page when navigating t
               />
               <span
                 class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Maryjane_Klein"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  D
+                  J
+                </span>
+              </div>
+              Dimitri Jenkins
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                04:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Ashley38"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  C
+                  K
+                </span>
+              </div>
+              Clint Klocko
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                04:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Maurine.Romaguera95"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  M
+                  L
+                </span>
+              </div>
+              Mitchel Ledner
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                04:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Jeromy_Graham"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  R
+                  M
+                </span>
+              </div>
+              Rudy Metz
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                04:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
               >
                 results-overview.class
               </span>
@@ -433,17 +859,17 @@ exports[`StudentResultsOverview should render the results page when navigating t
           >
             <div
               class="flex gap-x-4 items-center"
-              title="Pauline_Lueilwitz"
+              title="Dulce_Vandervort"
             >
               <div
                 class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
               >
                 <span>
-                  Y
-                  W
+                  A
+                  M
                 </span>
               </div>
-              Yadira Wisozk
+              Alana Mohr
             </div>
           </td>
           <td
@@ -506,6 +932,122 @@ exports[`StudentResultsOverview should render the results page when navigating t
                 </span>
               </div>
               Darryl O'Connell
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            >
+              <div
+                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
+              >
+                09/07/2020
+                 
+                04:57
+              </div>
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-pointer text-blue-700 "
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Elenor_Jacobs35"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  C
+                  S
+                </span>
+              </div>
+              Carolyne Schamberger
+            </div>
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-start"
+            />
+          </td>
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex items-center"
+            >
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                results-overview.home
+              </span>
+              <div
+                class="w-px h-4 ml-3 mr-3 bg-gray-300"
+              />
+              <span
+                class="cursor-none text-blue-200 cursor-not-allowed"
+              >
+                results-overview.class
+              </span>
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="border-b border-gray-200"
+          role="row"
+        >
+          <td
+            class="p-2 whitespace-no-wrap"
+            role="cell"
+          >
+            <div
+              class="flex gap-x-4 items-center"
+              title="Carmen45"
+            >
+              <div
+                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
+              >
+                <span>
+                  A
+                  S
+                </span>
+              </div>
+              Adelle Schoen
             </div>
           </td>
           <td
@@ -673,559 +1215,17 @@ exports[`StudentResultsOverview should render the results page when navigating t
           >
             <div
               class="flex gap-x-4 items-center"
-              title="Jonathon54"
+              title="Pauline_Lueilwitz"
             >
               <div
                 class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
               >
                 <span>
-                  L
-                  C
+                  Y
+                  W
                 </span>
               </div>
-              Laverna Cormier
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            >
-              <div
-                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
-              >
-                09/07/2020
-                 
-                04:57
-              </div>
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Maurine.Romaguera95"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  M
-                  L
-                </span>
-              </div>
-              Mitchel Ledner
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            >
-              <div
-                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
-              >
-                09/07/2020
-                 
-                04:57
-              </div>
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Kaci_Feest"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  K
-                  D
-                </span>
-              </div>
-              Katheryn Dooley
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            />
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-none text-blue-200 cursor-not-allowed"
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-none text-blue-200 cursor-not-allowed"
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Darrel82"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  E
-                  B
-                </span>
-              </div>
-              Edmund Bailey
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            >
-              <div
-                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
-              >
-                09/07/2020
-                 
-                04:57
-              </div>
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Maryjane_Klein"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  D
-                  J
-                </span>
-              </div>
-              Dimitri Jenkins
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            >
-              <div
-                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
-              >
-                09/07/2020
-                 
-                04:57
-              </div>
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Jeromy_Graham"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  R
-                  M
-                </span>
-              </div>
-              Rudy Metz
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            >
-              <div
-                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
-              >
-                09/07/2020
-                 
-                04:57
-              </div>
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Polly.Koelpin"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  R
-                  B
-                </span>
-              </div>
-              Rowena Bahringer
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            />
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-none text-blue-200 cursor-not-allowed"
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-none text-blue-200 cursor-not-allowed"
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Dulce_Vandervort"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  A
-                  M
-                </span>
-              </div>
-              Alana Mohr
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            >
-              <div
-                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
-              >
-                09/07/2020
-                 
-                04:57
-              </div>
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Ashley38"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  C
-                  K
-                </span>
-              </div>
-              Clint Klocko
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-start"
-            >
-              <div
-                class="text-sm bg-green-200 text-green-800 rounded-sm px-2 flex"
-              >
-                09/07/2020
-                 
-                04:57
-              </div>
-            </div>
-          </td>
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex items-center"
-            >
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.home
-              </span>
-              <div
-                class="w-px h-4 ml-3 mr-3 bg-gray-300"
-              />
-              <span
-                class="cursor-pointer text-blue-700 "
-              >
-                results-overview.class
-              </span>
-            </div>
-          </td>
-        </tr>
-        <tr
-          class="border-b border-gray-200"
-          role="row"
-        >
-          <td
-            class="p-2 whitespace-no-wrap"
-            role="cell"
-          >
-            <div
-              class="flex gap-x-4 items-center"
-              title="Ulises.Effertz"
-            >
-              <div
-                class="w-10 h-10 flex-shrink-0 text-white bg-gray-400 text-sm rounded-full leading-none flex items-center justify-center select-none"
-              >
-                <span>
-                  G
-                  B
-                </span>
-              </div>
-              Gwendolyn Botsford
+              Yadira Wisozk
             </div>
           </td>
           <td
@@ -1272,5 +1272,3 @@ exports[`StudentResultsOverview should render the results page when navigating t
   </div>
 </div>
 `;
-
-exports[`StudentResultsOverview should route to the individual home result page when clicking the button 1`] = `<div />`;
