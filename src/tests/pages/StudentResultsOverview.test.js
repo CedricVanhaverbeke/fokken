@@ -1,8 +1,7 @@
 import { renderPage } from '../utils';
+import { sortByLastNameAndFirstName } from '@/utils/sort';
 
 import { classGroupLessonStudents } from '@/mocks/mockData/classGroup';
-
-import { sortByLastNameAndFirstName } from '@/utils/sort';
 
 const URL = '/classgroups/:classGroupId/lessons/:lessonId';
 
