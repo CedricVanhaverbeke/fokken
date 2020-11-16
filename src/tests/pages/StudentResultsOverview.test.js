@@ -1,12 +1,13 @@
 import { renderPage } from '../utils';
+import { sortByLastNameAndFirstName } from '@/utils/sort';
 
 import { classGroupLessonStudents } from '@/mocks/mockData/classGroup';
 
 const URL = '/classgroups/:classGroupId/lessons/:lessonId';
 
-describe('StudentResultsOverview', () => {
-  const students = classGroupLessonStudents;
+const students = sortByLastNameAndFirstName(classGroupLessonStudents);
 
+describe('StudentResultsOverview', () => {
   it('should render the results page when navigating to the URL', async () => {
     const { container, getByText, findByText } = await renderPage(URL);
 
@@ -26,9 +27,17 @@ describe('StudentResultsOverview', () => {
 
   it('should route to the individual home result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
-    const { getAllByText, userEvent, router, route } = await renderPage(URL);
+    const {
+      getAllByText,
+      userEvent,
+      router,
+      route,
+      findByText,
+    } = await renderPage(URL);
 
     const pushSpy = jest.spyOn(router, 'push');
+
+    await findByText(`${students[0].firstName} ${students[0].lastName}`);
 
     const activeHomeLink = getAllByText('results-overview.home')[listIndex];
     userEvent.click(activeHomeLink);
@@ -37,17 +46,25 @@ describe('StudentResultsOverview', () => {
     expect(
       pushSpy,
     ).toHaveBeenLastCalledWith(
-      `${route}/students/${listIndex}?viewMode=SELFSTUDY`,
-      `${route}/students/${listIndex}?viewMode=SELFSTUDY`,
+      `${route}/students/${students[listIndex].id}?viewMode=SELFSTUDY`,
+      `${route}/students/${students[listIndex].id}?viewMode=SELFSTUDY`,
       { shallow: undefined },
     );
   });
 
   it('should route to the individual class result page when clicking the button', async () => {
     const listIndex = 1; // Index of first record with submitted answers
-    const { getAllByText, userEvent, router, route } = await renderPage(URL);
+    const {
+      getAllByText,
+      userEvent,
+      router,
+      route,
+      findByText,
+    } = await renderPage(URL);
 
     const pushSpy = jest.spyOn(router, 'push');
+
+    await findByText(`${students[0].firstName} ${students[0].lastName}`);
 
     const activeClassLink = getAllByText('results-overview.class')[listIndex];
     userEvent.click(activeClassLink);
@@ -56,8 +73,8 @@ describe('StudentResultsOverview', () => {
     expect(
       pushSpy,
     ).toHaveBeenLastCalledWith(
-      `${route}/students/${listIndex}?viewMode=CLASSICAL`,
-      `${route}/students/${listIndex}?viewMode=CLASSICAL`,
+      `${route}/students/${students[listIndex].id}?viewMode=CLASSICAL`,
+      `${route}/students/${students[listIndex].id}?viewMode=CLASSICAL`,
       { shallow: undefined },
     );
   });

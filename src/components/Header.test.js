@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 
 import TeacherHeader from './Header';
 
-import { render } from '../tests/utils';
+import { render } from '@/tests/utils';
 
 const linkTexts = [
   'header.navigation.students',

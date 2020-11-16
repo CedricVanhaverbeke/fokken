@@ -18,6 +18,7 @@ const generateLessonQuestions = () => {
     id: 1000,
     published: faker.random.boolean(),
     slides: Array.from(Array(10), (_, i) => ({
+      title: faker.lorem.sentence(),
       content: faker.lorem.paragraph(),
       id: i,
       lessonId: 1000,
