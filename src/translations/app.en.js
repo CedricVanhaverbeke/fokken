@@ -23,4 +23,8 @@ export default {
   'student-answers.no_questions': 'There are no questions in this view mode.',
 
   'question-result.no-result': 'There is no answer for this question',
+
+  // StudentSwticher
+  'student-switcher.previous': 'previous',
+  'student-switcher.next': 'next',
 };

@@ -1272,3 +1272,5 @@ exports[`StudentResultsOverview should render the results page when navigating t
   </div>
 </div>
 `;
+
+exports[`StudentResultsOverview should route to the individual home result page when clicking the button 1`] = `<div />`;

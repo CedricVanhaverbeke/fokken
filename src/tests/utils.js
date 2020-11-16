@@ -54,6 +54,7 @@ export const render = (children, { router } = {}) => {
         </ReactQueryCacheProvider>
       </LanguageProvider>,
     ),
+    userEvent: userEvent,
   };
 };
 

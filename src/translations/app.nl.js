@@ -23,4 +23,8 @@ export default {
   'student-answers.no_questions': 'Er zijn geen vragen in deze weergave.',
 
   'question-result.no-result': 'Er is geen antwoord voor deze vraag',
+
+  // StudentSwitcher
+  'student-switcher.previous': 'vorige',
+  'student-switcher.next': 'volgende',
 };
