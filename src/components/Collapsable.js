@@ -13,7 +13,10 @@ const Collapsable = ({ trigger, initialValue, children }) => {
     <>
       {React.cloneElement(trigger, {
         onClick: () => setIsShown((prev) => !prev),
-        className: c(trigger.props?.className, 'hover:cursor-pointer'),
+        className: c(
+          trigger.props?.className,
+          'hover:cursor-pointer select-none',
+        ),
       })}
       {isShown && children}
     </>
