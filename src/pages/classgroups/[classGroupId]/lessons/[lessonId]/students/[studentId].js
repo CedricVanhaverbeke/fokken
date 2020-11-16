@@ -19,6 +19,7 @@ import {
   StudentAnswersHeaderSkeleton,
 } from '@/components/partials/StudentAnswers/StudentAnswersSkeleton';
 import StudentSwitcher from '@/components/pages/StudentAnswers/StudentSwitcher';
+import Collapsable from '@/components/Collapsable';
 
 const StudentAnswers = () => {
   const t = useFormatMessage();
@@ -102,15 +103,23 @@ const StudentAnswers = () => {
                     </span>
                     <div className="w-full flex flex-col items-center">
                       <div className="max-w-6xl w-full">
-                        <div>
-                          {slide.question.value ? (
-                            <div className="font-semibold">
-                              {slide.question.value}
+                        <Collapsable
+                          trigger={
+                            <div className="text-xs uppercase font-semibold text-gray-600 mb-4 hover:font-bold cursor-pointer">
+                              {slide.title}
                             </div>
-                          ) : (
-                            <SlideViewerTextSlide value={slide.content} />
-                          )}
-                        </div>
+                          }
+                        >
+                          <div>
+                            {slide.question.value ? (
+                              <div className="font-semibold">
+                                {slide.question.value}
+                              </div>
+                            ) : (
+                              <SlideViewerTextSlide value={slide.content} />
+                            )}
+                          </div>
+                        </Collapsable>
                         <div className="mt-4">
                           <StudentAnswersQuestionResult
                             question={slide.question}
