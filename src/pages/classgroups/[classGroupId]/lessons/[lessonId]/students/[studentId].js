@@ -12,7 +12,7 @@ import useClassGroupLessonStudents from '@/hooks/api/useClassGroupLessonStudents
 
 import '@ftrprf/slideviewer/styles.css';
 
-import PageTitle from '@/components/PageTitle';
+import PageTitle, { PageTitleSkeleton } from '@/components/PageTitle';
 import StudentAnswersQuestionResult from '@/components/partials/StudentAnswers/StudentAnswersQuestionResult';
 import {
   StudentAnswersContentSkeleton,
@@ -71,10 +71,14 @@ const StudentAnswers = () => {
       >
         <PageHeader>
           <div className="flex justify-between items-end">
-            <PageTitle label={t('student-answers.title.results')}>
-              {lessonDetails?.title}
-            </PageTitle>
-            <span>{`${student?.firstName} ${student?.lastName}`}</span>
+            {lessonDetails ? (
+              <PageTitle label={t('student-answers.title.results')}>
+                {lessonDetails?.title}
+              </PageTitle>
+            ) : (
+              <PageTitleSkeleton />
+            )}
+            <StudentSwitcher student={studentId} onChange={() => {}} />
           </div>
         </PageHeader>
       </StudentAnswersHeaderSkeleton>
