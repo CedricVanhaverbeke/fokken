@@ -1,7 +1,5 @@
 import { ReactQueryCacheProvider } from 'react-query';
 
-import Header from '../components/Header';
-
 import queryCache from '@/utils/queryCache';
 
 import '../theme/index.css';
@@ -17,11 +15,11 @@ if (
 }
 
 function MyApp({ Component, pageProps }) {
+  console.log(Component);
   return (
     <LanguageProvider>
       <ReactQueryCacheProvider queryCache={queryCache}>
         <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
-          <Header />
           <Component {...pageProps} />
         </div>
       </ReactQueryCacheProvider>

@@ -8,10 +8,6 @@ module.exports = withBundleAnalyzer({
     defaultLocale: 'nl',
     domains: [
       {
-        domain: 'school.ftrprf.be',
-        defaultLocale: 'nl',
-      },
-      {
         domain: 'localhost:5000',
         defaultLocale: 'en',
       },
