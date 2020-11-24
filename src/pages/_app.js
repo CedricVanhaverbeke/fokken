@@ -15,11 +15,10 @@ if (
 }
 
 function MyApp({ Component, pageProps }) {
-  console.log(Component);
   return (
     <LanguageProvider>
       <ReactQueryCacheProvider queryCache={queryCache}>
-        <div className="antialiased w-full h-full overflow-hidden flex flex-col flex-grow items-center relative">
+        <div className="antialiased w-screen h-screen overflow-hidden flex flex-col">
           <Component {...pageProps} />
         </div>
       </ReactQueryCacheProvider>
