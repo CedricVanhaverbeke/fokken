@@ -7,9 +7,9 @@ const Hand = ({ children, onPlayCard }) => {
 
   return (
     <div
-      style={{ maxHeight: '12rem' }}
+      style={{ maxHeight: '14rem' }}
       className={c(
-        'flex h-48 overflow-auto flex-wrap py-1 border border-t',
+        'flex h-56 overflow-auto flex-wrap py-1 border border-t',
         'border-gray-500 w-full justify-center gap-1 lg:gap-x-0',
         React.Children.toArray(children).length === 0 && 'hidden',
       )}
