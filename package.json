@@ -20,21 +20,12 @@
     "prettier:fix": "yarn prettier --write"
   },
   "dependencies": {
-    "@ftrprf/slideviewer": "^23.0.0",
-    "@ftrprf/tailwind-components": "^1.1.0",
-    "@reach/tooltip": "^0.11.2",
-    "cookie": "^0.4.1",
-    "dayjs": "^1.9.6",
-    "html-react-parser": "^0.14.0",
-    "jwt-decode": "^3.0.0",
     "next": "10.0.1",
     "next-page-tester": "^0.4.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-icons": "^3.11.0",
-    "react-intl": "^5.8.8",
-    "react-query": "^2.26.2",
-    "react-table": "^7.6.0"
+    "react-intl": "^5.8.8"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^10.0.1",

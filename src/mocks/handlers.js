@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { rest } from 'msw';
 
 const delayedResponse = (data) => (_, res, ctx) => {

@@ -5,13 +5,6 @@ import PlayingCard, { suits } from '@/components/PlayingCard';
 import Stack from '@/components/Stack';
 import Table from '@/components/Table';
 
-const generateRandomCard = () => {
-  return {
-    number: Math.floor(Math.random() * 10) + 1,
-    suit: Math.floor(Math.random() * 4),
-  };
-};
-
 const Game = () => {
   const [cardStack, setCardStack] = useState([]);
   const [hand, setHand] = useState([
