@@ -17,13 +17,7 @@ const PlayingCard = ({ className, number, suit }) => {
   const [Suit, textColor] = suit;
 
   return (
-    <div
-      className={c(
-        className,
-        'w-24 h-40 border border-black bg-white',
-        textColor,
-      )}
-    >
+    <div className={c(className, 'border border-black bg-white', textColor)}>
       <div className="relative h-full w-full">
         <CardHeader
           number={number}

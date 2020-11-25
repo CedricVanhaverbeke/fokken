@@ -6,14 +6,22 @@ const Hand = ({ children, onPlayCard }) => {
   // useCards ofzoiets met API
 
   return (
-    <div className="flex p-1 border border-t border-gray-500 w-full justify-center h-48">
+    <div
+      style={{ maxHeight: '12rem' }}
+      className={c(
+        'flex h-48 overflow-auto flex-wrap py-1 border border-t',
+        'border-gray-500 w-full justify-center gap-1 lg:gap-x-0',
+        React.Children.toArray(children).length === 0 && 'hidden',
+      )}
+    >
       {React.Children.map(children, (child, i) => (
         <button onClick={() => onPlayCard(i)}>
           {React.cloneElement(child, {
             className: c(
               child?.props?.className,
-              'transition-all transform hover:-translate-y-1',
-              i === 0 || '-ml-4',
+              'w-24 h-40',
+              'transition-all lg:transform hover:-translate-y-1',
+              i === 0 || 'lg:-ml-4',
             ),
           })}
         </button>

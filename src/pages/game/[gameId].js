@@ -18,10 +18,11 @@ const Game = () => {
 
   return (
     <div className="flex flex-col w-full h-full items-center justify-center">
-      <Table className="flex w-4/5 flex-grow m-8 items-center justify-center">
+      <Table className="flex w-full lg:w-4/5 flex-grow lg:m-20 items-center justify-center">
         <Stack className="w-88 h-64">
           {cardStack.map(({ number, suit }) => (
             <PlayingCard
+              className="w-24 h-40"
               key={`${number}${suit}`}
               number={number}
               suit={Object.values(suits)[suit]}
