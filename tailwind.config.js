@@ -1,10 +1,8 @@
-const defaultConfig = require('@ftrprf/tailwind-components/defaultConfig');
 const colors = require('./src/theme/colors');
 
 module.exports = {
   presets: [
     {
-      presets: [defaultConfig],
       purge: [
         './public/index.html',
         './src/**/*.js',
