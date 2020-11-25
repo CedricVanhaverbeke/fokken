@@ -1,5 +1,5 @@
 import React from 'react';
-import { GiDiamonds, GiClubs, GiHearts, GiSpades } from 'react-icons/gi';
+import { GiClubs, GiDiamonds, GiHearts, GiSpades } from 'react-icons/gi';
 
 import CardContent from './CardContent';
 import CardHeader from './CardHeader';
@@ -15,8 +15,6 @@ export const suits = {
 
 const PlayingCard = ({ className, number, symbol }) => {
   const [Symbol, textColor] = symbol;
-
-  console.log({ Symbol, textColor });
 
   return (
     <div

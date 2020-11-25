@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Stack from '@/components/Stack';
 import PlayingCard, { suits } from '@/components/PlayingCard';
+import Stack from '@/components/Stack';
 
 const Game = () => {
   return (
