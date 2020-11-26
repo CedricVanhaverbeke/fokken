@@ -6,7 +6,7 @@ import c from '@/utils/c';
 const Table = ({ children, className }) => (
   <div
     style={{ background: '#35654d' }}
-    className={c(className, 'lg:rounded-full border-8 border-gray-1000')}
+    className={c(className, 'lg:rounded-full lg:border-8 border-gray-1000')}
   >
     {children}
     <div className="absolute ml-auto mr-auto">
