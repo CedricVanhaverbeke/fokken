@@ -40,7 +40,7 @@ const Seat = ({ className, tableIsRight }) => {
       >
         <div
           className={c(
-            'transform items-center flex scale-50 gap-x-2',
+            'transform items-center flex scale-60 gap-x-2',
             tableIsRight
               ? 'rotate-90 -translate-x-16'
               : '-rotate-90 translate-x-16',

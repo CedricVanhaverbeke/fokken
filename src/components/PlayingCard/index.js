@@ -18,9 +18,11 @@ const PlayingCard = ({ className, number, suit, isHidden }) => {
 
   if (isHidden) {
     return (
-      <div className={c(className, 'border border-black bg-white p-2')}>
+      <div
+        className={c(className, 'border border-black p-2 bg-white rounded-lg')}
+      >
         <div
-          className="h-full w-full"
+          className="h-full w-full border border-gray-1000 rounded-md"
           style={{
             textColor: '#1f2953',
             backgroundImage: `url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABHNCSVQICAgIfAhkiAAAAEtJREFUGFdjTJn++P+cTFlGBigA8UFMdDG4ApAksiZ0A1BMQjYFXSNYIbpJyFbD5BixKYK5F2YDSA3xCom2GjlYCHoGm2KM4CE2wAG/DGN/8cl1LAAAAABJRU5ErkJggg==)`,
@@ -31,7 +33,13 @@ const PlayingCard = ({ className, number, suit, isHidden }) => {
   }
 
   return (
-    <div className={c(className, 'border border-black bg-white', textColor)}>
+    <div
+      className={c(
+        className,
+        'border border-black rounded-lg bg-white',
+        textColor,
+      )}
+    >
       <div className="relative h-full w-full">
         <CardHeader
           number={number}

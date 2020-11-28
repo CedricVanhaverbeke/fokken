@@ -25,10 +25,10 @@ const Table = ({ children, className }) => (
           <div className="text-6xl mb-2">
             <FaHandMiddleFinger />
           </div>
-          <span>NIEFOKKENMEMIJ.BE</span>
+          <span>FOKWITHME.COM</span>
         </div>
       </div>
-      <div className={c('transform items-center flex scale-75 gap-x-2')}>
+      <div className={c('transform items-center flex scale-60 gap-x-2')}>
         <PlayingCard
           className="w-24 h-40 transform"
           number={1}
