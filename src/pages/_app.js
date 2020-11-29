@@ -5,6 +5,7 @@ import queryCache from '@/utils/queryCache';
 import '../theme/index.css';
 
 import LanguageProvider from '@/providers/LanguageProvider';
+import GameProvider from '@/providers/GameProvider';
 
 if (
   process.env.NODE_ENV !== 'production' &&
@@ -17,11 +18,13 @@ if (
 function MyApp({ Component, pageProps }) {
   return (
     <LanguageProvider>
-      <ReactQueryCacheProvider queryCache={queryCache}>
-        <div className="antialiased w-screen h-screen overflow-hidden flex flex-col">
-          <Component {...pageProps} />
-        </div>
-      </ReactQueryCacheProvider>
+      <GameProvider>
+        <ReactQueryCacheProvider queryCache={queryCache}>
+          <div className="antialiased w-screen h-screen overflow-hidden flex flex-col">
+            <Component {...pageProps} />
+          </div>
+        </ReactQueryCacheProvider>
+      </GameProvider>
     </LanguageProvider>
   );
 }

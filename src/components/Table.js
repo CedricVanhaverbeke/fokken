@@ -2,6 +2,7 @@ import React from 'react';
 import { FaHandMiddleFinger } from 'react-icons/fa';
 
 import PlayingCard, { suits } from './PlayingCard';
+import PlayingStack from './PlayerStack';
 import Seat from './Seat';
 
 import c from '@/utils/c';
@@ -29,24 +30,49 @@ const Table = ({ children, className }) => (
         </div>
       </div>
       <div className={c('transform items-center flex scale-60 gap-x-2')}>
-        <PlayingCard
-          className="w-24 h-40 transform"
-          number={1}
-          suit={suits.clubs}
-          isHidden={false}
-        />
-        <PlayingCard
-          className="w-24 h-40 transform"
-          number={9}
-          suit={suits.clubs}
-          isHidden={false}
-        />
-        <PlayingCard
-          className="w-24 h-40 transform"
-          number={1}
-          suit={suits.clubs}
-          isHidden={true}
-        />
+        <PlayingStack>
+          <PlayingCard
+            className="w-24 h-40 transform"
+            number={1}
+            suit={suits.clubs}
+            isHidden={false}
+          />
+          <PlayingCard
+            className="w-24 h-40 transform"
+            number={1}
+            suit={suits.clubs}
+            isHidden={false}
+          />
+        </PlayingStack>
+
+        <PlayingStack>
+          <PlayingCard
+            className="w-24 h-40 transform"
+            number={1}
+            suit={suits.clubs}
+            isHidden={true}
+          />
+          <PlayingCard
+            className="w-24 h-40 transform"
+            number={1}
+            suit={suits.clubs}
+            isHidden={false}
+          />
+        </PlayingStack>
+        <PlayingStack>
+          <PlayingCard
+            className="w-24 h-40 transform"
+            number={1}
+            suit={suits.clubs}
+            isHidden={true}
+          />
+          <PlayingCard
+            className="w-24 h-40 transform"
+            number={1}
+            suit={suits.clubs}
+            isHidden={false}
+          />
+        </PlayingStack>
       </div>
     </div>
     <div className="flex flex-col h-full justify-around transform rotate-180">

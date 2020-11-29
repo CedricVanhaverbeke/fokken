@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 
 import PlayingCard, { suits } from './PlayingCard';
+import PlayingStack from './PlayerStack';
 
 import c from '@/utils/c';
 
@@ -46,24 +47,49 @@ const Seat = ({ className, tableIsRight }) => {
               : '-rotate-90 translate-x-16',
           )}
         >
-          <PlayingCard
-            className="w-24 h-40 transform"
-            number={1}
-            suit={suits.clubs}
-            isHidden={true}
-          />
-          <PlayingCard
-            className="w-24 h-40 transform"
-            number={1}
-            suit={suits.clubs}
-            isHidden={true}
-          />
-          <PlayingCard
-            className="w-24 h-40 transform"
-            number={1}
-            suit={suits.clubs}
-            isHidden={true}
-          />
+          <PlayingStack>
+            <PlayingCard
+              className="w-24 h-40 transform"
+              number={1}
+              suit={suits.clubs}
+              isHidden={true}
+            />
+            <PlayingCard
+              className="w-24 h-40 transform"
+              number={1}
+              suit={suits.clubs}
+              isHidden={false}
+            />
+          </PlayingStack>
+
+          <PlayingStack>
+            <PlayingCard
+              className="w-24 h-40 transform"
+              number={1}
+              suit={suits.clubs}
+              isHidden={true}
+            />
+            <PlayingCard
+              className="w-24 h-40 transform"
+              number={1}
+              suit={suits.clubs}
+              isHidden={false}
+            />
+          </PlayingStack>
+          <PlayingStack>
+            <PlayingCard
+              className="w-24 h-40 transform"
+              number={1}
+              suit={suits.clubs}
+              isHidden={true}
+            />
+            <PlayingCard
+              className="w-24 h-40 transform"
+              number={1}
+              suit={suits.clubs}
+              isHidden={false}
+            />
+          </PlayingStack>
         </div>
       </div>
     </div>
