@@ -9,10 +9,8 @@ import c from '@/utils/c';
 
 import { GameContext } from '@/providers/GameProvider';
 
-const Table = ({ children, className }) => {
+const Table = ({ children, className, playableTableCards }) => {
   const game = useContext(GameContext);
-
-  console.log(game);
 
   return (
     <div className={className}>
@@ -37,49 +35,23 @@ const Table = ({ children, className }) => {
           </div>
         </div>
         <div className={c('transform items-center flex scale-60 gap-x-2')}>
-          <PlayingStack canPlay={game.canPlayFromTable} ownStack={true}>
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={false}
-            />
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={false}
-            />
-          </PlayingStack>
-
-          <PlayingStack canPlay={game.canPlayFromTable} ownStack={true}>
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={true}
-            />
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={false}
-            />
-          </PlayingStack>
-          <PlayingStack canPlay={game.canPlayFromTable} ownStack={true}>
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={true}
-            />
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={false}
-            />
-          </PlayingStack>
+          {playableTableCards.map((cards, i) => (
+            <PlayingStack
+              key={`stack${i}`}
+              canPlay={game.canPlayFromTable}
+              ownStack={true}
+            >
+              {cards.map((card, j) => (
+                <PlayingCard
+                  key={`${card.number}${card.suit}`}
+                  className="w-24 h-40 transform"
+                  number={card.number}
+                  suit={Object.values(suits)[card.suit]}
+                  isHidden={j === 0}
+                />
+              ))}
+            </PlayingStack>
+          ))}
         </div>
       </div>
       <div className="flex flex-col h-full justify-around transform rotate-180">

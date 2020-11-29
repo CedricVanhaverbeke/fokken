@@ -1,26 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Hand from '@/components/Hand';
 import PlayingCard, { suits } from '@/components/PlayingCard';
 import Stack from '@/components/Stack';
 import Table from '@/components/Table';
 
+import { GameContext } from '@/providers/GameProvider';
+
 const Game = () => {
-  const [cardStack, setCardStack] = useState([]);
-  const [hand, setHand] = useState([
-    { number: 1, suit: 0 },
-    { number: 2, suit: 1 },
-    { number: 3, suit: 2 },
-    { number: 4, suit: 1 },
-    { number: 5, suit: 3 },
-    { number: 10, suit: 0 },
-  ]);
+  const { playedCards, playableCards, playCard } = useContext(GameContext);
 
   return (
     <div className="flex flex-col w-full h-full items-center justify-center">
-      <Table className="flex w-full lg:w-4/5 flex-grow lg:m-4 p-2">
+      <Table
+        className="flex w-full lg:w-4/5 flex-grow lg:m-4 p-2"
+        playableTableCards={playableCards.table}
+      >
         <Stack className="w-88 flex-grow transform translate-y-16">
-          {cardStack.map(({ number, suit }) => (
+          {playedCards.map(({ number, suit }) => (
             <PlayingCard
               className="w-24 h-40"
               key={`${number}${suit}`}
@@ -30,17 +27,8 @@ const Game = () => {
           ))}
         </Stack>
       </Table>
-      <Hand
-        onPlayCard={(i) => {
-          setCardStack((prev) => [...prev, hand[i]]);
-          setHand((prev) => {
-            const newHand = [...prev];
-            newHand.splice(i, 1);
-            return newHand;
-          });
-        }}
-      >
-        {hand.map(({ number, suit }) => (
+      <Hand onPlayCard={playCard}>
+        {playableCards.hand.map(({ number, suit }) => (
           <PlayingCard
             key={`${number}${suit}`}
             number={number}

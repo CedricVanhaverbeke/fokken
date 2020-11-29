@@ -10,26 +10,28 @@ import c from '@/utils/c';
     needs to be present in the parent component 
     in the onClick function
 */
-const PlayerStack = ({ children, onClick, canPlay, ownStack }) => {
-  return React.Children.map(children, (child, i) => (
-    <button
-      onClick={() => {
-        if (canPlay) {
-          console.log('plays the card from the table');
-          return;
-        }
-        console.log('Cannot play card from table');
-      }}
-      className={c(
-        ownStack || 'cursor-default',
-        i === 0 && ownStack && 'transform hover:-translate-y-1',
-        i === 0 || 'hidden',
-      )}
-    >
-      {child}
-    </button>
-  ));
-};
+const PlayerStack = ({ children, onClick, canPlay, ownStack }) => (
+  <div className="relative">
+    {React.Children.map(children, (child, i) => (
+      <button
+        onClick={() => {
+          if (canPlay) {
+            console.log('plays the card from the table');
+            return;
+          }
+          console.log('Cannot play card from table');
+        }}
+        className={c(
+          ownStack || 'cursor-default',
+          i === 0 && ownStack && 'transform hover:-translate-y-1 z-20',
+          i === 0 || 'absolute top-0 left-0',
+        )}
+      >
+        {child}
+      </button>
+    ))}
+  </div>
+);
 
 PlayerStack.defaultProps = {
   ownStack: false,

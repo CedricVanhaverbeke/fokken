@@ -1,4 +1,4 @@
-import React, { useMemo,useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useCallback } from 'react';
 
 /* 
@@ -17,16 +17,41 @@ const GameContextProvider = ({ children }) => {
   // the game's id
   const [id, setId] = useState();
 
+  const [playedCards, setPlayedCards] = useState([]);
+
   const [playerInfo, setPlayerInfo] = useState({});
 
   // Keeps the cards in hand and which cards are on the table
-  const [playableCards, setPlayableCards] = useState({ hand: [], table: [] });
+  // table contains an array of three arrays, each representing a stack on the table
+  const [playableCards, setPlayableCards] = useState({
+    hand: [
+      { number: 1, suit: 0 },
+      { number: 2, suit: 1 },
+      { number: 3, suit: 2 },
+      { number: 4, suit: 1 },
+      { number: 5, suit: 3 },
+      { number: 10, suit: 0 },
+    ],
+    table: [
+      [
+        { number: 1, suit: 0 },
+        { number: 2, suit: 1 },
+      ],
+      [
+        { number: 1, suit: 0 },
+        { number: 2, suit: 1 },
+      ],
+      [
+        { number: 1, suit: 0 },
+        { number: 2, suit: 1 },
+      ],
+    ],
+  });
+
+  const canPlayFromTable = playableCards.hand.length === 0;
 
   // contains all the players of the game, with their id and the cards on the table
   const [players, setPlayers] = useState({});
-
-  // holds all the played cards on the table
-  const [playedCards, setPlayedCards] = useState([]);
 
   // Keeps which player's turn it is
   const [turn, setTurn] = useState();
@@ -39,14 +64,20 @@ const GameContextProvider = ({ children }) => {
 
   // plays a card
   const playCard = useCallback((fromHand, card) => {
-    // Should update the hand or the table cards
+    if (!fromHand && canPlayFromTable) {
+      console.log('Cannot play from table');
+      return;
+    }
+    // add card
   }, []);
 
   const context = useMemo(() => ({
     playerInfo,
+    playedCards,
+    playableCards,
     updatePlayerInfo,
     isTurn: turn === playerInfo?.id,
-    canPlayFromTable: playableCards.hand.length === 0,
+    canPlayFromTable,
     playCard,
     players,
   }));
