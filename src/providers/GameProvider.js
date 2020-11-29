@@ -25,6 +25,9 @@ const GameContextProvider = ({ children }) => {
   // contains all the players of the game, with their id and the cards on the table
   const [players, setPlayers] = useState({});
 
+  // holds all the played cards on the table
+  const [playedCards, setPlayedCards] = useState([]);
+
   // Keeps which player's turn it is
   const [turn, setTurn] = useState();
 

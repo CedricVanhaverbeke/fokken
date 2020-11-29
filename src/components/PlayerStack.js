@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
@@ -9,13 +10,28 @@ import c from '@/utils/c';
     needs to be present in the parent component 
     in the onClick function
 */
-const PlayerStack = ({ children, onClick }) => {
-  return React.Children.map(children, (child, i) =>
-    React.cloneElement(child, {
-      className: c(child.props.className, i !== 0 && 'hidden'),
-      onClick: onClick,
-    }),
-  );
+const PlayerStack = ({ children, onClick, canPlay, ownStack }) => {
+  return React.Children.map(children, (child, i) => (
+    <button
+      onClick={() => {
+        if (canPlay) {
+          console.log('plays the card from the table');
+          return;
+        }
+        console.log('Cannot play card from table');
+      }}
+      className={c(
+        i === 0 && ownStack && 'transform hover:-translate-y-1',
+        i === 0 || 'hidden',
+      )}
+    >
+      {child}
+    </button>
+  ));
+};
+
+PlayerStack.defaultProps = {
+  ownStack: false,
 };
 
 export default PlayerStack;
