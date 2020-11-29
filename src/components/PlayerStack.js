@@ -21,6 +21,7 @@ const PlayerStack = ({ children, onClick, canPlay, ownStack }) => {
         console.log('Cannot play card from table');
       }}
       className={c(
+        ownStack || 'cursor-default',
         i === 0 && ownStack && 'transform hover:-translate-y-1',
         i === 0 || 'hidden',
       )}

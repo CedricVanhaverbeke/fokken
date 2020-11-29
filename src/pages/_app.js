@@ -4,8 +4,8 @@ import queryCache from '@/utils/queryCache';
 
 import '../theme/index.css';
 
-import LanguageProvider from '@/providers/LanguageProvider';
 import GameProvider from '@/providers/GameProvider';
+import LanguageProvider from '@/providers/LanguageProvider';
 
 if (
   process.env.NODE_ENV !== 'production' &&

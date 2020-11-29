@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 
-import PlayingCard, { suits } from './PlayingCard';
 import PlayingStack from './PlayerStack';
+import PlayingCard, { suits } from './PlayingCard';
 
 import c from '@/utils/c';
 

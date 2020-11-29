@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { FaHandMiddleFinger } from 'react-icons/fa';
 
-import PlayingCard, { suits } from './PlayingCard';
 import PlayingStack from './PlayerStack';
+import PlayingCard, { suits } from './PlayingCard';
 import Seat from './Seat';
 
-import { GameContext } from '@/providers/GameProvider';
-
 import c from '@/utils/c';
+
+import { GameContext } from '@/providers/GameProvider';
 
 const Table = ({ children, className }) => {
   const game = useContext(GameContext);
