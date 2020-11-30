@@ -9,7 +9,7 @@ import c from '@/utils/c';
 
 import { GameContext } from '@/providers/GameProvider';
 
-const Table = ({ children, className, playableTableCards }) => {
+const Table = ({ children, className, playableTableCards, playCard }) => {
   const game = useContext(GameContext);
 
   return (
@@ -35,20 +35,28 @@ const Table = ({ children, className, playableTableCards }) => {
           </div>
         </div>
         <div className={c('transform items-center flex scale-60 gap-x-2')}>
-          {playableTableCards.map((cards, i) => (
+          {playableTableCards.reverse().map((cards, i) => (
             <PlayingStack
               key={`stack${i}`}
               canPlay={game.canPlayFromTable}
               ownStack={true}
             >
               {cards.map((card, j) => (
-                <PlayingCard
+                <button
                   key={`${card.number}${card.suit}`}
-                  className="w-24 h-40 transform"
-                  number={card.number}
-                  suit={Object.values(suits)[card.suit]}
-                  isHidden={j === 0}
-                />
+                  onClick={() =>
+                    playCard(false, card.number, card.suit, {
+                      stackIndex: i,
+                    })
+                  }
+                >
+                  <PlayingCard
+                    className="w-24 h-40 transform"
+                    number={card.number}
+                    suit={Object.values(suits)[card.suit]}
+                    isHidden={j === cards.length - 1}
+                  />
+                </button>
               ))}
             </PlayingStack>
           ))}

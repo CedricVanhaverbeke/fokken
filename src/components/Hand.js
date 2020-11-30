@@ -14,18 +14,7 @@ const Hand = ({ children, onPlayCard }) => {
         React.Children.toArray(children).length === 0 && 'hidden',
       )}
     >
-      {React.Children.map(children, (child, i) => (
-        <button onClick={() => onPlayCard(i)}>
-          {React.cloneElement(child, {
-            className: c(
-              child?.props?.className,
-              'w-24 h-40',
-              'transition-all lg:transform hover:-translate-y-1',
-              i === 0 || 'lg:-ml-4',
-            ),
-          })}
-        </button>
-      ))}
+      {children}
     </div>
   );
 };

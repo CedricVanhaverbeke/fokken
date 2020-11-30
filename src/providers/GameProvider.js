@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useCallback } from 'react';
 
 /* 
@@ -14,10 +14,9 @@ import { useCallback } from 'react';
 export const GameContext = React.createContext({});
 
 const GameContextProvider = ({ children }) => {
-  // the game's id
-  const [id, setId] = useState();
-
   const [playedCards, setPlayedCards] = useState([]);
+
+  const [canPlayFromTable, setCanPlayFromTable] = useState(false);
 
   const [playerInfo, setPlayerInfo] = useState({});
 
@@ -48,13 +47,10 @@ const GameContextProvider = ({ children }) => {
     ],
   });
 
-  const canPlayFromTable = playableCards.hand.length === 0;
-
-  // contains all the players of the game, with their id and the cards on the table
-  const [players, setPlayers] = useState({});
-
-  // Keeps which player's turn it is
-  const [turn, setTurn] = useState();
+  useEffect(() => {
+    setCanPlayFromTable(playableCards.hand.length === 0);
+    console.log(playableCards.hand.length === 0);
+  }, [playableCards]);
 
   // info should be an object here
   const updatePlayerInfo = useCallback(
@@ -63,23 +59,37 @@ const GameContextProvider = ({ children }) => {
   );
 
   // plays a card
-  const playCard = useCallback((fromHand, card) => {
-    if (!fromHand && canPlayFromTable) {
-      console.log('Cannot play from table');
-      return;
-    }
-    // add card
-  }, []);
+  const playCard = useCallback(
+    (fromHand, number, suit, { handIndex, stackIndex }) => {
+      console.log({ fromHand, canPlayFromTable });
+      if (!fromHand && !canPlayFromTable) {
+        console.log('Cannot play from table');
+        return;
+      }
+
+      setPlayableCards(({ hand, table }) => {
+        let newHand = hand;
+        let newTable = table;
+        if (fromHand) {
+          newHand.splice(handIndex, 1);
+        } else {
+          newTable[stackIndex].pop();
+        }
+        return { hand: newHand, table: newTable };
+      });
+
+      setPlayedCards((prev) => [...prev, { number, suit }]);
+    },
+    [],
+  );
 
   const context = useMemo(() => ({
     playerInfo,
     playedCards,
     playableCards,
     updatePlayerInfo,
-    isTurn: turn === playerInfo?.id,
     canPlayFromTable,
     playCard,
-    players,
   }));
 
   return (

@@ -12,24 +12,17 @@ import c from '@/utils/c';
 */
 const PlayerStack = ({ children, onClick, canPlay, ownStack }) => (
   <div className="relative">
-    {React.Children.map(children, (child, i) => (
-      <button
-        onClick={() => {
-          if (canPlay) {
-            console.log('plays the card from the table');
-            return;
-          }
-          console.log('Cannot play card from table');
-        }}
-        className={c(
+    {React.Children.map(children, (child, i) =>
+      React.cloneElement(child, {
+        className: c(
+          child.props.className,
           ownStack || 'cursor-default',
-          i === 0 && ownStack && 'transform hover:-translate-y-1 z-20',
-          i === 0 || 'absolute top-0 left-0',
-        )}
-      >
-        {child}
-      </button>
-    ))}
+          ownStack && 'transform hover:-translate-y-1',
+          i !== 0 || 'absolute top-0 left-0 p-1',
+          i === 0 && 'z-20',
+        ),
+      }),
+    )}
   </div>
 );
 
