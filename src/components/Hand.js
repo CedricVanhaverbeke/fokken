@@ -2,7 +2,7 @@ import React from 'react';
 
 import c from '@/utils/c';
 
-const Hand = ({ children, onPlayCard }) => {
+const Hand = ({ children }) => {
   // useCards ofzoiets met API
 
   return (

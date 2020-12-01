@@ -4,19 +4,21 @@ import Hand from '@/components/Hand';
 import PlayingCard, { suits } from '@/components/PlayingCard';
 import Stack from '@/components/Stack';
 import Table from '@/components/Table';
+import Debugger from '@/components/Debugger';
 
 import { GameContext } from '@/providers/GameProvider';
 
 import c from '@/utils/c';
 
 const Game = () => {
-  const { playedCards, playableCards, playCard } = useContext(GameContext);
+  const { playedCards, playCard, table, hand } = useContext(GameContext);
 
   return (
     <div className="flex flex-col w-full h-full items-center justify-center">
+      <Debugger />
       <Table
         className="flex w-full lg:w-4/5 flex-grow lg:m-4 p-2"
-        playableTableCards={playableCards.table}
+        playableTableCards={table}
         playCard={playCard}
       >
         <Stack className="w-88 flex-grow transform translate-y-16">
@@ -31,7 +33,7 @@ const Game = () => {
         </Stack>
       </Table>
       <Hand>
-        {playableCards.hand.map(({ number, suit }, i) => (
+        {hand.map(({ number, suit }, i) => (
           <button
             key={`hand${number}${suit}`}
             onClick={() => playCard(true, number, suit, { handIndex: i })}

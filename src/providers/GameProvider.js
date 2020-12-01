@@ -15,42 +15,34 @@ export const GameContext = React.createContext({});
 
 const GameContextProvider = ({ children }) => {
   const [playedCards, setPlayedCards] = useState([]);
-
-  const [canPlayFromTable, setCanPlayFromTable] = useState(false);
-
-  const [playerInfo, setPlayerInfo] = useState({});
-
-  // Keeps the cards in hand and which cards are on the table
-  // table contains an array of three arrays, each representing a stack on the table
-  const [playableCards, setPlayableCards] = useState({
-    hand: [
+  const [hand, setHand] = useState([
+    { number: 1, suit: 0 },
+    { number: 2, suit: 1 },
+    { number: 3, suit: 2 },
+    { number: 4, suit: 1 },
+    { number: 5, suit: 3 },
+    { number: 10, suit: 0 },
+  ]);
+  const [table, setTable] = useState([
+    [
       { number: 1, suit: 0 },
       { number: 2, suit: 1 },
-      { number: 3, suit: 2 },
-      { number: 4, suit: 1 },
-      { number: 5, suit: 3 },
-      { number: 10, suit: 0 },
     ],
-    table: [
-      [
-        { number: 1, suit: 0 },
-        { number: 2, suit: 1 },
-      ],
-      [
-        { number: 1, suit: 0 },
-        { number: 2, suit: 1 },
-      ],
-      [
-        { number: 1, suit: 0 },
-        { number: 2, suit: 1 },
-      ],
+    [
+      { number: 1, suit: 0 },
+      { number: 2, suit: 1 },
     ],
-  });
+    [
+      { number: 1, suit: 0 },
+      { number: 2, suit: 1 },
+    ],
+  ]);
 
-  useEffect(() => {
-    setCanPlayFromTable(playableCards.hand.length === 0);
-    console.log(playableCards.hand.length === 0);
-  }, [playableCards]);
+  const canPlayFromTable = hand.length === 0;
+
+  const canPlayHiddenFromTable = table.flat().length <= 3;
+
+  const [playerInfo, setPlayerInfo] = useState({});
 
   // info should be an object here
   const updatePlayerInfo = useCallback(
@@ -60,37 +52,59 @@ const GameContextProvider = ({ children }) => {
 
   // plays a card
   const playCard = useCallback(
-    (fromHand, number, suit, { handIndex, stackIndex }) => {
-      console.log({ fromHand, canPlayFromTable });
-      if (!fromHand && !canPlayFromTable) {
-        console.log('Cannot play from table');
+    (fromHand, number, suit, { handIndex, stackIndex, isHidden = true }) => {
+      // Prevent playing a card from the table when you have cards in your hand
+      if (!canPlayFromTable && !fromHand) {
+        // TODO: notification or something
+        console.log(' Cannot play from table right now');
         return;
       }
 
-      setPlayableCards(({ hand, table }) => {
-        let newHand = hand;
-        let newTable = table;
-        if (fromHand) {
-          newHand.splice(handIndex, 1);
-        } else {
-          newTable[stackIndex].pop();
-        }
-        return { hand: newHand, table: newTable };
-      });
+      // Prevent playing a hidden card from the table when you have visible cards on the table
+      if (!fromHand && isHidden && !canPlayHiddenFromTable) {
+        console.log(' Cannot play from hidden stack right now');
+        return;
+      }
+
+      if (fromHand) {
+        setHand((prevHand) => {
+          prevHand.splice(handIndex, 1);
+          return prevHand;
+        });
+      } else {
+        setTable((prevTable) => {
+          prevTable[stackIndex].shift();
+          return prevTable;
+        });
+      }
 
       setPlayedCards((prev) => [...prev, { number, suit }]);
     },
-    [],
+    [canPlayFromTable, canPlayHiddenFromTable],
   );
 
-  const context = useMemo(() => ({
-    playerInfo,
-    playedCards,
-    playableCards,
-    updatePlayerInfo,
-    canPlayFromTable,
-    playCard,
-  }));
+  const context = useMemo(
+    () => ({
+      playerInfo,
+      playedCards,
+      hand,
+      table,
+      updatePlayerInfo,
+      canPlayFromTable,
+      canPlayHiddenFromTable,
+      playCard,
+    }),
+    [
+      playerInfo,
+      playedCards,
+      hand,
+      table,
+      updatePlayerInfo,
+      canPlayFromTable,
+      canPlayHiddenFromTable,
+      playCard,
+    ],
+  );
 
   return (
     <GameContext.Provider value={context}>{children}</GameContext.Provider>

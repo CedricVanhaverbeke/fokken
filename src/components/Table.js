@@ -35,7 +35,7 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
           </div>
         </div>
         <div className={c('transform items-center flex scale-60 gap-x-2')}>
-          {playableTableCards.reverse().map((cards, i) => (
+          {playableTableCards.map((cards, i) => (
             <PlayingStack
               key={`stack${i}`}
               canPlay={game.canPlayFromTable}
@@ -47,6 +47,7 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
                   onClick={() =>
                     playCard(false, card.number, card.suit, {
                       stackIndex: i,
+                      isHidden: j === cards.length - 1,
                     })
                   }
                 >
