@@ -1,6 +1,21 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useCallback } from 'react';
 
+const mockStackCards = [
+  [
+    { number: 1, suit: 0 },
+    { number: 2, suit: 1 },
+  ],
+  [
+    { number: 1, suit: 0 },
+    { number: 2, suit: 1 },
+  ],
+  [
+    { number: 1, suit: 0 },
+    { number: 2, suit: 1 },
+  ],
+];
+
 /* 
     Holds the state of the app:
     1. The player info : its uuid, name and possibly photo in the future
@@ -23,20 +38,23 @@ const GameContextProvider = ({ children }) => {
     { number: 5, suit: 3 },
     { number: 10, suit: 0 },
   ]);
-  const [table, setTable] = useState([
-    [
-      { number: 1, suit: 0 },
-      { number: 2, suit: 1 },
-    ],
-    [
-      { number: 1, suit: 0 },
-      { number: 2, suit: 1 },
-    ],
-    [
-      { number: 1, suit: 0 },
-      { number: 2, suit: 1 },
-    ],
-  ]);
+  const [table, setTable] = useState(mockStackCards);
+
+  const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({
+    1: mockStackCards,
+    2: mockStackCards,
+    3: mockStackCards,
+    4: mockStackCards,
+    5: mockStackCards,
+    6: mockStackCards,
+  });
+
+  const setOtherPlayersStacks = useCallback(
+    (newStack, id) => {
+      setOtherPlayerCardsTable((prev) => ({ ...prev, [id]: newStack }));
+    },
+    [setOtherPlayerCardsTable],
+  );
 
   const canPlayFromTable = hand.length === 0;
 
@@ -93,6 +111,8 @@ const GameContextProvider = ({ children }) => {
       canPlayFromTable,
       canPlayHiddenFromTable,
       playCard,
+      otherPlayerCardsTable,
+      setOtherPlayersStacks,
     }),
     [
       playerInfo,
@@ -103,6 +123,8 @@ const GameContextProvider = ({ children }) => {
       canPlayFromTable,
       canPlayHiddenFromTable,
       playCard,
+      otherPlayerCardsTable,
+      setOtherPlayersStacks,
     ],
   );
 

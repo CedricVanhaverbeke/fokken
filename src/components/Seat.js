@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { FaUser } from 'react-icons/fa';
 
 import PlayingStack from './PlayerStack';
 import PlayingCard, { suits } from './PlayingCard';
 
+import { GameContext } from '@/providers/GameProvider';
+
 import c from '@/utils/c';
 
-const Seat = ({ className, tableIsRight }) => {
+const Seat = ({ className, tableIsRight, playerId }) => {
   const [isTaken, setIsTaken] = useState(false);
+
+  const { otherPlayerCardsTable } = useContext(GameContext);
+  const stacks = otherPlayerCardsTable[playerId];
 
   return (
     <div className="flex flex-grow gap-x-2">
@@ -47,49 +52,20 @@ const Seat = ({ className, tableIsRight }) => {
               : '-rotate-90 translate-x-16',
           )}
         >
-          <PlayingStack>
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={true}
-            />
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={false}
-            />
-          </PlayingStack>
-
-          <PlayingStack>
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={true}
-            />
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={false}
-            />
-          </PlayingStack>
-          <PlayingStack>
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={true}
-            />
-            <PlayingCard
-              className="w-24 h-40 transform"
-              number={1}
-              suit={suits.clubs}
-              isHidden={false}
-            />
-          </PlayingStack>
+          {stacks.map((cards, i) => (
+            <PlayingStack key={`stack${i}`} canPlay={false} ownStack={false}>
+              {cards.map((card, j) => (
+                <div key={`${card.number}${card.suit}`}>
+                  <PlayingCard
+                    className="w-24 h-40 transform"
+                    number={card.number}
+                    suit={Object.values(suits)[card.suit]}
+                    isHidden={j === cards.length - 1}
+                  />
+                </div>
+              ))}
+            </PlayingStack>
+          ))}
         </div>
       </div>
     </div>

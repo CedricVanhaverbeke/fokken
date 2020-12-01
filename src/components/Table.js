@@ -15,9 +15,9 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
   return (
     <div className={className}>
       <div className="flex flex-col h-full justify-around">
-        <Seat className="border-t-8" tableIsRight={true} />
-        <Seat tableIsRight={true} />
-        <Seat className="border-b-8" tableIsRight={true} />
+        <Seat className="border-t-8" tableIsRight={true} playerId="1" />
+        <Seat tableIsRight={true} playerId="2" />
+        <Seat className="border-b-8" tableIsRight={true} playerId="3" />
       </div>
       <div
         style={{ background: '#35654d' }}
@@ -64,9 +64,9 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
         </div>
       </div>
       <div className="flex flex-col h-full justify-around transform rotate-180">
-        <Seat className="border-b-8" tableIsRight={false} />
-        <Seat tableIsRight={false} />
-        <Seat className="border-t-8" tableIsRight={false} />
+        <Seat className="border-b-8" tableIsRight={false} playerId="4" />
+        <Seat tableIsRight={false} playerId="5" />
+        <Seat className="border-t-8" tableIsRight={false} playerId="6" />
       </div>
     </div>
   );
