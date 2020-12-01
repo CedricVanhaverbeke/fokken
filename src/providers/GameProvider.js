@@ -38,15 +38,17 @@ const GameContextProvider = ({ children }) => {
     { number: 5, suit: 3 },
     { number: 10, suit: 0 },
   ]);
-  const [table, setTable] = useState(mockStackCards);
+  const [table, setTable] = useState(
+    JSON.parse(JSON.stringify(mockStackCards)),
+  );
 
   const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({
-    1: mockStackCards,
-    2: mockStackCards,
-    3: mockStackCards,
-    4: mockStackCards,
-    5: mockStackCards,
-    6: mockStackCards,
+    1: JSON.parse(JSON.stringify(mockStackCards)),
+    2: JSON.parse(JSON.stringify(mockStackCards)),
+    3: JSON.parse(JSON.stringify(mockStackCards)),
+    4: JSON.parse(JSON.stringify(mockStackCards)),
+    5: JSON.parse(JSON.stringify(mockStackCards)),
+    6: JSON.parse(JSON.stringify(mockStackCards)),
   });
 
   const setOtherPlayersStacks = useCallback(
