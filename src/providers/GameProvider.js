@@ -16,9 +16,9 @@ export const GameContext = React.createContext({});
 const GameContextProvider = ({ children }) => {
   const [playedCards, setPlayedCards] = useState([]);
   const [hand, setHand] = useState([
-    { number: 1, suit: 0 },
-    { number: 2, suit: 1 },
-    { number: 3, suit: 2 },
+    { number: 'K', suit: 0 },
+    { number: 'J', suit: 1 },
+    { number: 'Q', suit: 2 },
     { number: 4, suit: 1 },
     { number: 5, suit: 3 },
     { number: 10, suit: 0 },

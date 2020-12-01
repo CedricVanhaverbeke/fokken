@@ -2,6 +2,12 @@ import React from 'react';
 
 import c from '@/utils/c';
 
+const symbolMapper = {
+  J: '11',
+  Q: '12',
+  K: '13',
+};
+
 const OneToThreeCard = ({ className, number, Suit }) => (
   <div
     className={c(
@@ -56,14 +62,30 @@ const SevenToTenCard = ({ className, number, Suit }) => (
   </div>
 );
 
+const SymbolCard = ({ className, number }) => (
+  <div
+    className={c(
+      className,
+      'h-full w-full flex flex-col items-center',
+      'justify-center',
+    )}
+  >
+    <span className="text-5xl font-semibold">{number}</span>
+  </div>
+);
+
 const cardContents = [
   ...Array(3).fill(OneToThreeCard),
   ...Array(3).fill(FourToSixCard),
   ...Array(4).fill(SevenToTenCard),
+  ...Array(3).fill(SymbolCard),
 ];
 
 const CardContent = ({ className, number, Suit }) => {
-  const Component = cardContents[number - 1];
+  // Map the symbol to a number to fit in the array
+  const Component =
+    cardContents[number.toUpperCase ? symbolMapper[number] - 1 : number - 1];
+
   return (
     <Component className={c(className, 'px-4')} number={number} Suit={Suit} />
   );
