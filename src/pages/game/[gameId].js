@@ -5,6 +5,7 @@ import PlayingCard, { suits } from '@/components/PlayingCard';
 import Stack from '@/components/Stack';
 import Table from '@/components/Table';
 import Debugger from '@/components/Debugger';
+import NamePopup from '@/components/Popup/NamePopup';
 
 import { GameContext } from '@/providers/GameProvider';
 
@@ -17,10 +18,12 @@ const Game = () => {
     table,
     hand,
     startGame,
-    gameIsStarted,
+    gameInfo,
+    setPlayerInfo,
+    playerInfo,
   } = useContext(GameContext);
 
-  return (
+  return playerInfo?.name ? (
     <div className="flex flex-col w-full h-full items-center justify-center">
       <Debugger />
       <Table
@@ -58,7 +61,7 @@ const Game = () => {
           </button>
         ))}
       </Hand>
-      {gameIsStarted || (
+      {gameInfo.isStarted || (
         <div className="flex h-28 justify-center items-center">
           <button className="text-center" onClick={startGame}>
             Start game
@@ -66,6 +69,10 @@ const Game = () => {
         </div>
       )}
     </div>
+  ) : (
+    <NamePopup
+      onSubmitName={(name) => setPlayerInfo((prev) => ({ ...prev, name }))}
+    />
   );
 };
 

@@ -6,6 +6,7 @@ import React, {
   useContext,
 } from 'react';
 import { io } from 'socket.io-client';
+import { useRouter } from 'next/router';
 
 const mockId = 'abcedf';
 
@@ -27,16 +28,20 @@ const mockStackCards = [
 export const GameContext = React.createContext({});
 
 const GameContextProvider = ({ children }) => {
+  const [playerInfo, setPlayerInfo] = useState({});
+  const [gameInfo, setGameInfo] = useState({
+    isStarted: false,
+    otherPlayers: [],
+  });
   const [hand, setHand] = useState([]);
   const [table, setTable] = useState([[], [], []]);
   const [socket, setSocket] = useState();
-  const [gameIsStarted, setGameIsStarted] = useState(false);
 
   useEffect(() => {
-    if (!socket) {
+    if (!socket && playerInfo.name) {
       const socket = io('localhost:8000', {
         query: {
-          userName: 'Cedric',
+          userName: playerInfo.name,
           roomId: 123,
         },
       });
@@ -52,12 +57,12 @@ const GameContextProvider = ({ children }) => {
         const { hand, table } = JSON.parse(response);
         setHand(hand);
         setTable(table);
-        setGameIsStarted(true);
+        setGameInfo((prev) => ({ ...prev, isStarted: true }));
       });
     }
 
     return () => socket?.disconnect();
-  }, [socket]);
+  }, [socket, playerInfo.name]);
 
   const [playedCards, setPlayedCards] = useState([]);
 
@@ -80,8 +85,6 @@ const GameContextProvider = ({ children }) => {
   const canPlayFromTable = hand.length === 0;
 
   const canPlayHiddenFromTable = table.flat().length <= 3;
-
-  const [playerInfo, setPlayerInfo] = useState({ id: mockId });
 
   // info should be an object here
   const updatePlayerInfo = useCallback(
@@ -139,7 +142,8 @@ const GameContextProvider = ({ children }) => {
       otherPlayerCardsTable,
       setOtherPlayersStacks,
       startGame,
-      gameIsStarted,
+      gameInfo,
+      setPlayerInfo,
     }),
     [
       playerInfo,
@@ -152,8 +156,9 @@ const GameContextProvider = ({ children }) => {
       playCard,
       otherPlayerCardsTable,
       setOtherPlayersStacks,
-      gameIsStarted,
+      gameInfo,
       startGame,
+      setPlayerInfo,
     ],
   );
 

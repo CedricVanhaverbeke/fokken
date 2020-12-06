@@ -7,7 +7,7 @@ const includedParams = {
   canPlayHiddenFromTable: (data) => JSON.stringify(data),
   hand: (data) => JSON.stringify(data),
   table: (data) => JSON.stringify(data),
-  playerInfo: (data) => data.id,
+  playerInfo: (data) => data.name,
 };
 
 const Debugger = () => {
