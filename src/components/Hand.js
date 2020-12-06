@@ -3,8 +3,6 @@ import React from 'react';
 import c from '@/utils/c';
 
 const Hand = ({ children }) => {
-  // useCards ofzoiets met API
-
   return (
     <div
       style={{ maxHeight: '14rem' }}

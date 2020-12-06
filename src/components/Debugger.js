@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Fragment } from 'react';
 
 import { GameContext } from '@/providers/GameProvider';
 
@@ -7,6 +7,7 @@ const includedParams = {
   canPlayHiddenFromTable: (data) => JSON.stringify(data),
   hand: (data) => JSON.stringify(data),
   table: (data) => JSON.stringify(data),
+  playerInfo: (data) => data.id,
 };
 
 const Debugger = () => {
@@ -19,10 +20,10 @@ const Debugger = () => {
         {Object.entries(game)
           .filter(([key]) => includedParams[key])
           .map(([key, value]) => (
-            <>
+            <Fragment key={key}>
               <span>{key}</span>
               <span>{includedParams[key](value)}</span>
-            </>
+            </Fragment>
           ))}
       </div>
     </div>

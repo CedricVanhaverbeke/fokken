@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React from 'react';
 
 import c from '@/utils/c';
 
@@ -10,7 +10,7 @@ import c from '@/utils/c';
     needs to be present in the parent component 
     in the onClick function
 */
-const PlayerStack = ({ children, onClick, canPlay, ownStack }) => {
+const PlayerStack = ({ children, ownStack }) => {
   return (
     <div className="w-24 h-48">
       {React.Children.map(children, (child, i) => (

@@ -1,5 +1,13 @@
-import React, { useMemo, useState, useEffect } from 'react';
-import { useCallback } from 'react';
+import React, {
+  useMemo,
+  useEffect,
+  useState,
+  useCallback,
+  useContext,
+} from 'react';
+import { io } from 'socket.io-client';
+
+const mockId = 'abcedf';
 
 const mockStackCards = [
   [
@@ -16,39 +24,50 @@ const mockStackCards = [
   ],
 ];
 
-/* 
-    Holds the state of the app:
-    1. The player info : its uuid, name and possibly photo in the future
-    2. The game id, no reason to export it in the context
-    2. Whose turn it is in the game: also an additional isTurn variable
-    3. Keeps track of the cards in your hand and on the table
-       - Adds a variable canPlayFromTable
-    4. The action of placing a card
-*/
-
 export const GameContext = React.createContext({});
 
 const GameContextProvider = ({ children }) => {
+  const [hand, setHand] = useState([]);
+  const [table, setTable] = useState([[], [], []]);
+  const [socket, setSocket] = useState();
+  const [gameIsStarted, setGameIsStarted] = useState(false);
+
+  useEffect(() => {
+    if (!socket) {
+      const socket = io('localhost:8000', {
+        query: {
+          userName: 'Cedric',
+          roomId: 123,
+        },
+      });
+
+      setSocket(socket);
+
+      socket.on('NEW_PLAYER', (response) => {
+        console.log('new player arrived!');
+        console.log(response);
+      });
+
+      socket.on('DIVIDED_CARDS', (response) => {
+        const { hand, table } = JSON.parse(response);
+        setHand(hand);
+        setTable(table);
+        setGameIsStarted(true);
+      });
+    }
+
+    return () => socket?.disconnect();
+  }, [socket]);
+
   const [playedCards, setPlayedCards] = useState([]);
-  const [hand, setHand] = useState([
-    { number: 'K', suit: 0 },
-    { number: 'J', suit: 1 },
-    { number: 'Q', suit: 2 },
-    { number: 4, suit: 1 },
-    { number: 5, suit: 3 },
-    { number: 10, suit: 0 },
-  ]);
-  const [table, setTable] = useState(
-    JSON.parse(JSON.stringify(mockStackCards)),
-  );
 
   const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({
-    1: JSON.parse(JSON.stringify(mockStackCards)),
-    2: JSON.parse(JSON.stringify(mockStackCards)),
-    3: JSON.parse(JSON.stringify(mockStackCards)),
-    4: JSON.parse(JSON.stringify(mockStackCards)),
-    5: JSON.parse(JSON.stringify(mockStackCards)),
-    6: JSON.parse(JSON.stringify(mockStackCards)),
+    1: [[], [], []],
+    2: [[], [], []],
+    3: [[], [], []],
+    4: [[], [], []],
+    5: [[], [], []],
+    6: [[], [], []],
   });
 
   const setOtherPlayersStacks = useCallback(
@@ -62,7 +81,7 @@ const GameContextProvider = ({ children }) => {
 
   const canPlayHiddenFromTable = table.flat().length <= 3;
 
-  const [playerInfo, setPlayerInfo] = useState({});
+  const [playerInfo, setPlayerInfo] = useState({ id: mockId });
 
   // info should be an object here
   const updatePlayerInfo = useCallback(
@@ -103,6 +122,10 @@ const GameContextProvider = ({ children }) => {
     [canPlayFromTable, canPlayHiddenFromTable],
   );
 
+  const startGame = () => {
+    socket.emit('START_GAME');
+  };
+
   const context = useMemo(
     () => ({
       playerInfo,
@@ -115,6 +138,8 @@ const GameContextProvider = ({ children }) => {
       playCard,
       otherPlayerCardsTable,
       setOtherPlayersStacks,
+      startGame,
+      gameIsStarted,
     }),
     [
       playerInfo,
@@ -127,6 +152,8 @@ const GameContextProvider = ({ children }) => {
       playCard,
       otherPlayerCardsTable,
       setOtherPlayersStacks,
+      gameIsStarted,
+      startGame,
     ],
   );
 

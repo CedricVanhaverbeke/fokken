@@ -11,7 +11,14 @@ import { GameContext } from '@/providers/GameProvider';
 import c from '@/utils/c';
 
 const Game = () => {
-  const { playedCards, playCard, table, hand } = useContext(GameContext);
+  const {
+    playedCards,
+    playCard,
+    table,
+    hand,
+    startGame,
+    gameIsStarted,
+  } = useContext(GameContext);
 
   return (
     <div className="flex flex-col w-full h-full items-center justify-center">
@@ -51,6 +58,13 @@ const Game = () => {
           </button>
         ))}
       </Hand>
+      {gameIsStarted || (
+        <div className="flex h-28 justify-center items-center">
+          <button className="text-center" onClick={startGame}>
+            Start game
+          </button>
+        </div>
+      )}
     </div>
   );
 };
