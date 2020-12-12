@@ -4,18 +4,20 @@ import uuid from 'react-uuid';
 
 import Logo from '@/components/Logo';
 import Button from '@/components/Button';
+import Loader from '@/components/Loader';
 
 import c from '@/utils/c';
 
 const Home = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [isJoinGameClicked, setIsJoinGameClicked] = useState(false);
   const [gameId, setGameId] = useState();
 
   useEffect(() => {
     function enterPressed(event) {
       if (event.keyCode === 13) {
-        router.push(`/game/${gameId}`);
+        //router.push(`/game/${gameId}`);
       }
     }
 
@@ -32,12 +34,21 @@ const Home = () => {
     <div className="flex flex-col flex-grow items-center justify-center text-blue-900  scal">
       <Logo />
       <div className="flex flex-col text-black w-88">
-        <div className="flex mt-6 flex-grow">
+        <div
+          className={c(
+            isLoading && 'opacity-50 cursor-not-allowed',
+            'flex mt-6 flex-grow',
+          )}
+        >
           <Button
-            onClick={() => router.push(`/game/${uuid()}`)}
+            onClick={() => {
+              setIsLoading(true);
+              router.push(`/game/${uuid()}`);
+            }}
             className={c(
               'border-l border-t border-b border-black py-4 px-8 flex-grow select-none',
               isJoinGameClicked && 'cursor-not-allowed opacity-50',
+              isLoading && 'cursor-not-allowed',
             )}
           >
             Host game
@@ -46,6 +57,7 @@ const Home = () => {
             className={c(
               'border border-black py-4 px-8 flex-grow select-none',
               isJoinGameClicked && 'bg-blue-200',
+              isLoading && 'cursor-not-allowed',
             )}
             onClick={() => setIsJoinGameClicked((prev) => !prev)}
           >
@@ -53,7 +65,9 @@ const Home = () => {
           </Button>
         </div>
         {isJoinGameClicked && (
-          <div className="flex">
+          <div
+            className={c(isLoading && 'opacity-50 cursor-not-allowed', 'flex')}
+          >
             <input
               value={gameId}
               onChange={(e) => setGameId(e.target.value)}
@@ -61,12 +75,24 @@ const Home = () => {
               placeholder="game id"
             />
             <Button
-              onClick={() => router.push(`/game/${gameId}`)}
-              className="border-r w-20 border-b border-black text-center select-none"
+              onClick={() => {
+                setIsLoading(true);
+                router.push(`/game/${gameId}`);
+              }}
+              className={c(
+                isLoading && 'cursor-not-allowed',
+                'border-r w-20 border-b border-black text-center select-none',
+              )}
             >
               Go
             </Button>
           </div>
+        )}
+        {isLoading && (
+          <Loader
+            className="mt-2"
+            text={isJoinGameClicked ? 'Joining game' : 'Creating game'}
+          />
         )}
       </div>
     </div>
