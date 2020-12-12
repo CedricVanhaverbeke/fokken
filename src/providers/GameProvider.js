@@ -8,22 +8,7 @@ import React, {
 import { io } from 'socket.io-client';
 import { useRouter } from 'next/router';
 
-const mockId = 'abcedf';
-
-const mockStackCards = [
-  [
-    { number: 1, suit: 0 },
-    { number: 2, suit: 1 },
-  ],
-  [
-    { number: 1, suit: 0 },
-    { number: 2, suit: 1 },
-  ],
-  [
-    { number: 1, suit: 0 },
-    { number: 2, suit: 1 },
-  ],
-];
+import determineRelativeOrder from '@/utils/determineRelativeOrder';
 
 export const GameContext = React.createContext({});
 
@@ -36,6 +21,8 @@ const GameContextProvider = ({ children }) => {
   const [hand, setHand] = useState([]);
   const [table, setTable] = useState([[], [], []]);
   const [socket, setSocket] = useState();
+
+  const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({});
 
   useEffect(() => {
     if (!socket && playerInfo.name) {
@@ -54,10 +41,25 @@ const GameContextProvider = ({ children }) => {
       });
 
       socket.on('DIVIDED_CARDS', (response) => {
-        const { hand, table } = JSON.parse(response);
+        const { order, assignedId, ...dividedCards } = JSON.parse(response);
+        const { hand, table } = dividedCards[assignedId];
         setHand(hand);
         setTable(table);
+        setPlayerInfo((prev) => ({ ...prev, id: assignedId }));
         setGameInfo((prev) => ({ ...prev, isStarted: true }));
+        const relativeOrder = determineRelativeOrder(
+          order,
+          order.findIndex(({ id }) => id === assignedId),
+        );
+
+        setOtherPlayerCardsTable(
+          Object.fromEntries(
+            relativeOrder.map(({ id }, i) => [
+              i,
+              { ...dividedCards[id], ...relativeOrder[i] },
+            ]),
+          ),
+        );
       });
     }
 
@@ -65,15 +67,6 @@ const GameContextProvider = ({ children }) => {
   }, [socket, playerInfo.name]);
 
   const [playedCards, setPlayedCards] = useState([]);
-
-  const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({
-    1: [[], [], []],
-    2: [[], [], []],
-    3: [[], [], []],
-    4: [[], [], []],
-    5: [[], [], []],
-    6: [[], [], []],
-  });
 
   const setOtherPlayersStacks = useCallback(
     (newStack, id) => {
@@ -125,9 +118,9 @@ const GameContextProvider = ({ children }) => {
     [canPlayFromTable, canPlayHiddenFromTable],
   );
 
-  const startGame = () => {
+  const startGame = useCallback(() => {
     socket.emit('START_GAME');
-  };
+  }, [socket]);
 
   const context = useMemo(
     () => ({

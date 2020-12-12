@@ -25,7 +25,7 @@ const Game = () => {
 
   return playerInfo?.name ? (
     <div className="flex flex-col w-full h-full items-center justify-center">
-      <Debugger />
+      {/*<Debugger />*/}
       <Table
         className="flex w-full lg:w-4/5 flex-grow lg:m-4 p-2"
         playableTableCards={table}

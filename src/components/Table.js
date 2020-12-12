@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { FaHandMiddleFinger } from 'react-icons/fa';
 
 import PlayingStack from './PlayerStack';
 import PlayingCard, { suits } from './PlayingCard';
 import Seat from './Seat';
+import Logo from './Logo';
 
 import c from '@/utils/c';
 
@@ -15,9 +15,9 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
   return (
     <div className={className}>
       <div className="flex flex-col h-full justify-around">
-        <Seat className="border-t-8" tableIsRight={true} playerId="1" />
-        <Seat tableIsRight={true} playerId="2" />
-        <Seat className="border-b-8" tableIsRight={true} playerId="3" />
+        <Seat className="border-t-8" tableIsRight={true} playerIndex={1} />
+        <Seat tableIsRight={true} playerIndex={2} />
+        <Seat className="border-b-8" tableIsRight={true} playerIndex={3} />
       </div>
       <div
         style={{ background: '#35654d' }}
@@ -26,14 +26,7 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
         )}
       >
         {children}
-        <div className="absolute ml-auto mr-auto">
-          <div className="flex flex-col items-center justify-center opacity-50">
-            <div className="text-6xl mb-2">
-              <FaHandMiddleFinger />
-            </div>
-            <span>FOKWITHME.COM</span>
-          </div>
-        </div>
+        <Logo className="absolute ml-auto mr-auto opacity-50" />
         <div className={c('transform items-center flex scale-60 gap-x-2')}>
           {playableTableCards.map((cards, i) => (
             <PlayingStack
@@ -63,10 +56,10 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col h-full justify-around transform rotate-180">
-        <Seat className="border-b-8" tableIsRight={false} playerId="4" />
-        <Seat tableIsRight={false} playerId="5" />
-        <Seat className="border-t-8" tableIsRight={false} playerId="6" />
+      <div className="flex flex-col h-full justify-around">
+        <Seat className="border-t-8" tableIsRight={false} playerIndex={4} />
+        <Seat tableIsRight={false} playerIndex={5} />
+        <Seat className="border-b-8" tableIsRight={false} playerIndex={6} />
       </div>
     </div>
   );

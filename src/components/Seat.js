@@ -8,50 +8,52 @@ import { GameContext } from '@/providers/GameProvider';
 
 import c from '@/utils/c';
 
-const Seat = ({ className, tableIsRight, playerId }) => {
-  const [isTaken, setIsTaken] = useState(false);
-
+const Seat = ({ className, tableIsRight, playerIndex }) => {
   const { otherPlayerCardsTable } = useContext(GameContext);
-  const stacks = otherPlayerCardsTable[playerId];
+
+  const thisPlayer = otherPlayerCardsTable[playerIndex];
+
+  const stacks =
+    playerIndex < Object.keys(otherPlayerCardsTable).length
+      ? thisPlayer.table
+      : [[], [], []];
 
   return (
-    <div className="flex flex-grow gap-x-2">
-      <button
-        onClick={() => setIsTaken((prev) => !prev)}
+    <div
+      className={c(
+        'flex flex-grow gap-x-2',
+        !tableIsRight && 'flex-row-reverse',
+      )}
+    >
+      <div
         className={c(
           'self-center text-xs',
-          'bg-white border border-gray-600 rounded-full w-20 h-20 flex items-center justify-center',
-          isTaken || 'hover:bg-gray-700 relative',
-          tableIsRight || 'transform rotate-180',
+          'bg-white rounded-full w-20 h-20 flex items-center justify-center',
+          thisPlayer?.userName || (true && 'border border-gray-600'),
         )}
       >
-        {isTaken ? (
-          <div className="w-full h-full relative">
-            <FaUser className="w-full h-full p-6 text-gray-600" />
-            <span className="absolute -bottom-1 bg-gray-600 p-1 rounded-md">
-              Anouk
-            </span>
-          </div>
-        ) : (
-          'Click to sit'
-        )}
-      </button>
+        <div className="w-full h-full relative">
+          {thisPlayer?.userName ||
+            (true && (
+              <>
+                <FaUser className="w-full h-full p-6 text-gray-600" />
+                <span className="absolute -bottom-1 bg-gray-600 p-1 rounded-md">
+                  {thisPlayer?.userName}ANOUK
+                </span>
+              </>
+            ))}
+        </div>
+      </div>
+
       <div
         style={{ background: '#35654d' }}
         className={c(
           'border-gray-1000 flex items-center justify-center -translate-10',
-          tableIsRight ? 'border-l-8' : 'transform rotate-180 border-r-8',
+          tableIsRight ? 'border-l-8' : 'border-r-8',
           className,
         )}
       >
-        <div
-          className={c(
-            'transform items-center flex scale-60 gap-x-2',
-            tableIsRight
-              ? 'rotate-90 -translate-x-16'
-              : '-rotate-90 translate-x-16',
-          )}
-        >
+        <div className={c('transform items-center flex scale-60 gap-x-2')}>
           {stacks.map((cards, i) => (
             <PlayingStack key={`stack${i}`} canPlay={false} ownStack={false}>
               {cards.map((card, j) => (
