@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { FaUser } from 'react-icons/fa';
 
 import PlayingStack from './PlayerStack';
 import PlayingCard, { suits } from './PlayingCard';
 
-import { GameContext } from '@/providers/GameProvider';
-
 import c from '@/utils/c';
+
+import { GameContext } from '@/providers/GameProvider';
 
 // eslint-disable-next-line complexity
 const Seat = ({ className, tableIsRight, playerIndex }) => {

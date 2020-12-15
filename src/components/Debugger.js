@@ -1,4 +1,4 @@
-import React, { useContext, Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 
 import { GameContext } from '@/providers/GameProvider';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import c from '@/utils/c';
 
@@ -15,7 +15,9 @@ const Loader = ({ text, className }) => {
       });
     }, [500]);
 
-    () => clearTimeout(loaderTimer);
+    return () => {
+      clearTimeout(loaderTimer);
+    };
   });
 
   return (

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
+import Logo from './Logo';
 import PlayingStack from './PlayerStack';
 import PlayingCard, { suits } from './PlayingCard';
 import Seat from './Seat';
-import Logo from './Logo';
 
 import c from '@/utils/c';
 

@@ -1,17 +1,15 @@
-import React, { useState, useContext } from 'react';
-
-import Hand from '@/components/Hand';
-import PlayingCard, { suits } from '@/components/PlayingCard';
-import Stack from '@/components/Stack';
-import Table from '@/components/Table';
-import Debugger from '@/components/Debugger';
-import NamePopup from '@/components/Popup/NamePopup';
-import SideBar from '@/components/SideBar';
-import Lobby from '@/components/Lobby';
-
-import { GameContext } from '@/providers/GameProvider';
+import React, { useContext } from 'react';
 
 import c from '@/utils/c';
+
+import Hand from '@/components/Hand';
+import Lobby from '@/components/Lobby';
+import PlayingCard, { suits } from '@/components/PlayingCard';
+import NamePopup from '@/components/Popup/NamePopup';
+import SideBar from '@/components/SideBar';
+import Stack from '@/components/Stack';
+import Table from '@/components/Table';
+import { GameContext } from '@/providers/GameProvider';
 
 const Game = () => {
   const {
@@ -29,7 +27,6 @@ const Game = () => {
   return playerInfo?.name ? (
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full h-full items-center justify-center bg-bgDark">
-        {/*<Debugger />*/}
         <Table
           className="flex flex-grow w-full lg:w-3/5 lg:m-4 py-16"
           playableTableCards={table}

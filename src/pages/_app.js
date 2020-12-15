@@ -2,9 +2,9 @@ import { ReactQueryCacheProvider } from 'react-query';
 
 import queryCache from '@/utils/queryCache';
 
-import GameProvider from '@/providers/GameProvider';
-
 import '../theme/index.css';
+
+import GameProvider from '@/providers/GameProvider';
 import LanguageProvider from '@/providers/LanguageProvider';
 
 if (

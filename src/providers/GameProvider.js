@@ -1,12 +1,5 @@
-import React, {
-  useMemo,
-  useEffect,
-  useState,
-  useCallback,
-  useContext,
-} from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { io } from 'socket.io-client';
-import { useRouter } from 'next/router';
 
 import determineRelativeOrder from '@/utils/determineRelativeOrder';
 
@@ -103,12 +96,14 @@ const GameContextProvider = ({ children }) => {
       // Prevent playing a card from the table when you have cards in your hand
       if (!canPlayFromTable && !fromHand) {
         // TODO: notification or something
+        // eslint-disable-next-line no-console
         console.log(' Cannot play from table right now');
         return;
       }
 
       // Prevent playing a hidden card from the table when you have visible cards on the table
       if (!fromHand && isHidden && !canPlayHiddenFromTable) {
+        // eslint-disable-next-line no-console
         console.log(' Cannot play from hidden stack right now');
         return;
       }

@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useRouter } from 'next/router';
+import React, { useContext, useEffect, useState } from 'react';
 import uuid from 'react-uuid';
-
-import Logo from '@/components/Logo';
-import Button from '@/components/Button';
-import Loader from '@/components/Loader';
+import { useRouter } from 'next/router';
 
 import c from '@/utils/c';
 
+import Button from '@/components/Button';
+import Loader from '@/components/Loader';
+import Logo from '@/components/Logo';
 import { GameContext } from '@/providers/GameProvider';
 
 const Home = () => {
