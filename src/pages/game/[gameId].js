@@ -6,6 +6,8 @@ import Stack from '@/components/Stack';
 import Table from '@/components/Table';
 import Debugger from '@/components/Debugger';
 import NamePopup from '@/components/Popup/NamePopup';
+import SideBar from '@/components/SideBar';
+import Lobby from '@/components/Lobby';
 
 import { GameContext } from '@/providers/GameProvider';
 
@@ -21,52 +23,62 @@ const Game = () => {
     gameInfo,
     setPlayerInfo,
     playerInfo,
+    isHosting,
   } = useContext(GameContext);
 
   return playerInfo?.name ? (
-    <div className="flex flex-col w-full h-full items-center justify-center">
-      {/*<Debugger />*/}
-      <Table
-        className="flex w-full lg:w-4/5 flex-grow lg:m-4 p-2"
-        playableTableCards={table}
-        playCard={playCard}
-      >
-        <Stack className="w-88 flex-grow transform translate-y-16">
-          {playedCards.map(({ number, suit }) => (
-            <PlayingCard
-              className="w-24 h-40"
-              key={`${number}${suit}`}
-              number={number}
-              suit={Object.values(suits)[suit]}
-            />
+    <div className="flex w-full h-full">
+      <div className="flex flex-col w-full h-full items-center justify-center bg-bgDark">
+        {/*<Debugger />*/}
+        <Table
+          className="flex flex-grow w-full lg:w-3/5 lg:m-4 py-16"
+          playableTableCards={table}
+          playCard={playCard}
+        >
+          <Stack className="w-88 flex-grow">
+            {playedCards.map(({ number, suit }) => (
+              <PlayingCard
+                className={c(
+                  'w-24 h-40',
+                  'transform scale-50 sm:scale-60 lg:scale-75',
+                )}
+                key={`${number}${suit}`}
+                number={number}
+                suit={Object.values(suits)[suit]}
+              />
+            ))}
+          </Stack>
+        </Table>
+        <Hand>
+          {hand.map(({ number, suit }, i) => (
+            <button
+              key={`hand${number}${suit}`}
+              onClick={() => playCard(true, number, suit, { handIndex: i })}
+            >
+              <PlayingCard
+                className={c(
+                  'w-20 h-32',
+                  'transform scale-75 md:scale-90 shadow-lg',
+                  'transition-all lg:transform hover:-translate-y-1',
+                  i === 0 || '-ml-12 md:-ml-8 lg:-ml-4',
+                )}
+                key={`${number}${suit}`}
+                number={number}
+                suit={Object.values(suits)[suit]}
+              />
+            </button>
           ))}
-        </Stack>
-      </Table>
-      <Hand>
-        {hand.map(({ number, suit }, i) => (
-          <button
-            key={`hand${number}${suit}`}
-            onClick={() => playCard(true, number, suit, { handIndex: i })}
-          >
-            <PlayingCard
-              className={c(
-                'w-24 h-40',
-                'transition-all lg:transform hover:-translate-y-1',
-                i === 0 || 'lg:-ml-4',
-              )}
-              key={`${number}${suit}`}
-              number={number}
-              suit={Object.values(suits)[suit]}
-            />
-          </button>
-        ))}
-      </Hand>
+        </Hand>
+      </div>
       {gameInfo.isStarted || (
-        <div className="flex h-28 justify-center items-center">
-          <button className="text-center" onClick={startGame}>
-            Start game
-          </button>
-        </div>
+        <SideBar>
+          <Lobby
+            isHosting={isHosting}
+            players={gameInfo.otherPlayers}
+            ownName={playerInfo.name}
+            startGame={startGame}
+          />
+        </SideBar>
       )}
     </div>
   ) : (

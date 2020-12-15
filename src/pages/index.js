@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import uuid from 'react-uuid';
 
@@ -8,11 +8,15 @@ import Loader from '@/components/Loader';
 
 import c from '@/utils/c';
 
+import { GameContext } from '@/providers/GameProvider';
+
 const Home = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isJoinGameClicked, setIsJoinGameClicked] = useState(false);
   const [gameId, setGameId] = useState();
+
+  const { setIsHosting } = useContext(GameContext);
 
   useEffect(() => {
     function enterPressed(event) {
@@ -42,6 +46,7 @@ const Home = () => {
         >
           <Button
             onClick={() => {
+              setIsHosting(true);
               setIsLoading(true);
               router.push(`/game/${uuid()}`);
             }}

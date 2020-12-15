@@ -4,15 +4,16 @@ import c from '@/utils/c';
 
 const Hand = ({ children }) => {
   return (
-    <div
-      style={{ maxHeight: '14rem' }}
-      className={c(
-        'flex h-56 overflow-auto flex-wrap py-1 border border-t',
-        'border-gray-500 w-full justify-center gap-1 lg:gap-x-0',
-        React.Children.toArray(children).length === 0 && 'hidden',
-      )}
-    >
-      {children}
+    <div className="flex flex-col w-full bg-bgDark items-center justify-center text-gray-500">
+      <div
+        className={c(
+          'flex flex-wrap flex-grow mb-2',
+          'w-full justify-center gap-1 lg:gap-x-0',
+          React.Children.toArray(children).length === 0 && 'hidden',
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 };

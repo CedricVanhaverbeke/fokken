@@ -14,53 +14,74 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
 
   return (
     <div className={className}>
-      <div className="flex flex-col h-full justify-around">
-        <Seat className="border-t-8" tableIsRight={true} playerIndex={1} />
-        <Seat tableIsRight={true} playerIndex={2} />
-        <Seat className="border-b-8" tableIsRight={true} playerIndex={3} />
-      </div>
+      {
+        <div className="flex flex-col h-full justify-around">
+          <Seat
+            className="border-t-4 rounded-tl-full"
+            tableIsRight={true}
+            playerIndex={2}
+          />
+          <Seat
+            className="border-b-4 rounded-bl-full"
+            tableIsRight={true}
+            playerIndex={1}
+          />
+        </div>
+      }
       <div
-        style={{ background: '#35654d' }}
         className={c(
-          'flex flex-col flex-grow items-center justify-center border-b-8 border-t-8 border-gray-1000',
+          'flex flex-col flex-grow items-center justify-center bg-table',
+          'border-b-4 border-t-4 border-red-500',
         )}
       >
         {children}
-        <Logo className="absolute ml-auto mr-auto opacity-50" />
-        <div className={c('transform items-center flex scale-60 gap-x-2')}>
-          {playableTableCards.map((cards, i) => (
-            <PlayingStack
-              key={`stack${i}`}
-              canPlay={game.canPlayFromTable}
-              ownStack={true}
-            >
-              {cards.map((card, j) => (
-                <button
-                  key={`${card.number}${card.suit}`}
-                  onClick={() =>
-                    playCard(false, card.number, card.suit, {
-                      stackIndex: i,
-                      isHidden: j === cards.length - 1,
-                    })
-                  }
-                >
-                  <PlayingCard
-                    className="w-24 h-40 transform"
-                    number={card.number}
-                    suit={Object.values(suits)[card.suit]}
-                    isHidden={j === cards.length - 1}
-                  />
-                </button>
-              ))}
-            </PlayingStack>
-          ))}
+        {<Logo className="absolute ml-auto mr-auto opacity-50" />}
+        {
+          <div className={c('items-center flex gap-x-2')}>
+            {playableTableCards.map((cards, i) => (
+              <PlayingStack
+                key={`stack${i}`}
+                canPlay={game.canPlayFromTable}
+                ownStack={true}
+              >
+                {cards.map((card, j) => (
+                  <button
+                    key={`${card.number}${card.suit}`}
+                    onClick={() =>
+                      playCard(false, card.number, card.suit, {
+                        stackIndex: i,
+                        isHidden: j === cards.length - 1,
+                      })
+                    }
+                  >
+                    <PlayingCard
+                      className="w-12 h-20"
+                      number={card.number}
+                      showSuits={false}
+                      suit={Object.values(suits)[card.suit]}
+                      isHidden={j === cards.length - 1}
+                    />
+                  </button>
+                ))}
+              </PlayingStack>
+            ))}
+          </div>
+        }
+      </div>
+      {
+        <div className="flex flex-col h-full justify-around">
+          <Seat
+            className="border-t-4 rounded-tr-full"
+            tableIsRight={false}
+            playerIndex={3}
+          />
+          <Seat
+            className="border-b-4 rounded-br-full"
+            tableIsRight={false}
+            playerIndex={4}
+          />
         </div>
-      </div>
-      <div className="flex flex-col h-full justify-around">
-        <Seat className="border-t-8" tableIsRight={false} playerIndex={4} />
-        <Seat tableIsRight={false} playerIndex={5} />
-        <Seat className="border-b-8" tableIsRight={false} playerIndex={6} />
-      </div>
+      }
     </div>
   );
 };

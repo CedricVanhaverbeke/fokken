@@ -8,6 +8,7 @@ import { GameContext } from '@/providers/GameProvider';
 
 import c from '@/utils/c';
 
+// eslint-disable-next-line complexity
 const Seat = ({ className, tableIsRight, playerIndex }) => {
   const { otherPlayerCardsTable } = useContext(GameContext);
 
@@ -27,39 +28,49 @@ const Seat = ({ className, tableIsRight, playerIndex }) => {
     >
       <div
         className={c(
-          'self-center text-xs',
-          'bg-white rounded-full w-20 h-20 flex items-center justify-center',
-          thisPlayer?.userName || (true && 'border border-gray-600'),
+          thisPlayer?.userName || 'invisible',
+          'text-xs bg-bg rounded-full w-16 h-16 flex items-center justify-center',
+          (playerIndex === 1 || playerIndex === 4) && 'self-end',
+          (playerIndex === 2 || playerIndex === 3) && 'self-start',
+          thisPlayer?.userName && 'border border-gray-600',
         )}
       >
         <div className="w-full h-full relative">
-          {thisPlayer?.userName ||
-            (true && (
-              <>
-                <FaUser className="w-full h-full p-6 text-gray-600" />
-                <span className="absolute -bottom-1 bg-gray-600 p-1 rounded-md">
-                  {thisPlayer?.userName}ANOUK
-                </span>
-              </>
-            ))}
+          <FaUser className="w-full h-full p-6 text-blue-700" />
+          <span className="absolute -bottom-1 bg-gray-600 p-1 rounded-md">
+            {thisPlayer?.userName}
+          </span>
         </div>
       </div>
 
       <div
-        style={{ background: '#35654d' }}
         className={c(
-          'border-gray-1000 flex items-center justify-center -translate-10',
-          tableIsRight ? 'border-l-8' : 'border-r-8',
+          'border-red-500 flex items-center justify-center bg-table',
+          tableIsRight ? 'border-l-4' : 'border-r-4',
           className,
         )}
       >
-        <div className={c('transform items-center flex scale-60 gap-x-2')}>
+        <div
+          className={c(
+            'items-center flex',
+            playerIndex === 1 && 'pl-4 transform rotate-45',
+            playerIndex === 2 && 'pl-4 transform -rotate-45',
+            playerIndex === 3 && 'pr-4 transform rotate-45',
+            playerIndex === 4 && 'pr-4 transform -rotate-45',
+          )}
+        >
           {stacks.map((cards, i) => (
-            <PlayingStack key={`stack${i}`} canPlay={false} ownStack={false}>
+            <PlayingStack
+              className="w-12 h-20"
+              key={`stack${i}`}
+              canPlay={false}
+              ownStack={false}
+            >
               {cards.map((card, j) => (
                 <div key={`${card.number}${card.suit}`}>
                   <PlayingCard
-                    className="w-24 h-40 transform"
+                    className="w-12 h-20"
+                    showSuits={false}
                     number={card.number}
                     suit={Object.values(suits)[card.suit]}
                     isHidden={j === cards.length - 1}

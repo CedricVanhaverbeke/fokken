@@ -7,7 +7,7 @@ const Logo = ({ className, iconClassName, textClassName }) => (
       <div className="text-6xl mb-2">
         <FaHandMiddleFinger className={iconClassName} />
       </div>
-      <span textClassName={textClassName}>FOKWITHME.COM</span>
+      <span className={textClassName}>FOKWITHME.COM</span>
     </div>
   </div>
 );

@@ -13,7 +13,7 @@ export const suits = {
   spades: [GiSpades, 'text-black'],
 };
 
-const PlayingCard = ({ className, number, suit, isHidden }) => {
+const PlayingCard = ({ className, number, suit, isHidden, showSuits }) => {
   const [Suit, textColor] = suit;
 
   if (isHidden) {
@@ -36,7 +36,7 @@ const PlayingCard = ({ className, number, suit, isHidden }) => {
     <div
       className={c(
         className,
-        'border border-black rounded-lg bg-white',
+        'border border-gray-300 rounded-lg bg-white',
         textColor,
       )}
     >
@@ -45,14 +45,19 @@ const PlayingCard = ({ className, number, suit, isHidden }) => {
           number={number}
           Suit={Suit}
           className="absolute left-0 top-0 p-1"
+          showSuits={showSuits}
         />
         <CardContent
-          className={number === 1 ? 'text-4xl' : 'text-sm'}
+          className={
+            showSuits ? (number === 1 ? 'text-4xl' : 'text-sm') : 'text-sm'
+          }
           number={number}
           Suit={Suit}
+          showSuits={showSuits}
         />
         <CardHeader
           number={number}
+          showSuits={showSuits}
           Suit={Suit}
           className="absolute right-0 bottom-0 p-1"
           isFacingUp={false}
@@ -60,6 +65,10 @@ const PlayingCard = ({ className, number, suit, isHidden }) => {
       </div>
     </div>
   );
+};
+
+PlayingCard.defaultProps = {
+  showSuits: true,
 };
 
 export default PlayingCard;

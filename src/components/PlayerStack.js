@@ -10,9 +10,9 @@ import c from '@/utils/c';
     needs to be present in the parent component 
     in the onClick function
 */
-const PlayerStack = ({ children, ownStack }) => {
+const PlayerStack = ({ className, children, ownStack }) => {
   return (
-    <div className="w-24 h-48">
+    <div className={className}>
       {React.Children.map(children, (child, i) => (
         <div className="relative">
           {React.cloneElement(child, {

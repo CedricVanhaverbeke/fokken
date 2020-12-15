@@ -74,6 +74,25 @@ const SymbolCard = ({ className, number }) => (
   </div>
 );
 
+const NoSuitContent = ({ number, className }) => (
+  <div
+    className={c(
+      className,
+      'h-full w-full flex flex-col items-center',
+      'justify-center text-sm',
+    )}
+  >
+    <span
+      className={c(
+        'text-xl font-semibold',
+        (number === 6 || number === 9) && 'underline',
+      )}
+    >
+      {number}
+    </span>
+  </div>
+);
+
 const cardContents = [
   ...Array(3).fill(OneToThreeCard),
   ...Array(3).fill(FourToSixCard),
@@ -81,10 +100,16 @@ const cardContents = [
   ...Array(3).fill(SymbolCard),
 ];
 
-const CardContent = ({ className, number, Suit }) => {
+const CardContent = ({ className, number, Suit, showSuits }) => {
   // Map the symbol to a number to fit in the array
-  const Component =
-    cardContents[number.toUpperCase ? symbolMapper[number] - 1 : number - 1];
+
+  let Component;
+  if (showSuits) {
+    Component =
+      cardContents[number.toUpperCase ? symbolMapper[number] - 1 : number - 1];
+  } else {
+    Component = NoSuitContent;
+  }
 
   return (
     <Component className={c(className, 'px-4')} number={number} Suit={Suit} />

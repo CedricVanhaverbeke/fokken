@@ -13,11 +13,13 @@ import determineRelativeOrder from '@/utils/determineRelativeOrder';
 export const GameContext = React.createContext({});
 
 const GameContextProvider = ({ children }) => {
+  const [isHosting, setIsHosting] = useState(false);
   const [playerInfo, setPlayerInfo] = useState({});
   const [gameInfo, setGameInfo] = useState({
     isStarted: false,
     otherPlayers: [],
   });
+
   const [hand, setHand] = useState([]);
   const [table, setTable] = useState([[], [], []]);
   const [socket, setSocket] = useState();
@@ -36,8 +38,18 @@ const GameContextProvider = ({ children }) => {
       setSocket(socket);
 
       socket.on('NEW_PLAYER', (response) => {
-        console.log('new player arrived!');
-        console.log(response);
+        const responseObject = JSON.parse(response);
+        const newUsers = Array.isArray(responseObject)
+          ? responseObject
+          : [responseObject];
+
+        setGameInfo((prev) => ({
+          ...prev,
+          otherPlayers: [
+            ...prev.otherPlayers,
+            ...newUsers.map((user) => user.userName),
+          ],
+        }));
       });
 
       socket.on('DIVIDED_CARDS', (response) => {
@@ -137,6 +149,8 @@ const GameContextProvider = ({ children }) => {
       startGame,
       gameInfo,
       setPlayerInfo,
+      isHosting,
+      setIsHosting,
     }),
     [
       playerInfo,
@@ -152,6 +166,8 @@ const GameContextProvider = ({ children }) => {
       gameInfo,
       startGame,
       setPlayerInfo,
+      isHosting,
+      setIsHosting,
     ],
   );
 
