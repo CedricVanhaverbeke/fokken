@@ -67,12 +67,12 @@ const Seat = ({ className, tableIsRight, playerIndex }) => {
               ownStack={false}
             >
               {cards.map((card, j) => (
-                <div key={`${card.number}${card.suit}`}>
+                <div key={`${card?.number}${card?.suit}`}>
                   <PlayingCard
                     className="w-12 h-20"
                     showSuits={false}
-                    number={card.number}
-                    suit={Object.values(suits)[card.suit]}
+                    number={card?.number || 0}
+                    suit={Object.values(suits)[card?.suit || 0]}
                     isHidden={j === cards.length - 1}
                   />
                 </div>

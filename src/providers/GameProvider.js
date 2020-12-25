@@ -126,6 +126,7 @@ const GameContextProvider = ({ children }) => {
   );
 
   const startGame = useCallback(() => {
+    console.log('test');
     socket.emit('START_GAME');
   }, [socket]);
 

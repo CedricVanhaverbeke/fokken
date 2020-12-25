@@ -19,7 +19,8 @@ const Lobby = ({ players, ownName, startGame, isHosting }) => {
           <button
             className="border-red-500 border-2 rounded-lg  py-2 px-6"
             onClick={startGame}
-            disabled={players.length > 1}
+            // TODO: undo this disabled button
+            //disabled={players.length < 2}
           >
             Start
           </button>
