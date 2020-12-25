@@ -2,9 +2,14 @@ import React from 'react';
 
 import c from '@/utils/c';
 
-const Hand = ({ children, isTurn }) => {
+const Hand = ({ className, children, isTurn }) => {
   return (
-    <div className="flex flex-col w-full bg-bgDark items-center justify-center text-gray-500">
+    <div
+      className={c(
+        className,
+        'flex flex-col w-full bg-bgDark items-center justify-center text-gray-500',
+      )}
+    >
       {isTurn && <span className="mb-2 text-red-500">Your turn</span>}
       <div
         className={c(

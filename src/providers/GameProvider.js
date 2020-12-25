@@ -11,6 +11,7 @@ const GameContextProvider = ({ children }) => {
     isStarted: false,
     otherPlayers: [],
     turn: undefined,
+    drawPileAmount: 0,
   });
 
   const [hand, setHand] = useState([]);

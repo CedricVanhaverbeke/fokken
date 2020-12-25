@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import c from '@/utils/c';
 
+import DrawPile from '@/components/DrawPile';
 import Hand from '@/components/Hand';
 import Lobby from '@/components/Lobby';
 import PlayingCard, { suits } from '@/components/PlayingCard';
@@ -48,26 +49,32 @@ const Game = () => {
           </Stack>
         </Table>
         {gameInfo.isStarted && (
-          <Hand isTurn={isTurn}>
-            {hand.map(({ number, suit }, i) => (
-              <button
-                key={`hand${number}${suit}`}
-                onClick={() => playCard(true, number, suit, { handIndex: i })}
-              >
-                <PlayingCard
-                  className={c(
-                    'w-20 h-32',
-                    'transform scale-75 md:scale-90 shadow-lg',
-                    'transition-all lg:transform hover:-translate-y-1',
-                    i === 0 || '-ml-12 md:-ml-8 lg:-ml-4',
-                  )}
-                  key={`${number}${suit}`}
-                  number={number}
-                  suit={Object.values(suits)[suit]}
-                />
-              </button>
-            ))}
-          </Hand>
+          <div className="flex jusitfy-between w-full">
+            <Hand className="ml-20" isTurn={isTurn}>
+              {hand.map(({ number, suit }, i) => (
+                <button
+                  key={`hand${number}${suit}`}
+                  onClick={() => playCard(true, number, suit, { handIndex: i })}
+                >
+                  <PlayingCard
+                    className={c(
+                      'w-20 h-32',
+                      'transform scale-75 md:scale-90 shadow-lg',
+                      'transition-all lg:transform hover:-translate-y-1',
+                      i === 0 || '-ml-12 md:-ml-8 lg:-ml-4',
+                    )}
+                    key={`${number}${suit}`}
+                    number={number}
+                    suit={Object.values(suits)[suit]}
+                  />
+                </button>
+              ))}
+            </Hand>
+            <DrawPile
+              drawPileAmount={gameInfo.drawPileAmount}
+              className="self-end mr-2"
+            />
+          </div>
         )}
       </div>
       {gameInfo.isStarted || (

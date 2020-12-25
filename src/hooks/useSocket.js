@@ -47,11 +47,17 @@ const useSocket = ({
           drawPileAmount,
           ...dividedCards
         } = JSON.parse(response);
+
         const { hand, table } = dividedCards[assignedId];
         setHand(hand);
         setTable(table);
         setPlayerInfo((prev) => ({ ...prev, id: assignedId }));
-        setGameInfo((prev) => ({ ...prev, isStarted: true, turn: turn }));
+        setGameInfo((prev) => ({
+          ...prev,
+          isStarted: true,
+          turn,
+          drawPileAmount,
+        }));
         const relativeOrder = determineRelativeOrder(
           order,
           order.findIndex(({ id }) => id === assignedId),

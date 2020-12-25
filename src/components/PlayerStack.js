@@ -10,8 +10,8 @@ import c from '@/utils/c';
     needs to be present in the parent component 
     in the onClick function
 */
-const PlayerStack = ({ className, children, ownStack }) => {
-  const childrenCount = React.Children.count(children);
+const PlayerStack = ({ className, children, ownStack, verbose }) => {
+  const childrenCount = React.Children.toArray(children).length;
 
   return (
     <div className={className}>
