@@ -10,12 +10,12 @@ import { GameContext } from '@/providers/GameProvider';
 
 // eslint-disable-next-line complexity
 const Seat = ({ className, tableIsRight, playerIndex }) => {
-  const { otherPlayerCardsTable } = useContext(GameContext);
+  const { otherPlayerCards } = useContext(GameContext);
 
-  const thisPlayer = otherPlayerCardsTable[playerIndex];
+  const thisPlayer = otherPlayerCards[playerIndex];
 
   const stacks =
-    playerIndex < Object.keys(otherPlayerCardsTable).length
+    playerIndex < Object.keys(otherPlayerCards).length
       ? thisPlayer.table
       : [[], [], []];
 
@@ -30,8 +30,8 @@ const Seat = ({ className, tableIsRight, playerIndex }) => {
         className={c(
           thisPlayer?.userName || 'invisible',
           'text-xs bg-bg rounded-full w-16 h-16 flex items-center justify-center',
-          (playerIndex === 1 || playerIndex === 4) && 'self-end',
-          (playerIndex === 2 || playerIndex === 3) && 'self-start',
+          (playerIndex === 0 || playerIndex === 3) && 'self-end',
+          (playerIndex === 1 || playerIndex === 2) && 'self-start',
           thisPlayer?.userName && 'border border-gray-600',
         )}
       >
@@ -53,10 +53,10 @@ const Seat = ({ className, tableIsRight, playerIndex }) => {
         <div
           className={c(
             'items-center flex',
-            playerIndex === 1 && 'pl-4 transform rotate-45',
-            playerIndex === 2 && 'pl-4 transform -rotate-45',
-            playerIndex === 3 && 'pr-4 transform rotate-45',
-            playerIndex === 4 && 'pr-4 transform -rotate-45',
+            playerIndex === 0 && 'pl-4 transform rotate-45',
+            playerIndex === 1 && 'pl-4 transform -rotate-45',
+            playerIndex === 2 && 'pr-4 transform rotate-45',
+            playerIndex === 3 && 'pr-4 transform -rotate-45',
           )}
         >
           {stacks.map((cards, i) => (

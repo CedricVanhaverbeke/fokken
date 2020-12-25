@@ -9,7 +9,8 @@ const useSocket = ({
   setHand,
   setTable,
   setPlayerInfo,
-  setOtherPlayerCardsTable,
+  setOtherPlayerCards,
+  setPlayedCards,
 }) => {
   const [socket, setSocket] = useState();
 
@@ -63,12 +64,44 @@ const useSocket = ({
           order.findIndex(({ id }) => id === assignedId),
         );
 
-        setOtherPlayerCardsTable(
+        // You are always the first person in the relative order
+        const [_me, ...playerOrder] = relativeOrder;
+
+        setOtherPlayerCards(
           Object.fromEntries(
-            relativeOrder.map(({ id }, i) => [
+            playerOrder.map(({ id }, i) => [
               i,
-              { ...dividedCards[id], ...relativeOrder[i] },
+              { ...dividedCards[id], ...playerOrder[i] },
             ]),
+          ),
+        );
+      });
+
+      socket.on('CARD_PLAYED', (response) => {
+        const { number, suit, turn, drawPileAmount, ...newCards } = JSON.parse(
+          response,
+        );
+
+        const { [socket.id]: ownCards, ...otherNewCards } = newCards;
+
+        setPlayedCards((prev) => [...prev, { number, suit }]);
+        setGameInfo((prev) => ({ ...prev, turn, drawPileAmount }));
+        setHand(ownCards.hand);
+        setTable(ownCards.table);
+
+        // set other player cards
+        setOtherPlayerCards((prev) =>
+          Object.fromEntries(
+            Object.entries(prev).map(([index, player]) => {
+              return [
+                index,
+                {
+                  ...player,
+                  hand: otherNewCards[player.id].hand,
+                  table: otherNewCards[player.id].table,
+                },
+              ];
+            }),
           ),
         );
       });
@@ -82,7 +115,8 @@ const useSocket = ({
     setHand,
     setTable,
     setPlayerInfo,
-    setOtherPlayerCardsTable,
+    setOtherPlayerCards,
+    setPlayedCards,
   ]);
 
   return socket;

@@ -19,12 +19,12 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
           <Seat
             className="border-t-4 rounded-tl-full"
             tableIsRight={true}
-            playerIndex={2}
+            playerIndex={1}
           />
           <Seat
             className="border-b-4 rounded-bl-full"
             tableIsRight={true}
-            playerIndex={1}
+            playerIndex={0}
           />
         </div>
       }
@@ -73,12 +73,12 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
           <Seat
             className="border-t-4 rounded-tr-full"
             tableIsRight={false}
-            playerIndex={3}
+            playerIndex={2}
           />
           <Seat
             className="border-b-4 rounded-br-full"
             tableIsRight={false}
-            playerIndex={4}
+            playerIndex={3}
           />
         </div>
       }

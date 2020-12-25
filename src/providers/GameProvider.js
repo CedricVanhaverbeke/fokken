@@ -17,7 +17,7 @@ const GameContextProvider = ({ children }) => {
   const [hand, setHand] = useState([]);
   const [table, setTable] = useState([[], [], []]);
 
-  const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({});
+  const [otherPlayerCards, setOtherPlayerCards] = useState({});
 
   const isTurn = gameInfo.isStarted && playerInfo.id === gameInfo.turn;
 
@@ -25,9 +25,9 @@ const GameContextProvider = ({ children }) => {
 
   const setOtherPlayersStacks = useCallback(
     (newStack, id) => {
-      setOtherPlayerCardsTable((prev) => ({ ...prev, [id]: newStack }));
+      setOtherPlayerCards((prev) => ({ ...prev, [id]: newStack }));
     },
-    [setOtherPlayerCardsTable],
+    [setOtherPlayerCards],
   );
 
   const socket = useSocket({
@@ -36,7 +36,8 @@ const GameContextProvider = ({ children }) => {
     setHand,
     setTable,
     setPlayerInfo,
-    setOtherPlayerCardsTable,
+    setOtherPlayerCards,
+    setPlayedCards,
   });
 
   const canPlayFromTable = hand.length === 0;
@@ -72,21 +73,9 @@ const GameContextProvider = ({ children }) => {
         return;
       }
 
-      if (fromHand) {
-        setHand((prevHand) => {
-          prevHand.splice(handIndex, 1);
-          return prevHand;
-        });
-      } else {
-        setTable((prevTable) => {
-          prevTable[stackIndex].shift();
-          return prevTable;
-        });
-      }
-
-      setPlayedCards((prev) => [...prev, { number, suit }]);
+      socket.emit('PLAY_CARD', JSON.stringify({ number, suit }));
     },
-    [canPlayFromTable, canPlayHiddenFromTable, isTurn],
+    [canPlayFromTable, canPlayHiddenFromTable, isTurn, socket],
   );
 
   const startGame = useCallback(() => {
@@ -103,7 +92,7 @@ const GameContextProvider = ({ children }) => {
       canPlayFromTable,
       canPlayHiddenFromTable,
       playCard,
-      otherPlayerCardsTable,
+      otherPlayerCards,
       setOtherPlayersStacks,
       startGame,
       gameInfo,
@@ -121,7 +110,7 @@ const GameContextProvider = ({ children }) => {
       canPlayFromTable,
       canPlayHiddenFromTable,
       playCard,
-      otherPlayerCardsTable,
+      otherPlayerCards,
       setOtherPlayersStacks,
       gameInfo,
       startGame,
