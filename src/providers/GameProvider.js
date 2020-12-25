@@ -11,6 +11,7 @@ const GameContextProvider = ({ children }) => {
   const [gameInfo, setGameInfo] = useState({
     isStarted: false,
     otherPlayers: [],
+    turn: undefined,
   });
 
   const [hand, setHand] = useState([]);
@@ -46,12 +47,18 @@ const GameContextProvider = ({ children }) => {
       });
 
       socket.on('DIVIDED_CARDS', (response) => {
-        const { order, assignedId, ...dividedCards } = JSON.parse(response);
+        const {
+          order,
+          assignedId,
+          turn,
+          drawPileAmount,
+          ...dividedCards
+        } = JSON.parse(response);
         const { hand, table } = dividedCards[assignedId];
         setHand(hand);
         setTable(table);
         setPlayerInfo((prev) => ({ ...prev, id: assignedId }));
-        setGameInfo((prev) => ({ ...prev, isStarted: true }));
+        setGameInfo((prev) => ({ ...prev, isStarted: true, turn: turn }));
         const relativeOrder = determineRelativeOrder(
           order,
           order.findIndex(({ id }) => id === assignedId),
@@ -126,7 +133,6 @@ const GameContextProvider = ({ children }) => {
   );
 
   const startGame = useCallback(() => {
-    console.log('test');
     socket.emit('START_GAME');
   }, [socket]);
 

@@ -46,26 +46,28 @@ const Game = () => {
             ))}
           </Stack>
         </Table>
-        <Hand>
-          {hand.map(({ number, suit }, i) => (
-            <button
-              key={`hand${number}${suit}`}
-              onClick={() => playCard(true, number, suit, { handIndex: i })}
-            >
-              <PlayingCard
-                className={c(
-                  'w-20 h-32',
-                  'transform scale-75 md:scale-90 shadow-lg',
-                  'transition-all lg:transform hover:-translate-y-1',
-                  i === 0 || '-ml-12 md:-ml-8 lg:-ml-4',
-                )}
-                key={`${number}${suit}`}
-                number={number}
-                suit={Object.values(suits)[suit]}
-              />
-            </button>
-          ))}
-        </Hand>
+        {gameInfo.isStarted && (
+          <Hand isTurn={gameInfo.turn === playerInfo.id}>
+            {hand.map(({ number, suit }, i) => (
+              <button
+                key={`hand${number}${suit}`}
+                onClick={() => playCard(true, number, suit, { handIndex: i })}
+              >
+                <PlayingCard
+                  className={c(
+                    'w-20 h-32',
+                    'transform scale-75 md:scale-90 shadow-lg',
+                    'transition-all lg:transform hover:-translate-y-1',
+                    i === 0 || '-ml-12 md:-ml-8 lg:-ml-4',
+                  )}
+                  key={`${number}${suit}`}
+                  number={number}
+                  suit={Object.values(suits)[suit]}
+                />
+              </button>
+            ))}
+          </Hand>
+        )}
       </div>
       {gameInfo.isStarted || (
         <SideBar>

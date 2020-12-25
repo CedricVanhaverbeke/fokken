@@ -11,6 +11,8 @@ import c from '@/utils/c';
     in the onClick function
 */
 const PlayerStack = ({ className, children, ownStack }) => {
+  const childrenCount = React.Children.count(children);
+
   return (
     <div className={className}>
       {React.Children.map(children, (child, i) => (
@@ -20,7 +22,7 @@ const PlayerStack = ({ className, children, ownStack }) => {
               child.props.className,
               ownStack || 'cursor-default',
               ownStack && 'transform hover:-translate-y-1',
-              i !== 0 || 'absolute top-0 left-0 p-1',
+              i === 0 && childrenCount > 1 && 'absolute top-0 left-0 p-1',
               i === 0 && 'z-20',
             ),
           })}
