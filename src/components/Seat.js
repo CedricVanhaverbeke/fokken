@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { FaUser } from 'react-icons/fa';
 
 import PlayingStack from './PlayerStack';
 import PlayingCard, { suits } from './PlayingCard';
@@ -10,7 +9,7 @@ import { GameContext } from '@/providers/GameProvider';
 
 // eslint-disable-next-line complexity
 const Seat = ({ className, tableIsRight, playerIndex }) => {
-  const { otherPlayerCards } = useContext(GameContext);
+  const { otherPlayerCards, gameInfo } = useContext(GameContext);
 
   const thisPlayer = otherPlayerCards[playerIndex];
 
@@ -28,16 +27,19 @@ const Seat = ({ className, tableIsRight, playerIndex }) => {
     >
       <div
         className={c(
-          thisPlayer?.userName || 'invisible',
-          'text-xs bg-bg rounded-full w-16 h-16 flex items-center justify-center',
+          'flex flex-col items-center justify-center border',
+          thisPlayer?.userName ? '' : 'invisible',
+          'text-xs bg-bg rounded-full w-16 h-16',
           (playerIndex === 0 || playerIndex === 3) && 'self-end',
           (playerIndex === 1 || playerIndex === 2) && 'self-start',
-          thisPlayer?.userName && 'border border-gray-600',
+          thisPlayer?.id === gameInfo.turn
+            ? 'border-red-500'
+            : 'border-gray-600',
         )}
       >
-        <div className="w-full h-full relative">
-          <FaUser className="w-full h-full p-6 text-blue-700" />
-          <span className="absolute -bottom-1 bg-gray-600 p-1 rounded-md">
+        <span className="text-2xl text-white">{thisPlayer?.hand}</span>
+        <div className="relative">
+          <span className="absolute -bottom-4 bg-gray-600 p-1 rounded-md">
             {thisPlayer?.userName}
           </span>
         </div>
