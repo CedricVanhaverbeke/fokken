@@ -20,6 +20,8 @@ const GameContextProvider = ({ children }) => {
 
   const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({});
 
+  const isTurn = gameInfo.isStarted && playerInfo.id === gameInfo.turn;
+
   useEffect(() => {
     if (!socket && playerInfo.name) {
       const socket = io('localhost:8000', {
@@ -100,6 +102,11 @@ const GameContextProvider = ({ children }) => {
   // plays a card
   const playCard = useCallback(
     (fromHand, number, suit, { handIndex, stackIndex, isHidden = true }) => {
+      // Cannot play when not your turn
+      if (!isTurn) {
+        return;
+      }
+
       // Prevent playing a card from the table when you have cards in your hand
       if (!canPlayFromTable && !fromHand) {
         // TODO: notification or something
@@ -153,6 +160,7 @@ const GameContextProvider = ({ children }) => {
       setPlayerInfo,
       isHosting,
       setIsHosting,
+      isTurn,
     }),
     [
       playerInfo,
@@ -170,6 +178,7 @@ const GameContextProvider = ({ children }) => {
       setPlayerInfo,
       isHosting,
       setIsHosting,
+      isTurn,
     ],
   );
 

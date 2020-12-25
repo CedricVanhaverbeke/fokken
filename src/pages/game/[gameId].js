@@ -22,6 +22,7 @@ const Game = () => {
     setPlayerInfo,
     playerInfo,
     isHosting,
+    isTurn,
   } = useContext(GameContext);
 
   return playerInfo?.name ? (
@@ -47,7 +48,7 @@ const Game = () => {
           </Stack>
         </Table>
         {gameInfo.isStarted && (
-          <Hand isTurn={gameInfo.turn === playerInfo.id}>
+          <Hand isTurn={isTurn}>
             {hand.map(({ number, suit }, i) => (
               <button
                 key={`hand${number}${suit}`}
