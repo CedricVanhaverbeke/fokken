@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { io } from 'socket.io-client';
+import React, { useCallback, useMemo, useState } from 'react';
 
-import determineRelativeOrder from '@/utils/determineRelativeOrder';
+import useSocket from '@/hooks/useSocket';
 
 export const GameContext = React.createContext({});
 
@@ -16,69 +15,10 @@ const GameContextProvider = ({ children }) => {
 
   const [hand, setHand] = useState([]);
   const [table, setTable] = useState([[], [], []]);
-  const [socket, setSocket] = useState();
 
   const [otherPlayerCardsTable, setOtherPlayerCardsTable] = useState({});
 
   const isTurn = gameInfo.isStarted && playerInfo.id === gameInfo.turn;
-
-  useEffect(() => {
-    if (!socket && playerInfo.name) {
-      const socket = io('localhost:8000', {
-        query: {
-          userName: playerInfo.name,
-          roomId: 123,
-        },
-      });
-
-      setSocket(socket);
-
-      socket.on('NEW_PLAYER', (response) => {
-        const responseObject = JSON.parse(response);
-        const newUsers = Array.isArray(responseObject)
-          ? responseObject
-          : [responseObject];
-
-        setGameInfo((prev) => ({
-          ...prev,
-          otherPlayers: [
-            ...prev.otherPlayers,
-            ...newUsers.map((user) => user.userName),
-          ],
-        }));
-      });
-
-      socket.on('DIVIDED_CARDS', (response) => {
-        const {
-          order,
-          assignedId,
-          turn,
-          drawPileAmount,
-          ...dividedCards
-        } = JSON.parse(response);
-        const { hand, table } = dividedCards[assignedId];
-        setHand(hand);
-        setTable(table);
-        setPlayerInfo((prev) => ({ ...prev, id: assignedId }));
-        setGameInfo((prev) => ({ ...prev, isStarted: true, turn: turn }));
-        const relativeOrder = determineRelativeOrder(
-          order,
-          order.findIndex(({ id }) => id === assignedId),
-        );
-
-        setOtherPlayerCardsTable(
-          Object.fromEntries(
-            relativeOrder.map(({ id }, i) => [
-              i,
-              { ...dividedCards[id], ...relativeOrder[i] },
-            ]),
-          ),
-        );
-      });
-    }
-
-    return () => socket?.disconnect();
-  }, [socket, playerInfo.name]);
 
   const [playedCards, setPlayedCards] = useState([]);
 
@@ -88,6 +28,15 @@ const GameContextProvider = ({ children }) => {
     },
     [setOtherPlayerCardsTable],
   );
+
+  const socket = useSocket({
+    playerInfo,
+    setGameInfo,
+    setHand,
+    setTable,
+    setPlayerInfo,
+    setOtherPlayerCardsTable,
+  });
 
   const canPlayFromTable = hand.length === 0;
 
@@ -136,7 +85,7 @@ const GameContextProvider = ({ children }) => {
 
       setPlayedCards((prev) => [...prev, { number, suit }]);
     },
-    [canPlayFromTable, canPlayHiddenFromTable],
+    [canPlayFromTable, canPlayHiddenFromTable, isTurn],
   );
 
   const startGame = useCallback(() => {
