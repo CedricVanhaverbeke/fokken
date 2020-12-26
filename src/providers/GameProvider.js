@@ -1,7 +1,8 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
 import useSocket from '@/hooks/useSocket';
-import validMoves from '@/utils/validMoves';
+
+import hasMoves from '@/utils/hasMoves';
 
 export const GameContext = React.createContext({});
 
@@ -46,15 +47,15 @@ const GameContextProvider = ({ children }) => {
 
   const canPlayHiddenFromTable = table.flat().length <= 3;
 
-  const hasNoMoves =
-    (!canPlayFromTable &&
-      !canPlayHiddenFromTable &&
-      containsValidCards(hand, playedCards)) ||
-    (canPlayFromTable &&
-      !canPlayHiddenFromTable &&
-      containsValidCards(table.map((tableStack) => tableStack[0]))) ||
-    (canPlayHiddenFromTable &&
-      containsValidCards(table.map((tableStack) => tableStack[0])));
+  const playerHasMoves = useMemo(() => {
+    return hasMoves({
+      canPlayFromTable,
+      canPlayHiddenFromTable,
+      hand,
+      table,
+      playedCards,
+    });
+  }, [canPlayFromTable, canPlayHiddenFromTable, hand, table, playedCards]);
 
   // info should be an object here
   const updatePlayerInfo = useCallback(
@@ -70,6 +71,9 @@ const GameContextProvider = ({ children }) => {
         return;
       }
 
+      // Put this here so we deny the possibility of taking the cards when you just played
+      setGameInfo((prev) => ({ ...prev, turn: undefined }));
+
       const playedCards = Array.isArray(cards) ? cards : [cards];
 
       socket.emit('PLAY_CARD', JSON.stringify(playedCards));
@@ -79,6 +83,10 @@ const GameContextProvider = ({ children }) => {
 
   const startGame = useCallback(() => {
     socket.emit('START_GAME');
+  }, [socket]);
+
+  const takePlayedCards = useCallback(() => {
+    socket.emit('TAKE_PLAYED_CARDS');
   }, [socket]);
 
   const context = useMemo(
@@ -95,12 +103,16 @@ const GameContextProvider = ({ children }) => {
       setOtherPlayersStacks,
       startGame,
       gameInfo,
+      setGameInfo,
+      takePlayedCards,
       setPlayerInfo,
       isHosting,
       setIsHosting,
       isTurn,
+      playerHasMoves,
     }),
     [
+      playerHasMoves,
       playerInfo,
       playedCards,
       hand,
@@ -112,6 +124,8 @@ const GameContextProvider = ({ children }) => {
       otherPlayerCards,
       setOtherPlayersStacks,
       gameInfo,
+      setGameInfo,
+      takePlayedCards,
       startGame,
       setPlayerInfo,
       isHosting,

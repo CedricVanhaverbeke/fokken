@@ -5,7 +5,7 @@ const containsValidCards = (cards, playedCards) =>
     validMoves(playedCards).some((validNumber) => card.number === validNumber),
   );
 
-const hasNoMoves = ({
+const hasMoves = ({
   canPlayFromTable,
   canPlayHiddenFromTable,
   hand,
@@ -34,4 +34,4 @@ const hasNoMoves = ({
   return false;
 };
 
-export default hasNoMoves;
+export default hasMoves;

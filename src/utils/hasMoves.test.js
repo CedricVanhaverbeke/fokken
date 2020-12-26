@@ -1,6 +1,6 @@
-import hasNoMoves from './hasNoMoves';
+import hasMoves from './hasMoves';
 
-describe('hasNoMoves', () => {
+describe('hasMoves', () => {
   //const mockHand = [];
   //const table = [[], [], []];
   describe('Moves from the hand', () => {
@@ -10,7 +10,7 @@ describe('hasNoMoves', () => {
       const mockPlayedCards = [{ number: 1, suit: 0 }];
 
       expect(
-        hasNoMoves({
+        hasMoves({
           canPlayFromTable: false,
           canPlayHiddenFromTable: false,
           hand: mockHand,
@@ -26,7 +26,7 @@ describe('hasNoMoves', () => {
       const mockPlayedCards = [{ number: 8, suit: 0 }];
 
       expect(
-        hasNoMoves({
+        hasMoves({
           canPlayFromTable: false,
           canPlayHiddenFromTable: false,
           hand: mockHand,
@@ -47,7 +47,7 @@ describe('hasNoMoves', () => {
         const mockPlayedCards = [{ number: 2, suit: 0 }];
 
         expect(
-          hasNoMoves({
+          hasMoves({
             canPlayFromTable: true,
             canPlayHiddenFromTable: false,
             hand: mockHand,
@@ -67,7 +67,7 @@ describe('hasNoMoves', () => {
         const mockPlayedCards = [{ number: 'K', suit: 0 }];
 
         expect(
-          hasNoMoves({
+          hasMoves({
             canPlayFromTable: false,
             canPlayHiddenFromTable: false,
             hand: mockHand,
@@ -87,7 +87,7 @@ describe('hasNoMoves', () => {
         const mockPlayedCards = [{ number: 'Q', suit: 0 }];
 
         expect(
-          hasNoMoves({
+          hasMoves({
             canPlayFromTable: false,
             canPlayHiddenFromTable: false,
             hand: mockHand,
@@ -106,7 +106,7 @@ describe('hasNoMoves', () => {
       const mockPlayedCards = [{ number: 'K', suit: 0 }];
 
       expect(
-        hasNoMoves({
+        hasMoves({
           canPlayFromTable: true,
           canPlayHiddenFromTable: true,
           hand: mockHand,

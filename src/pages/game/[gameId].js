@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import useMultiSelection from '@/hooks/useMultiSelection';
 
@@ -27,7 +27,25 @@ const Game = () => {
     playerInfo,
     isHosting,
     isTurn,
+    playerHasMoves,
+    setGameInfo,
+    takePlayedCards,
   } = useContext(GameContext);
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (playerHasMoves !== undefined && !playerHasMoves && isTurn) {
+      setGameInfo((prev) => ({
+        ...prev,
+        message: 'No moves left, you receive all the cards',
+      }));
+      const timeOut = setTimeout(() => {
+        takePlayedCards();
+      }, 2000);
+
+      return () => clearTimeout(timeOut);
+    }
+  }, [playerHasMoves, setGameInfo, takePlayedCards, isTurn]);
 
   const {
     selection,
@@ -40,7 +58,7 @@ const Game = () => {
   return playerInfo?.name ? (
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full h-full items-center justify-center bg-bgDark">
-        <span className="text-xl">{gameInfo.message}</span>
+        <span className="text-xl mt-4 text-red-500">{gameInfo.message}</span>
         <Table
           className="flex flex-grow w-full lg:w-3/5 lg:m-4 py-16"
           playableTableCards={table}
