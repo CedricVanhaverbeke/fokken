@@ -52,31 +52,18 @@ const GameContextProvider = ({ children }) => {
   );
 
   // plays a card
-  const playCard = useCallback(
-    (fromHand, number, suit, { handIndex, stackIndex, isHidden = true }) => {
+  const playCards = useCallback(
+    (cards) => {
       // Cannot play when not your turn
       if (!isTurn) {
         return;
       }
 
-      // Prevent playing a card from the table when you have cards in your hand
-      if (!canPlayFromTable && !fromHand) {
-        // TODO: notification or something
-        // eslint-disable-next-line no-console
-        console.log(' Cannot play from table right now');
-        return;
-      }
+      const playedCards = Array.isArray(cards) ? cards : [cards];
 
-      // Prevent playing a hidden card from the table when you have visible cards on the table
-      if (!fromHand && isHidden && !canPlayHiddenFromTable) {
-        // eslint-disable-next-line no-console
-        console.log(' Cannot play from hidden stack right now');
-        return;
-      }
-
-      socket.emit('PLAY_CARD', JSON.stringify({ number, suit }));
+      socket.emit('PLAY_CARD', JSON.stringify(playedCards));
     },
-    [canPlayFromTable, canPlayHiddenFromTable, isTurn, socket],
+    [isTurn, socket],
   );
 
   const startGame = useCallback(() => {
@@ -92,7 +79,7 @@ const GameContextProvider = ({ children }) => {
       updatePlayerInfo,
       canPlayFromTable,
       canPlayHiddenFromTable,
-      playCard,
+      playCards,
       otherPlayerCards,
       setOtherPlayersStacks,
       startGame,
@@ -110,7 +97,7 @@ const GameContextProvider = ({ children }) => {
       updatePlayerInfo,
       canPlayFromTable,
       canPlayHiddenFromTable,
-      playCard,
+      playCards,
       otherPlayerCards,
       setOtherPlayersStacks,
       gameInfo,

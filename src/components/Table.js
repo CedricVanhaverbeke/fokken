@@ -13,8 +13,6 @@ import { GameContext } from '@/providers/GameProvider';
 const Table = ({ children, className, playableTableCards, playCard }) => {
   const game = useContext(GameContext);
 
-  console.log(game);
-
   return (
     <div className={className}>
       {
@@ -56,7 +54,7 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
                       validMoves(
                         game.playedCards.length > 0
                           ? game.playedCards[game.playedCards.length - 1]
-                          : { number: 'K' },
+                          : { number: 0 },
                       ).includes(card.number);
 
                     return (
@@ -73,10 +71,7 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
                             (game.canPlayHiddenFromTable &&
                               j === cards.length - 1)
                           ) {
-                            playCard(false, card.number, card.suit, {
-                              stackIndex: i,
-                              isHidden: j === cards.length - 1,
-                            });
+                            playCard(card);
                           }
                         }}
                       >

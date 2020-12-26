@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 
+import useMultiSelection from '@/hooks/useMultiSelection';
+
 import c from '@/utils/c';
+import validMoves from '@/utils/validMoves';
 
 import DrawPile from '@/components/DrawPile';
 import Hand from '@/components/Hand';
@@ -12,12 +15,10 @@ import Stack from '@/components/Stack';
 import Table from '@/components/Table';
 import { GameContext } from '@/providers/GameProvider';
 
-import validMoves from '@/utils/validMoves';
-
 const Game = () => {
   const {
     playedCards,
-    playCard,
+    playCards,
     table,
     hand,
     startGame,
@@ -28,13 +29,21 @@ const Game = () => {
     isTurn,
   } = useContext(GameContext);
 
+  const {
+    selection,
+    toggleSelected,
+    isSelected,
+    selectionContainsNumber,
+    emptySelection,
+  } = useMultiSelection();
+
   return playerInfo?.name ? (
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full h-full items-center justify-center bg-bgDark">
         <Table
           className="flex flex-grow w-full lg:w-3/5 lg:m-4 py-16"
           playableTableCards={table}
-          playCard={playCard}
+          playCard={playCards}
         >
           <Stack className="w-88 flex-grow">
             {playedCards.map(({ number, suit }) => (
@@ -56,19 +65,23 @@ const Game = () => {
             <Hand className="ml-24" isTurn={isTurn}>
               {hand.map(({ number, suit }, i) => {
                 const isPlayable =
-                  isTurn &&
-                  validMoves(
-                    playedCards.length > 0
-                      ? playedCards[playedCards.length - 1]
-                      : { number: 'K' },
-                  ).includes(number);
+                  isTurn && selection.length > 0
+                    ? selectionContainsNumber(number)
+                    : validMoves(
+                        playedCards.length > 0
+                          ? playedCards[playedCards.length - 1]
+                          : { number: 0 },
+                      ).includes(number);
+
+                const multipleOfThisNumber =
+                  hand.filter((card) => card.number === number).length > 1;
 
                 return (
                   <button
                     key={`hand${number}${suit}`}
                     onClick={() => {
-                      if (isPlayable) {
-                        playCard(true, number, suit, { handIndex: i });
+                      if (isPlayable && !multipleOfThisNumber) {
+                        playCards({ number, suit });
                       }
                     }}
                   >
@@ -85,6 +98,20 @@ const Game = () => {
                       key={`${number}${suit}`}
                       number={number}
                       suit={Object.values(suits)[suit]}
+                      hasExtraOptions={
+                        isSelected({ number, suit }) ||
+                        (isPlayable && selectionContainsNumber(number))
+                      }
+                      hasExtraHoverOptions={isPlayable && multipleOfThisNumber}
+                      onSelect={() => toggleSelected({ number, suit })}
+                      isSelected={isSelected({ number, suit })}
+                      selectionLength={selection.length}
+                      onPlayCards={() => {
+                        if (isPlayable) {
+                          playCards(selection);
+                          emptySelection();
+                        }
+                      }}
                     />
                   </button>
                 );

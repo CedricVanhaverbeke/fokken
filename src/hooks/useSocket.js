@@ -66,6 +66,7 @@ const useSocket = ({
         );
 
         // You are always the first person in the relative order
+        // eslint-disable-next-line no-unused-vars
         const [_me, ...playerOrder] = relativeOrder;
 
         setOtherPlayerCards(

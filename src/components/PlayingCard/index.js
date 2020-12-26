@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaCheck } from 'react-icons/fa';
 import { GiClubs, GiDiamonds, GiHearts, GiSpades } from 'react-icons/gi';
+import { GiCardPlay } from 'react-icons/gi';
 
 import CardContent from './CardContent';
 import CardHeader from './CardHeader';
@@ -13,8 +15,20 @@ export const suits = {
   spades: [GiSpades, 'text-black'],
 };
 
-const PlayingCard = ({ className, number, suit, isHidden, showSuits }) => {
+const PlayingCard = ({
+  className,
+  number,
+  suit,
+  isHidden,
+  showSuits,
+  onSelect,
+  onPlayCards,
+  isSelected,
+  hasExtraOptions,
+  hasExtraHoverOptions,
+}) => {
   const [Suit, textColor] = suit;
+  const [isHovered, setIsHovered] = useState(false);
 
   if (isHidden) {
     return (
@@ -39,8 +53,40 @@ const PlayingCard = ({ className, number, suit, isHidden, showSuits }) => {
         'border border-gray-300 rounded-lg bg-white',
         textColor,
       )}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-full w-full">
+      <div className="relative h-full w-full rounded-lg">
+        {(hasExtraOptions || (hasExtraHoverOptions && isHovered)) && (
+          <div
+            className="absolute m-2 bg-white"
+            style={{ width: '80%', height: '90%' }}
+          >
+            <div className="flex flex-col h-full w-full items-center justify-center">
+              <button
+                className="w-full flex-grow flex items-center justify-center"
+                onClick={onPlayCards}
+              >
+                <GiCardPlay
+                  title="play this card directly"
+                  className="text-black text-lg"
+                />
+              </button>
+
+              <button
+                className="w-full flex-grow flex items-center justify-center"
+                onClick={onSelect}
+              >
+                <span className="bg-bg p-1 w-6 h-6 text-xs border flex items-center justify-center">
+                  {isSelected && (
+                    <FaCheck title="select multiple" className="text-white" />
+                  )}
+                </span>
+              </button>
+            </div>
+          </div>
+        )}
+
         <CardHeader
           number={number}
           Suit={Suit}
@@ -69,6 +115,10 @@ const PlayingCard = ({ className, number, suit, isHidden, showSuits }) => {
 
 PlayingCard.defaultProps = {
   showSuits: true,
+  hasExtraOptions: false,
+  hasExtraHoverOptions: false,
+  onSelect: () => {},
+  onPlayDirectly: () => {},
 };
 
 export default PlayingCard;

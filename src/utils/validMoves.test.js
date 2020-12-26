@@ -1,6 +1,24 @@
 import validMoves from './validMoves';
 
 describe('validMoves', () => {
+  it('should show all cards', () => {
+    expect(validMoves({ number: 0 })).toMatchObject([
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      'J',
+      'Q',
+      'K',
+    ]);
+  });
+
   it('should show the correct cards', () => {
     expect(validMoves({ number: 1 })).toMatchObject([
       2,
