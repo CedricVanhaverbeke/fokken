@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 
 import determineRelativeOrder from '@/utils/determineRelativeOrder';
+import { sortCards } from '@/utils/sort';
 
 const useSocket = ({
   playerInfo,
@@ -50,7 +51,7 @@ const useSocket = ({
         } = JSON.parse(response);
 
         const { hand, table } = dividedCards[assignedId];
-        setHand(hand);
+        setHand(sortCards(hand));
         setTable(table);
         setPlayerInfo((prev) => ({ ...prev, id: assignedId }));
         setGameInfo((prev) => ({
@@ -78,15 +79,15 @@ const useSocket = ({
       });
 
       socket.on('CARD_PLAYED', (response) => {
-        const { number, suit, turn, drawPileAmount, ...newCards } = JSON.parse(
+        const { turn, drawPileAmount, playedCards, ...newCards } = JSON.parse(
           response,
         );
 
         const { [socket.id]: ownCards, ...otherNewCards } = newCards;
 
-        setPlayedCards((prev) => [...prev, { number, suit }]);
+        setPlayedCards(playedCards);
         setGameInfo((prev) => ({ ...prev, turn, drawPileAmount }));
-        setHand(ownCards.hand);
+        setHand(sortCards(ownCards.hand));
         setTable(ownCards.table);
 
         // set other player cards

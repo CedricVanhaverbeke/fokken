@@ -15,6 +15,7 @@ const GameContextProvider = ({ children }) => {
   });
 
   const [hand, setHand] = useState([]);
+
   const [table, setTable] = useState([[], [], []]);
 
   const [otherPlayerCards, setOtherPlayerCards] = useState({});

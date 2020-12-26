@@ -12,6 +12,8 @@ import Stack from '@/components/Stack';
 import Table from '@/components/Table';
 import { GameContext } from '@/providers/GameProvider';
 
+import validMoves from '@/utils/validMoves';
+
 const Game = () => {
   const {
     playedCards,
@@ -48,27 +50,45 @@ const Game = () => {
             ))}
           </Stack>
         </Table>
+
         {gameInfo.isStarted && (
           <div className="flex jusitfy-between w-full">
-            <Hand className="ml-20" isTurn={isTurn}>
-              {hand.map(({ number, suit }, i) => (
-                <button
-                  key={`hand${number}${suit}`}
-                  onClick={() => playCard(true, number, suit, { handIndex: i })}
-                >
-                  <PlayingCard
-                    className={c(
-                      'w-20 h-32',
-                      'transform scale-75 md:scale-90 shadow-lg',
-                      'transition-all lg:transform hover:-translate-y-1',
-                      i === 0 || '-ml-12 md:-ml-8 lg:-ml-4',
-                    )}
-                    key={`${number}${suit}`}
-                    number={number}
-                    suit={Object.values(suits)[suit]}
-                  />
-                </button>
-              ))}
+            <Hand className="ml-24" isTurn={isTurn}>
+              {hand.map(({ number, suit }, i) => {
+                const isPlayable =
+                  isTurn &&
+                  validMoves(
+                    playedCards.length > 0
+                      ? playedCards[playedCards.length - 1]
+                      : { number: 'K' },
+                  ).includes(number);
+
+                return (
+                  <button
+                    key={`hand${number}${suit}`}
+                    onClick={() => {
+                      if (isPlayable) {
+                        playCard(true, number, suit, { handIndex: i });
+                      }
+                    }}
+                  >
+                    <PlayingCard
+                      className={c(
+                        'w-20 h-32',
+                        'transform scale-75 md:scale-90 shadow-lg',
+                        'transition-all lg:transform ',
+                        i === 0 || '-ml-12 md:-ml-8 lg:-ml-4',
+                        isPlayable
+                          ? 'transform mb-2 hover:-translate-y-1'
+                          : 'cursor-not-allowed',
+                      )}
+                      key={`${number}${suit}`}
+                      number={number}
+                      suit={Object.values(suits)[suit]}
+                    />
+                  </button>
+                );
+              })}
             </Hand>
             <DrawPile
               drawPileAmount={gameInfo.drawPileAmount}
@@ -77,6 +97,7 @@ const Game = () => {
           </div>
         )}
       </div>
+
       {gameInfo.isStarted || (
         <SideBar>
           <Lobby

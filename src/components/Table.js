@@ -6,11 +6,14 @@ import PlayingCard, { suits } from './PlayingCard';
 import Seat from './Seat';
 
 import c from '@/utils/c';
+import validMoves from '@/utils/validMoves';
 
 import { GameContext } from '@/providers/GameProvider';
 
 const Table = ({ children, className, playableTableCards, playCard }) => {
   const game = useContext(GameContext);
+
+  console.log(game);
 
   return (
     <div className={className}>
@@ -38,33 +41,58 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
         {<Logo className="absolute ml-auto mr-auto opacity-50" />}
         {
           <div className={c('items-center flex gap-x-2')}>
-            {playableTableCards.map((cards, i) => (
-              <PlayingStack
-                key={`stack${i}`}
-                canPlay={game.canPlayFromTable}
-                ownStack={true}
-              >
-                {cards.map((card, j) => (
-                  <button
-                    key={`${card.number}${card.suit}`}
-                    onClick={() =>
-                      playCard(false, card.number, card.suit, {
-                        stackIndex: i,
-                        isHidden: j === cards.length - 1,
-                      })
-                    }
-                  >
-                    <PlayingCard
-                      className="w-12 h-20"
-                      number={card.number}
-                      showSuits={false}
-                      suit={Object.values(suits)[card.suit]}
-                      isHidden={j === cards.length - 1}
-                    />
-                  </button>
-                ))}
-              </PlayingStack>
-            ))}
+            {playableTableCards.map((cards, i) => {
+              return (
+                <PlayingStack
+                  key={`stack${i}`}
+                  canPlay={game.canPlayFromTable}
+                  ownStack={true}
+                >
+                  {cards.map((card, j) => {
+                    const isPlayable =
+                      j !== cards.length - 1 && // only apply these rules on invisble cards
+                      game.canPlayFromTable &&
+                      game.isTurn &&
+                      validMoves(
+                        game.playedCards.length > 0
+                          ? game.playedCards[game.playedCards.length - 1]
+                          : { number: 'K' },
+                      ).includes(card.number);
+
+                    return (
+                      <button
+                        className={c(
+                          isPlayable
+                            ? '-translate-y-1 transform hover:-translate-y-2'
+                            : 'cursor-not-allowed',
+                        )}
+                        key={`${card.number}${card.suit}`}
+                        onClick={() => {
+                          if (
+                            isPlayable ||
+                            (game.canPlayHiddenFromTable &&
+                              j === cards.length - 1)
+                          ) {
+                            playCard(false, card.number, card.suit, {
+                              stackIndex: i,
+                              isHidden: j === cards.length - 1,
+                            });
+                          }
+                        }}
+                      >
+                        <PlayingCard
+                          className={c('w-12 h-20')}
+                          number={card.number}
+                          showSuits={false}
+                          suit={Object.values(suits)[card.suit]}
+                          isHidden={j === cards.length - 1}
+                        />
+                      </button>
+                    );
+                  })}
+                </PlayingStack>
+              );
+            })}
           </div>
         }
       </div>

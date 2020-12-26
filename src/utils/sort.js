@@ -9,3 +9,16 @@ export const sortByLastNameAndFirstName = (data, ascending = true) => {
     return 0;
   });
 };
+
+const symbolMapper = {
+  J: 11,
+  Q: 12,
+  K: 13,
+};
+
+export const sortCards = (cards) =>
+  cards.sort(
+    (a, b) =>
+      (symbolMapper[a.number] ?? a.number) -
+      (symbolMapper[b.number] ?? b.number),
+  );
