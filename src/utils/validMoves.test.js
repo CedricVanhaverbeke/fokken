@@ -112,13 +112,15 @@ describe('validMoves', () => {
 
   it('should show the correct cards', () => {
     expect(validMoves([{ number: 7 }])).toMatchObject([
-      8,
-      9,
-      10,
-      'J',
-      'Q',
-      'K',
-      2, // special card
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9, // spcial card
+      10, // special card
     ]);
   });
 

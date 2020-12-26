@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 
 import useSocket from '@/hooks/useSocket';
+import validMoves from '@/utils/validMoves';
 
 export const GameContext = React.createContext({});
 
@@ -44,6 +45,16 @@ const GameContextProvider = ({ children }) => {
   const canPlayFromTable = hand.length === 0;
 
   const canPlayHiddenFromTable = table.flat().length <= 3;
+
+  const hasNoMoves =
+    (!canPlayFromTable &&
+      !canPlayHiddenFromTable &&
+      containsValidCards(hand, playedCards)) ||
+    (canPlayFromTable &&
+      !canPlayHiddenFromTable &&
+      containsValidCards(table.map((tableStack) => tableStack[0]))) ||
+    (canPlayHiddenFromTable &&
+      containsValidCards(table.map((tableStack) => tableStack[0])));
 
   // info should be an object here
   const updatePlayerInfo = useCallback(

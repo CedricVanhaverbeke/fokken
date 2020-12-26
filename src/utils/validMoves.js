@@ -37,6 +37,11 @@ const validMoves = (playedCards) => {
   const previousCard = playedCards[playedCards.length - 2];
 
   const previousNumber = previousCard ? previousCard.number : 0;
+
+  if (number === 7) {
+    return [...new Set([1, 2, 3, 4, 5, 6, 7, ...specialCards])];
+  }
+
   if (number === 9) {
     number = previousNumber;
   }

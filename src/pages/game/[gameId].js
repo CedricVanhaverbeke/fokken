@@ -68,11 +68,7 @@ const Game = () => {
                 const isPlayable =
                   isTurn && selection.length > 0
                     ? selectionContainsNumber(number)
-                    : validMoves(
-                        playedCards.length > 0
-                          ? playedCards[playedCards.length - 1]
-                          : { number: 0 },
-                      ).includes(number);
+                    : validMoves(playedCards).includes(number);
 
                 const multipleOfThisNumber =
                   hand.filter((card) => card.number === number).length > 1;
@@ -109,7 +105,11 @@ const Game = () => {
                       selectionLength={selection.length}
                       onPlayCards={() => {
                         if (isPlayable) {
-                          playCards(selection);
+                          playCards(
+                            selection.length > 0
+                              ? selection
+                              : [{ number, suit }],
+                          );
                           emptySelection();
                         }
                       }}
