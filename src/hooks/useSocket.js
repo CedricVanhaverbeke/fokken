@@ -80,14 +80,18 @@ const useSocket = ({
       });
 
       socket.on('CARD_PLAYED', (response) => {
-        const { turn, drawPileAmount, playedCards, ...newCards } = JSON.parse(
-          response,
-        );
+        const {
+          turn,
+          drawPileAmount,
+          playedCards,
+          message,
+          ...newCards
+        } = JSON.parse(response);
 
         const { [socket.id]: ownCards, ...otherNewCards } = newCards;
 
         setPlayedCards(playedCards);
-        setGameInfo((prev) => ({ ...prev, turn, drawPileAmount }));
+        setGameInfo((prev) => ({ ...prev, turn, drawPileAmount, message }));
         setHand(sortCards(ownCards.hand));
         setTable(ownCards.table);
 

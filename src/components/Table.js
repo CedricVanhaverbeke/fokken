@@ -51,11 +51,7 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
                       j !== cards.length - 1 && // only apply these rules on invisble cards
                       game.canPlayFromTable &&
                       game.isTurn &&
-                      validMoves(
-                        game.playedCards.length > 0
-                          ? game.playedCards[game.playedCards.length - 1]
-                          : { number: 0 },
-                      ).includes(card.number);
+                      validMoves(game.playedCards).includes(card.number);
 
                     return (
                       <button

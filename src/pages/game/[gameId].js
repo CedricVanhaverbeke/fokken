@@ -40,6 +40,7 @@ const Game = () => {
   return playerInfo?.name ? (
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full h-full items-center justify-center bg-bgDark">
+        <span className="text-xl">{gameInfo.message}</span>
         <Table
           className="flex flex-grow w-full lg:w-3/5 lg:m-4 py-16"
           playableTableCards={table}
