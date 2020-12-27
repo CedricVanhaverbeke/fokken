@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { io } from 'socket.io-client';
 
+import useTitle from '@/hooks/useTitle';
+
 import determineRelativeOrder from '@/utils/determineRelativeOrder';
 import { sortCards } from '@/utils/sort';
 
@@ -16,6 +18,8 @@ const useSocket = ({
 }) => {
   const router = useRouter();
   const { gameId } = router.query;
+
+  useTitle(gameId ? 'Playing game' : '');
 
   const [socket, setSocket] = useState();
 

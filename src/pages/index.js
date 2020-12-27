@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import uuid from 'react-uuid';
 import { useRouter } from 'next/router';
 
+import useTitle from '@/hooks/useTitle';
+
 import c from '@/utils/c';
 
 import Button from '@/components/Button';
@@ -14,6 +16,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isJoinGameClicked, setIsJoinGameClicked] = useState(false);
   const [gameId, setGameId] = useState();
+  useTitle();
 
   const { setIsHosting } = useContext(GameContext);
 
