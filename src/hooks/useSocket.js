@@ -25,7 +25,7 @@ const useSocket = ({
 
   useEffect(() => {
     if (!socket && playerInfo.name && gameId) {
-      const socket = io('localhost:8000', {
+      const socket = io(process.env.NEXT_PUBLIC_SOCKET_URL, {
         query: {
           userName: playerInfo.name,
           roomId: gameId,
