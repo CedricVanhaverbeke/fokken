@@ -20,7 +20,8 @@ const Home = () => {
   useEffect(() => {
     function enterPressed(event) {
       if (event.keyCode === 13) {
-        //router.push(`/game/${gameId}`);
+        setIsLoading(true);
+        router.push(`/game/${gameId}`);
       }
     }
 
@@ -31,7 +32,7 @@ const Home = () => {
     }
 
     return () => window.removeEventListener('keyup', enterPressed);
-  }, [isJoinGameClicked]);
+  }, [gameId, isJoinGameClicked, router]);
 
   return (
     <div className="flex flex-col flex-grow items-center justify-center text-blue-900  scal">

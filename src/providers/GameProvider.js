@@ -1,8 +1,9 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 
 import useSocket from '@/hooks/useSocket';
 
 import hasMoves from '@/utils/hasMoves';
+import validMoves from '@/utils/validMoves';
 
 export const GameContext = React.createContext({});
 
@@ -95,6 +96,61 @@ const GameContextProvider = ({ children }) => {
     },
     [socket],
   );
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (
+      hand.length !== 0 &&
+      playerHasMoves !== undefined &&
+      !playerHasMoves &&
+      isTurn
+    ) {
+      setGameInfo((prev) => ({
+        ...prev,
+        message: 'No moves left, you receive all the cards',
+      }));
+      const timeOut = setTimeout(() => {
+        takePlayedCards();
+      }, 2000);
+
+      return () => clearTimeout(timeOut);
+    }
+  }, [playerHasMoves, setGameInfo, takePlayedCards, isTurn, hand]);
+
+  // We need to do this useEffect here when the table cards need to be turned
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (
+      gameInfo.playedAmount &&
+      playedCards.length - gameInfo.playedAmount >= 1
+    ) {
+      const previousPlayedCards = JSON.parse(JSON.stringify(playedCards));
+      const lastPlayedCard = previousPlayedCards.splice(
+        -1 * gameInfo.playedAmount,
+        gameInfo.playedAmount,
+      )[0];
+
+      if (!validMoves(previousPlayedCards).includes(lastPlayedCard.number)) {
+        setGameInfo((prev) => ({
+          ...prev,
+          message: 'Too bad, your card was not good enough',
+        }));
+
+        const timeOut = setTimeout(() => {
+          takePlayedCards({ passTurn: false });
+        }, 2000);
+
+        return () => clearTimeout(timeOut);
+      }
+    }
+  }, [
+    playerHasMoves,
+    setGameInfo,
+    takePlayedCards,
+    isTurn,
+    playedCards,
+    gameInfo.playedAmount,
+  ]);
 
   const context = useMemo(
     () => ({

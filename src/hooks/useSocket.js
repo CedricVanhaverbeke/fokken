@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import { io } from 'socket.io-client';
 
 import determineRelativeOrder from '@/utils/determineRelativeOrder';
@@ -13,14 +14,17 @@ const useSocket = ({
   setOtherPlayerCards,
   setPlayedCards,
 }) => {
+  const router = useRouter();
+  const { gameId } = router.query;
+
   const [socket, setSocket] = useState();
 
   useEffect(() => {
-    if (!socket && playerInfo.name) {
+    if (!socket && playerInfo.name && gameId) {
       const socket = io('localhost:8000', {
         query: {
           userName: playerInfo.name,
-          roomId: 123,
+          roomId: gameId,
         },
       });
 
@@ -130,6 +134,7 @@ const useSocket = ({
 
     return () => socket?.disconnect();
   }, [
+    gameId,
     socket,
     playerInfo.name,
     setGameInfo,
