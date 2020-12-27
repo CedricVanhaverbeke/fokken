@@ -102,7 +102,7 @@ const Home = () => {
             text={isJoinGameClicked ? 'Joining game' : 'Creating game'}
           />
         )}
-        <span className="text-xs text-center">version 0.0.5-alpha</span>
+        <span className="text-xs text-center">version 0.0.69-alpha</span>
       </div>
     </div>
   );
