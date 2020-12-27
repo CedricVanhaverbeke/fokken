@@ -14,6 +14,7 @@ const GameContextProvider = ({ children }) => {
     otherPlayers: [],
     turn: undefined,
     drawPileAmount: 0,
+    playedAmount: undefined,
   });
 
   const [hand, setHand] = useState([]);
@@ -85,9 +86,15 @@ const GameContextProvider = ({ children }) => {
     socket.emit('START_GAME');
   }, [socket]);
 
-  const takePlayedCards = useCallback(() => {
-    socket.emit('TAKE_PLAYED_CARDS');
-  }, [socket]);
+  const takePlayedCards = useCallback(
+    (payload) => {
+      socket.emit(
+        'TAKE_PLAYED_CARDS',
+        JSON.stringify(payload ? payload : { passTurn: true }),
+      );
+    },
+    [socket],
+  );
 
   const context = useMemo(
     () => ({

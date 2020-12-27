@@ -48,10 +48,10 @@ const Table = ({ children, className, playableTableCards, playCard }) => {
                 >
                   {cards.map((card, j) => {
                     const isPlayable =
-                      j !== cards.length - 1 && // only apply these rules on invisble cards
-                      game.canPlayFromTable &&
-                      game.isTurn &&
-                      validMoves(game.playedCards).includes(card.number);
+                      (game.canPlayFromTable &&
+                        game.isTurn &&
+                        validMoves(game.playedCards).includes(card.number)) ||
+                      game.canPlayHiddenFromTable;
 
                     return (
                       <button

@@ -85,13 +85,22 @@ const useSocket = ({
           drawPileAmount,
           playedCards,
           message,
+          playedAmount,
+          playerIsOut,
           ...newCards
         } = JSON.parse(response);
 
         const { [socket.id]: ownCards, ...otherNewCards } = newCards;
 
         setPlayedCards(playedCards);
-        setGameInfo((prev) => ({ ...prev, turn, drawPileAmount, message }));
+        setGameInfo((prev) => ({
+          ...prev,
+          turn,
+          drawPileAmount,
+          message: playerIsOut === socket.id ? 'CONGRATZZZ' : message,
+          playedAmount,
+          youWon: playerIsOut === playerInfo.id,
+        }));
         setHand(sortCards(ownCards.hand));
         setTable(ownCards.table);
 
@@ -110,6 +119,12 @@ const useSocket = ({
             }),
           ),
         );
+      });
+
+      socket.on('EMPTY_STACK', (payload) => {
+        const { turn, message } = JSON.parse(payload);
+        setGameInfo((prev) => ({ ...prev, turn, message }));
+        setPlayedCards([]);
       });
     }
 
