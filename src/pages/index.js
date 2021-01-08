@@ -103,6 +103,9 @@ const Home = () => {
           />
         )}
         <span className="text-xs text-center">version 0.0.69-alpha</span>
+        <span className="font-bold mt-4 uppercase text-center text-bg">
+          First winner: Matthias Vanhille
+        </span>
       </div>
     </div>
   );
