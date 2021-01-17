@@ -7,7 +7,7 @@ describe('hasMoves', () => {
     it('should have a move from the hand', () => {
       const mockHand = [{ number: 8, suit: 0 }];
       const mockTable = [[], [], []];
-      const mockPlayedCards = [{ number: 1, suit: 0 }];
+      const mockPlayedCards = [{ number: 2, suit: 0 }];
 
       expect(
         hasMoves({
@@ -21,7 +21,7 @@ describe('hasMoves', () => {
     });
 
     it('should not have any moves from the hand', () => {
-      const mockHand = [{ number: 1, suit: 0 }];
+      const mockHand = [{ number: 3, suit: 0 }];
       const mockTable = [[], [], []];
       const mockPlayedCards = [{ number: 8, suit: 0 }];
 
