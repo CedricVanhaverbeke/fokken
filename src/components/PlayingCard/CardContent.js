@@ -84,7 +84,7 @@ const NoSuitContent = ({ number, className }) => (
   >
     <span
       className={c(
-        'text-xl font-semibold',
+        'text-2xl font-semibold',
         (number === 6 || number === 9) && 'underline',
       )}
     >
