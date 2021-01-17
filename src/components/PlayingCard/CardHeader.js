@@ -12,10 +12,10 @@ const CardHeader = ({
   <div className={c(className, isFacingUp || 'transform rotate-180')}>
     <div
       className="flex flex-col items-center justify-center "
-      style={{ fontSize: showSuits ? '0.6rem' : '0.75rem' }}
+      style={{ fontSize: showSuits ? '1.2rem' : '1rem' }}
     >
       <Suit />
-      {showSuits && <span>{number}</span>}
+      {showSuits && <span className="text-xxs">{number}</span>}
     </div>
   </div>
 );

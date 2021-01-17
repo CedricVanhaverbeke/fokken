@@ -51,7 +51,7 @@ const Game = () => {
               <PlayingCard
                 className={c(
                   'w-24 h-40',
-                  'transform scale-50 sm:scale-60 lg:scale-75',
+                  'transform scale-50 sm:scale-60 md:scale-75 lg:scale-90 xl:scale-100',
                 )}
                 key={`${number}${suit}`}
                 number={number}
