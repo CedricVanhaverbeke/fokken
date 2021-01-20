@@ -29,12 +29,12 @@ const Seat = ({ className, tableIsRight, playerIndex }) => {
         className={c(
           'flex flex-col items-center justify-center border',
           thisPlayer?.userName ? '' : 'invisible',
-          'text-xs bg-bg rounded-full w-16 h-16',
+          'text-xs rounded-full w-16 h-16 border-gray-600',
           (playerIndex === 0 || playerIndex === 3) && 'self-end',
           (playerIndex === 1 || playerIndex === 2) && 'self-start',
-          thisPlayer?.id === gameInfo.turn
-            ? 'border-red-500'
-            : 'border-gray-600',
+          thisPlayer?.id === gameInfo.turn // if is turn
+            ? 'bg-red-500'
+            : 'bg-bg',
         )}
       >
         <span className="text-2xl text-white">{thisPlayer?.hand}</span>
